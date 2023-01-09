@@ -29,19 +29,31 @@ public class FileSystemJavaBuildCommandsHandler {
       return;
     }
 
-    Path pomPath = projectFolder.filePath("pom.xml");
-
-    if (Files.notExists(pomPath)) {
-      throw new MissingPomException(projectFolder);
-    }
-
-    MavenCommandHandler handler = new MavenCommandHandler(indentation, pomPath);
+    JavaDependenciesCommandHandler handler = identifyJavaDependenciesCommandHandler(indentation, projectFolder);
 
     commands.get().forEach(command -> handle(handler, command));
   }
 
+  private static JavaDependenciesCommandHandler identifyJavaDependenciesCommandHandler(
+    Indentation indentation,
+    JHipsterProjectFolder projectFolder
+  ) {
+    Path pomPath = projectFolder.filePath("pom.xml");
+    Path buildGradlePath = projectFolder.filePath("build.gradle.kts");
+
+    JavaDependenciesCommandHandler handler;
+    if (Files.exists(pomPath)) {
+      handler = new MavenCommandHandler(indentation, pomPath);
+    } else if (Files.exists(buildGradlePath)) {
+      handler = new GradleCommandHandler(indentation, projectFolder);
+    } else {
+      throw new MissingJavaBuildConfigurationException(projectFolder);
+    }
+    return handler;
+  }
+
   @ExcludeFromGeneratedCodeCoverage(reason = "Jacoco thinks there is a missed branch")
-  private void handle(MavenCommandHandler handler, JavaBuildCommand command) {
+  private void handle(JavaDependenciesCommandHandler handler, JavaBuildCommand command) {
     switch (command.type()) {
       case SET_VERSION -> handler.handle((SetVersion) command);
       case REMOVE_DEPENDENCY_MANAGEMENT -> handler.handle((RemoveJavaDependencyManagement) command);

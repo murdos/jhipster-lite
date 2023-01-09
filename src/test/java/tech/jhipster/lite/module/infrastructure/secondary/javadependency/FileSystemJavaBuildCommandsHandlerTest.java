@@ -1,7 +1,8 @@
 package tech.jhipster.lite.module.infrastructure.secondary.javadependency;
 
-import static org.assertj.core.api.Assertions.*;
-import static tech.jhipster.lite.module.domain.JHipsterModulesFixture.*;
+import static org.assertj.core.api.Assertions.assertThatCode;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static tech.jhipster.lite.module.domain.JHipsterModulesFixture.javaDependenciesCommands;
 
 import org.junit.jupiter.api.Test;
 import tech.jhipster.lite.UnitTest;
@@ -23,10 +24,10 @@ class FileSystemJavaBuildCommandsHandlerTest {
   }
 
   @Test
-  void shouldNotHandleCommandsOnProjectWithoutPom() {
+  void shouldNotHandleCommandsOnProjectWithoutMavenOrGradle() {
     assertThatThrownBy(() ->
         handler.handle(Indentation.DEFAULT, new JHipsterProjectFolder("src/test/resources/projects/empty"), javaDependenciesCommands())
       )
-      .isExactlyInstanceOf(MissingPomException.class);
+      .isExactlyInstanceOf(MissingJavaBuildConfigurationException.class);
   }
 }

@@ -8,15 +8,15 @@ import tech.jhipster.lite.error.domain.ErrorStatus;
 import tech.jhipster.lite.module.domain.properties.JHipsterProjectFolder;
 
 @UnitTest
-class MissingPomExceptionTest {
+class MissingJavaBuildConfigurationExceptionTest {
 
   @Test
   void shouldGetExceptionInformation() {
-    MissingPomException exception = new MissingPomException(new JHipsterProjectFolder("folder"));
+    MissingJavaBuildConfigurationException exception = new MissingJavaBuildConfigurationException(new JHipsterProjectFolder("folder"));
 
     assertThat(exception.getMessage()).isEqualTo("Can't find pom.xml in folder");
     assertThat(exception.status()).isEqualTo(ErrorStatus.BAD_REQUEST);
-    assertThat(exception.key()).isEqualTo(JavaDependencyErrorKey.MISSING_POM);
+    assertThat(exception.key()).isEqualTo(JavaDependencyErrorKey.MISSING_BUILD_CONFIGURATION);
     assertThat(exception.parameters()).containsOnly(entry("folder", "folder"));
   }
 }
