@@ -1,4 +1,4 @@
-package tech.jhipster.lite.module.infrastructure.secondary.javadependency;
+package tech.jhipster.lite.module.infrastructure.secondary.javadependency.maven;
 
 import static org.joox.JOOX.*;
 import static tech.jhipster.lite.module.domain.JHipsterModule.*;
@@ -44,8 +44,9 @@ import tech.jhipster.lite.module.domain.javabuildplugin.JavaBuildPluginAdditiona
 import tech.jhipster.lite.module.domain.javadependency.DependencyId;
 import tech.jhipster.lite.module.domain.javadependency.JavaDependencyClassifier;
 import tech.jhipster.lite.module.domain.javadependency.JavaDependencyScope;
+import tech.jhipster.lite.module.infrastructure.secondary.javadependency.JavaDependenciesCommandHandler;
 
-class MavenCommandHandler implements JavaDependenciesCommandHandler {
+public class MavenCommandHandler implements JavaDependenciesCommandHandler {
 
   private static final String FORMATTED_LINE_END = "> *" + LINE_BREAK;
   private static final String RESULTING_LINE_END = ">" + LINE_BREAK;
@@ -95,7 +96,7 @@ class MavenCommandHandler implements JavaDependenciesCommandHandler {
   private final Path pomPath;
   private final Match document;
 
-  MavenCommandHandler(Indentation indentation, Path pomPath) {
+  public MavenCommandHandler(Indentation indentation, Path pomPath) {
     Assert.notNull("indentation", indentation);
     Assert.notNull("pomPath", pomPath);
 

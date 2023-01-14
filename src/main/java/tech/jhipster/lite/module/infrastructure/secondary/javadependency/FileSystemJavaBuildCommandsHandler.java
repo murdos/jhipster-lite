@@ -16,6 +16,7 @@ import tech.jhipster.lite.module.domain.javabuild.command.RemoveDirectJavaDepend
 import tech.jhipster.lite.module.domain.javabuild.command.RemoveJavaDependencyManagement;
 import tech.jhipster.lite.module.domain.javabuild.command.SetVersion;
 import tech.jhipster.lite.module.domain.properties.JHipsterProjectFolder;
+import tech.jhipster.lite.module.infrastructure.secondary.javadependency.maven.MavenCommandHandler;
 
 @Service
 public class FileSystemJavaBuildCommandsHandler {

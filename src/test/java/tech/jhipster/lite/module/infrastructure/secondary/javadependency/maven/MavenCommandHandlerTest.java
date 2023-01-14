@@ -1,4 +1,4 @@
-package tech.jhipster.lite.module.infrastructure.secondary.javadependency;
+package tech.jhipster.lite.module.infrastructure.secondary.javadependency.maven;
 
 import static org.assertj.core.api.Assertions.*;
 import static tech.jhipster.lite.module.domain.JHipsterModule.*;
@@ -24,6 +24,9 @@ import tech.jhipster.lite.module.domain.javabuild.command.RemoveDirectJavaDepend
 import tech.jhipster.lite.module.domain.javabuild.command.RemoveJavaDependencyManagement;
 import tech.jhipster.lite.module.domain.javabuild.command.SetVersion;
 import tech.jhipster.lite.module.domain.javadependency.JavaDependencyVersion;
+import tech.jhipster.lite.module.infrastructure.secondary.javadependency.maven.InvalidPomException;
+import tech.jhipster.lite.module.infrastructure.secondary.javadependency.maven.MalformedAdditionalInformationException;
+import tech.jhipster.lite.module.infrastructure.secondary.javadependency.maven.MavenCommandHandler;
 
 @UnitTest
 class MavenCommandHandlerTest {
