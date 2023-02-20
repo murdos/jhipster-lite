@@ -58,7 +58,7 @@
     "@vitest/coverage-istanbul": "0.27.1",
     "@vue/eslint-config-prettier": "7.0.0",
     "@vue/eslint-config-typescript": "11.0.2",
-    "@vue/test-utils": "2.2.7",
+    "@vue/test-utils": "2.3.0",
     "cypress": "12.3.0",
     "eslint": "8.32.0",
     "eslint-plugin-cypress": "2.12.1",
