@@ -10,7 +10,7 @@ FROM cassandra:4.1.2
 FROM mcr.microsoft.com/mssql/server:2017-latest
 FROM postgres:15.3
 FROM confluentinc/cp-zookeeper:7.4.0
-FROM confluentinc/cp-kafka:7.4.0
+FROM confluentinc/cp-kafka:7.4.1
 FROM tchiotludo/akhq:0.24.0
 FROM apachepulsar/pulsar:3.0.0
 FROM neo4j:5.9.0-community
