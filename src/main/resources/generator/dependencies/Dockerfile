@@ -13,5 +13,5 @@ FROM confluentinc/cp-zookeeper:7.4.0
 FROM confluentinc/cp-kafka:7.4.0
 FROM tchiotludo/akhq:0.24.0
 FROM apachepulsar/pulsar:3.0.0
-FROM neo4j:5.9.0-community
+FROM neo4j:5.11.0-community
 FROM redis:7.0.11
