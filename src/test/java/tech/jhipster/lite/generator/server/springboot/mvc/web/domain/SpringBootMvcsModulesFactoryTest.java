@@ -121,7 +121,7 @@ class SpringBootMvcsModulesFactoryTest {
       .hasPrefixedFiles(
         "src/test/java/com/jhipster/test/shared/error/infrastructure/primary",
         "BeanValidationErrorsHandlerTest.java",
-        "BeanValidationErrorsHandlerIntTest.java"
+        "BeanValidationErrorsHandlerIT.java"
       )
       .hasPrefixedFiles(
         "src/test/java/com/jhipster/test/shared/error_generator/infrastructure/primary",

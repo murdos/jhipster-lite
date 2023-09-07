@@ -8,7 +8,6 @@ import static tech.jhipster.lite.module.domain.JHipsterModulesFixture.*;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -102,8 +101,7 @@ class FileSystemPackageJsonHandlerTest {
   }
 
   @Nested
-  @DisplayName("Scripts")
-  class FileSystemPackageJsonHandlerScriptsTest {
+  class Scripts {
 
     @Test
     void shouldAddScriptToPackageJsonWithoutScriptSection() {
@@ -195,8 +193,7 @@ class FileSystemPackageJsonHandlerTest {
   }
 
   @Nested
-  @DisplayName("Dev dependencies")
-  class FileSystemPackageJsonHandlerDevDependenciesTest {
+  class DevDependencies {
 
     @Test
     void shouldAddDevDependencyToPackageJsonWithoutDevDependencySection() {
@@ -239,6 +236,27 @@ class FileSystemPackageJsonHandlerTest {
           "devDependencies": {
             "@prettier/plugin-xmll": "1.1.1",
             "@prettier/plugin-xml": "2.1.0"
+        """
+      );
+    }
+
+    @Test
+    void shouldAddDevDependencyToPackageJsonUsingVersionSourcePackage() {
+      when(npmVersions.get("@angular/core", NpmVersionSource.ANGULAR)).thenReturn(new NpmPackageVersion("1.1.1"));
+
+      JHipsterProjectFolder folder = projectWithPackageJson("src/test/resources/projects/node/package.json");
+
+      packageJson.handle(
+        Indentation.DEFAULT,
+        folder,
+        emptyBuilder().addDevDependency(packageName("@angular/animations"), VersionSource.ANGULAR, packageName("@angular/core")).build()
+      );
+
+      assertPackageJsonContent(
+        folder,
+        """
+          "devDependencies": {
+            "@angular/animations": "1.1.1",
         """
       );
     }
@@ -292,8 +310,7 @@ class FileSystemPackageJsonHandlerTest {
   }
 
   @Nested
-  @DisplayName("Dependencies")
-  class FileSystemPackageJsonHandleDependenciesTest {
+  class Dependencies {
 
     @Test
     void shouldAddDependencyToPackageJsonWithoutDependencySection() {
@@ -319,7 +336,7 @@ class FileSystemPackageJsonHandlerTest {
     }
 
     @Test
-    void shouldAddDevDependencyToPackageJsonWithDevDependencySection() {
+    void shouldAddDependencyToPackageJsonWithDependencySection() {
       mockVersion();
 
       JHipsterProjectFolder folder = projectWithPackageJson("src/test/resources/projects/node/package.json");
@@ -341,7 +358,28 @@ class FileSystemPackageJsonHandlerTest {
     }
 
     @Test
-    void shouldReplaceExistingDevDependency() {
+    void shouldAddDependencyToPackageJsonUsingVersionSourcePackage() {
+      when(npmVersions.get("@angular/core", NpmVersionSource.ANGULAR)).thenReturn(new NpmPackageVersion("1.1.1"));
+
+      JHipsterProjectFolder folder = projectWithPackageJson("src/test/resources/projects/node/package.json");
+
+      packageJson.handle(
+        Indentation.DEFAULT,
+        folder,
+        emptyBuilder().addDependency(packageName("@angular/animations"), VersionSource.ANGULAR, packageName("@angular/core")).build()
+      );
+
+      assertPackageJsonContent(
+        folder,
+        """
+          "dependencies": {
+            "@angular/animations": "1.1.1",
+        """
+      );
+    }
+
+    @Test
+    void shouldReplaceExistingDependency() {
       mockVersion();
 
       JHipsterProjectFolder folder = projectWithPackageJson("src/test/resources/projects/node/package.json");

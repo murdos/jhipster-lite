@@ -19,6 +19,7 @@ import tech.jhipster.lite.module.domain.javabuild.command.RemoveDirectJavaDepend
 import tech.jhipster.lite.module.domain.javabuild.command.RemoveJavaDependencyManagement;
 import tech.jhipster.lite.module.domain.javabuild.command.SetVersion;
 import tech.jhipster.lite.module.domain.javadependency.JavaDependency;
+import tech.jhipster.lite.module.domain.javadependency.JavaDependencyScope;
 import tech.jhipster.lite.module.domain.properties.JHipsterProjectFolder;
 import tech.jhipster.lite.module.domain.replacement.ContentReplacers;
 import tech.jhipster.lite.module.domain.replacement.MandatoryFileReplacer;
@@ -65,18 +66,22 @@ public class GradleCommandHandler implements JavaDependenciesCommandHandler {
     Assert.notNull(COMMAND, command);
 
     versionsCatalog.addLibrary(command.dependency());
-    addJavaDependencyToBuildGradle(command.dependency());
+    addDependencyToBuildGradle(command.dependency());
   }
 
-  private void addJavaDependencyToBuildGradle(JavaDependency dependency) {
+  private void addDependencyToBuildGradle(JavaDependency dependency) {
     GradleDependencyScope gradleScope = gradleDependencyScope(dependency);
 
+    String libraryVersionCatalogReference = "libs.%s".formatted(VersionsCatalog.dependencySlug(dependency).replace("-", "."));
+    String dependencyDeclaration = dependency.scope() == JavaDependencyScope.IMPORT
+      ? "%s%s(platform(%s))".formatted(indentation.times(1), gradleScope.command(), libraryVersionCatalogReference)
+      : "%s%s(%s)".formatted(indentation.times(1), gradleScope.command(), libraryVersionCatalogReference);
     MandatoryReplacer replacer = new MandatoryReplacer(
       new RegexNeedleBeforeReplacer(
         (contentBeforeReplacement, newText) -> !contentBeforeReplacement.contains(newText),
         gradleScope == GradleDependencyScope.TEST_IMPLEMENTATION ? GRADLE_TEST_DEPENDENCY_NEEDLE : GRADLE_DEPENDENCY_NEEDLE
       ),
-      "%s%s(libs.%s)".formatted(indentation.times(1), gradleScope.command(), VersionsCatalog.dependencySlug(dependency).replace("-", "."))
+      dependencyDeclaration
     );
     fileReplacer.handle(projectFolder, ContentReplacers.of(new MandatoryFileReplacer(new JHipsterProjectFilePath(BUILD_GRADLE_FILE), replacer)));
   }
@@ -92,16 +97,16 @@ public class GradleCommandHandler implements JavaDependenciesCommandHandler {
 
   @Override
   public void handle(RemoveDirectJavaDependency command) {
-    versionsCatalog.retrieveDependencySlugsFrom(command.dependency()).forEach(this::removeJavaDependencyFromBuildGradle);
+    versionsCatalog.retrieveDependencySlugsFrom(command.dependency()).forEach(this::removeDependencyFromBuildGradle);
     versionsCatalog.removeLibrary(command.dependency());
   }
 
-  private void removeJavaDependencyFromBuildGradle(DependencySlug dependencySlug) {
+  private void removeDependencyFromBuildGradle(DependencySlug dependencySlug) {
     String scopePattern = Stream.of(GradleDependencyScope.values())
       .map(GradleDependencyScope::command)
       .collect(Collectors.joining("|", "(", ")"));
     Pattern dependencyLinePattern = Pattern.compile(
-      "^\\s+%s\\(libs\\.%s\\)$".formatted(scopePattern, dependencySlug.slug().replace("-", "\\.")),
+      "^\\s+%s\\((platform\\()?libs\\.%s\\)?\\)$".formatted(scopePattern, dependencySlug.slug().replace("-", "\\.")),
       Pattern.MULTILINE
     );
     MandatoryReplacer replacer = new MandatoryReplacer(new RegexReplacer(always(), dependencyLinePattern), "");
@@ -109,15 +114,15 @@ public class GradleCommandHandler implements JavaDependenciesCommandHandler {
   }
 
   @Override
-  @ExcludeFromGeneratedCodeCoverage(reason = "Not yet implemented")
   public void handle(RemoveJavaDependencyManagement command) {
-    throw new NotImplementedException(NOT_YET_IMPLEMENTED);
+    versionsCatalog.retrieveDependencySlugsFrom(command.dependency()).forEach(this::removeDependencyFromBuildGradle);
+    versionsCatalog.removeLibrary(command.dependency());
   }
 
   @Override
-  @ExcludeFromGeneratedCodeCoverage(reason = "Not yet implemented")
   public void handle(AddJavaDependencyManagement command) {
-    throw new NotImplementedException(NOT_YET_IMPLEMENTED);
+    versionsCatalog.addLibrary(command.dependency());
+    addDependencyToBuildGradle(command.dependency());
   }
 
   @Override

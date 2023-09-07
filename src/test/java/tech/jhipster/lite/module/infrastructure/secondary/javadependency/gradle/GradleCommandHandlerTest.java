@@ -132,7 +132,7 @@ class GradleCommandHandlerTest {
           """);
     }
 
-    @EnumSource(value = JavaDependencyScope.class, mode = EXCLUDE, names = {"TEST", "RUNTIME", "PROVIDED"})
+    @EnumSource(value = JavaDependencyScope.class, mode = EXCLUDE, names = {"TEST", "RUNTIME", "PROVIDED", "IMPORT"})
     @ParameterizedTest
     void shouldAddImplementationDependencyInBuildGradleFileForScope(JavaDependencyScope scope) {
       JavaDependency dependency = javaDependency()
@@ -203,7 +203,7 @@ class GradleCommandHandlerTest {
     }
 
     @Test
-    void shouldRemoveDepencyInBuildGradleFile() {
+    void shouldRemoveDependencyInBuildGradleFile() {
       GradleCommandHandler gradleCommandHandler = new GradleCommandHandler(Indentation.DEFAULT, projectFolder);
       gradleCommandHandler.handle(new AddDirectJavaDependency(springBootStarterWebDependency()));
 
@@ -213,7 +213,7 @@ class GradleCommandHandlerTest {
     }
 
     @Test
-    void shouldRemoveTestDepencyInBuildGradleFile() {
+    void shouldRemoveTestDependencyInBuildGradleFile() {
       GradleCommandHandler gradleCommandHandler = new GradleCommandHandler(Indentation.DEFAULT, projectFolder);
       JavaDependency dependency = javaDependency()
         .groupId("org.junit.jupiter")
@@ -228,7 +228,7 @@ class GradleCommandHandlerTest {
     }
 
     @Test
-    void shouldRemoveRuntimeDepencyInBuildGradleFile() {
+    void shouldRemoveRuntimeDependencyInBuildGradleFile() {
       GradleCommandHandler gradleCommandHandler = new GradleCommandHandler(Indentation.DEFAULT, projectFolder);
       JavaDependency dependency = javaDependency()
         .groupId("org.junit.jupiter")
@@ -243,7 +243,7 @@ class GradleCommandHandlerTest {
     }
 
     @Test
-    void shouldRemoveProvidedDepencyInBuildGradleFile() {
+    void shouldRemoveProvidedDependencyInBuildGradleFile() {
       GradleCommandHandler gradleCommandHandler = new GradleCommandHandler(Indentation.DEFAULT, projectFolder);
       JavaDependency dependency = javaDependency()
         .groupId("org.junit.jupiter")
@@ -255,6 +255,68 @@ class GradleCommandHandlerTest {
       gradleCommandHandler.handle(new RemoveDirectJavaDependency(dependency.id()));
 
       assertThat(buildGradleContent(projectFolder)).doesNotContain("compileOnly(libs.junit.jupiter.engine)");
+    }
+  }
+
+  @Nested
+  class HandleAddJavaDependencyManagement {
+
+    private final JHipsterProjectFolder projectFolder = projectFrom("src/test/resources/projects/empty-gradle");
+
+    @Test
+    void shouldAddEntryInLibrariesSectionToExistingTomlVersionCatalog() {
+      new GradleCommandHandler(Indentation.DEFAULT, projectFolder).handle(new AddJavaDependencyManagement(springBootDependencyManagement()));
+
+      assertThat(versionCatalogContent(projectFolder))
+        .contains("""
+          [libraries.spring-boot-dependencies]
+          \t\tname = "spring-boot-dependencies"
+          \t\tgroup = "org.springframework.boot"
+          """);
+
+      assertThat(versionCatalogContent(projectFolder))
+        .contains("""
+          [libraries.spring-boot-dependencies.version]
+          \t\t\tref = "spring-boot"
+          """);
+    }
+
+    @Test
+    void shouldAddImplementationDependencyInBuildGradleFileForScope() {
+      new GradleCommandHandler(Indentation.DEFAULT, projectFolder).handle(new AddJavaDependencyManagement(springBootDependencyManagement()));
+
+      assertThat(buildGradleContent(projectFolder)).contains("implementation(platform(libs.spring.boot.dependencies))");
+    }
+  }
+
+  @Nested
+  class HandleRemoveJavaDependencyManagement {
+
+    private final JHipsterProjectFolder projectFolder = projectFrom("src/test/resources/projects/empty-gradle");
+
+    @Test
+    void shouldRemoveEntryInLibrariesSection() {
+      GradleCommandHandler gradleCommandHandler = new GradleCommandHandler(Indentation.DEFAULT, projectFolder);
+      gradleCommandHandler.handle(new AddJavaDependencyManagement(springBootDependencyManagement()));
+
+      gradleCommandHandler.handle(new RemoveJavaDependencyManagement(springBootDependencyManagement().id()));
+
+      assertThat(versionCatalogContent(projectFolder))
+        .doesNotContain("[libraries.spring-boot-dependencies]")
+        .doesNotContain("""
+          \t\tname = "spring-boot-dependencies"
+          \t\tgroup = "org.springframework.boot"
+          """);
+    }
+
+    @Test
+    void shouldRemoveDependencyInBuildGradleFile() {
+      GradleCommandHandler gradleCommandHandler = new GradleCommandHandler(Indentation.DEFAULT, projectFolder);
+      gradleCommandHandler.handle(new AddJavaDependencyManagement(springBootDependencyManagement()));
+
+      gradleCommandHandler.handle(new RemoveJavaDependencyManagement(springBootDependencyManagement().id()));
+
+      assertThat(buildGradleContent(projectFolder)).doesNotContain("implementation(platform(libs.spring.boot.dependencies))");
     }
   }
 

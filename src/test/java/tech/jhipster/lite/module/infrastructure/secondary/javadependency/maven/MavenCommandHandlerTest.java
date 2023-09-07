@@ -141,7 +141,7 @@ class MavenCommandHandlerTest {
   class MavenCommandHandlerAddDependencyManagementTest {
 
     @Test
-    void shouldAddDepencyInPomWithoutDependenciesManagement() {
+    void shouldAddDependencyInPomWithoutDependenciesManagement() {
       Path pom = projectWithPom("src/test/resources/projects/empty-maven/pom.xml");
 
       new MavenCommandHandler(Indentation.DEFAULT, pom).handle(new AddJavaDependencyManagement(springBootDependencyManagement()));
@@ -271,7 +271,7 @@ class MavenCommandHandlerTest {
   class MavenCommandHandlerAddDependencyTest {
 
     @Test
-    void shouldAddDepencyInPomWithoutDependencies() {
+    void shouldAddDependencyInPomWithoutDependencies() {
       Path pom = projectWithPom("src/test/resources/projects/empty-maven/pom.xml");
 
       new MavenCommandHandler(Indentation.DEFAULT, pom).handle(new AddDirectJavaDependency(optionalTestDependency()));
@@ -450,7 +450,7 @@ class MavenCommandHandlerTest {
 
     @Test
     void shouldAddBuildPluginManagementToPomWithEmptyPluginManagement() {
-      Path pom = projectWithPom("src/test/resources/projects/maven-empty-plugin-managment/pom.xml");
+      Path pom = projectWithPom("src/test/resources/projects/maven-empty-plugin-management/pom.xml");
 
       addMavenEnforcerPlugin(pom);
 

@@ -295,8 +295,8 @@ public class ModulesSteps {
   }
 
   @Then("I should have properties definitions")
-  public void shouldHaveModulePropertiesDefintions(List<Map<String, Object>> propertiesDefintion) {
-    assertThatLastResponse().hasOkStatus().hasElement("$.definitions").containingExactly(propertiesDefintion);
+  public void shouldHaveModulePropertiesDefinitions(List<Map<String, Object>> propertiesDefinition) {
+    assertThatLastResponse().hasOkStatus().hasElement("$.definitions").containingExactly(propertiesDefinition);
   }
 
   @Then("I should have landscape level {int} with elements")
