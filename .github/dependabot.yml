@@ -115,3 +115,11 @@ updates:
     rebase-strategy: 'disabled'
     labels:
       - 'area: dependencies'
+
+groups:
+  angular:
+    patterns:
+      - '@angular*'
+  typescript-eslint:
+    patterns:
+      - '@typescript-eslint*'
