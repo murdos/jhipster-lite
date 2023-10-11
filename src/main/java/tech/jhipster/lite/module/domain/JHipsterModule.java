@@ -109,7 +109,7 @@ public class JHipsterModule {
     return inputProperties -> inputProperties.getValue().build().properties().entrySet().stream().map(toSpringProperty(inputProperties));
   }
 
-  private Function<Entry<PropertyKey, PropertyValue>, SpringProperty> toSpringProperty(
+  private Function<Entry<PropertyKey, PropertyValue<?>>, SpringProperty> toSpringProperty(
     Entry<PropertiesKey, JHipsterModuleSpringPropertiesBuilder> inputProperties
   ) {
     return property ->
@@ -175,7 +175,7 @@ public class JHipsterModule {
     return inputFactories -> inputFactories.getValue().build().factories().entrySet().stream().map(toSpringFactory(inputFactories));
   }
 
-  private Function<Entry<PropertyKey, PropertyValue>, SpringFactory> toSpringFactory(
+  private Function<Entry<PropertyKey, PropertyValue<String>>, SpringFactory> toSpringFactory(
     Entry<SpringFactoryType, JHipsterModuleSpringFactoriesBuilder> inputFactories
   ) {
     return property -> SpringFactory.builder(inputFactories.getKey()).key(property.getKey()).value(property.getValue());
@@ -275,8 +275,16 @@ public class JHipsterModule {
     return new PropertyKey(key);
   }
 
-  public static PropertyValue propertyValue(String... values) {
-    return new PropertyValue(values);
+  public static PropertyValue<String> propertyValue(String... values) {
+    return PropertyValue.of(values);
+  }
+
+  public static PropertyValue<Boolean> propertyValue(Boolean... values) {
+    return PropertyValue.of(values);
+  }
+
+  public static PropertyValue<Number> propertyValue(Number... values) {
+    return PropertyValue.of(values);
   }
 
   public static SpringProfile springProfile(String profile) {

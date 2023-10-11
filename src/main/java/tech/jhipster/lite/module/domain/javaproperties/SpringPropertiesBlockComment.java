@@ -7,7 +7,7 @@ public class SpringPropertiesBlockComment implements SpringPropertyTypeFileName 
 
   private final SpringPropertyType type;
   private final Comment comment;
-  private final Map<PropertyKey, PropertyValue> properties;
+  private final Map<PropertyKey, PropertyValue<?>> properties;
   private final SpringProfile profile;
 
   public SpringPropertiesBlockComment(SpringPropertiesBlockCommentBuilder builder) {
@@ -41,7 +41,7 @@ public class SpringPropertiesBlockComment implements SpringPropertyTypeFileName 
     return comment;
   }
 
-  public Map<PropertyKey, PropertyValue> properties() {
+  public Map<PropertyKey, PropertyValue<?>> properties() {
     return properties;
   }
 
@@ -62,7 +62,7 @@ public class SpringPropertiesBlockComment implements SpringPropertyTypeFileName 
 
     private final SpringPropertyType type;
     private Comment comment;
-    private Map<PropertyKey, PropertyValue> properties;
+    private Map<PropertyKey, PropertyValue<?>> properties;
     private SpringProfile profile;
 
     private SpringPropertiesBlockCommentBuilder(SpringPropertyType type) {
@@ -79,7 +79,7 @@ public class SpringPropertiesBlockComment implements SpringPropertyTypeFileName 
     }
 
     @Override
-    public SpringPropertiesBlockCommentProfileBuilder properties(Map<PropertyKey, PropertyValue> properties) {
+    public SpringPropertiesBlockCommentProfileBuilder properties(Map<PropertyKey, PropertyValue<?>> properties) {
       this.properties = properties;
 
       return this;
@@ -103,7 +103,7 @@ public class SpringPropertiesBlockComment implements SpringPropertyTypeFileName 
   }
 
   public interface SpringPropertiesBlockCommentPropertiesBuilder {
-    SpringPropertiesBlockCommentProfileBuilder properties(Map<PropertyKey, PropertyValue> properties);
+    SpringPropertiesBlockCommentProfileBuilder properties(Map<PropertyKey, PropertyValue<?>> properties);
   }
 
   public interface SpringPropertiesBlockCommentProfileBuilder {

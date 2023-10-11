@@ -41,11 +41,11 @@ public class OAuth2OktaModuleFactory {
     //@formatter:on
   }
 
-  private static PropertyValue issuerUri(JHipsterModuleProperties properties) {
+  private static PropertyValue<String> issuerUri(JHipsterModuleProperties properties) {
     return propertyValue("https://" + properties.getString(OKTA_DOMAIN_PROPERTY) + "/oauth2/default");
   }
 
-  private static PropertyValue clientId(JHipsterModuleProperties properties) {
+  private static PropertyValue<String> clientId(JHipsterModuleProperties properties) {
     return propertyValue(properties.getString(OKTA_CLIENT_ID_PROPERTY));
   }
 }

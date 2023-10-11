@@ -35,7 +35,7 @@ public class CustomJHLiteModuleFactory {
     Assert.notNull("properties", properties);
 
     String packagePath = properties.packagePath();
-    PropertyValue exceptionPackages = exceptionPackages(properties);
+    PropertyValue<String> exceptionPackages = exceptionPackages(properties);
     JHipsterDestination cucumberDestination = toSrcTestJava().append(packagePath).append("cucumber");
 
     //@formatter:off
@@ -101,7 +101,7 @@ public class CustomJHLiteModuleFactory {
     return properties.projectBaseName().capitalized() + "App";
   }
 
-  private PropertyValue exceptionPackages(JHipsterModuleProperties properties) {
+  private PropertyValue<String> exceptionPackages(JHipsterModuleProperties properties) {
     return propertyValue("org.", "java.", "net.", "jakarta.", "com.", "io.", "de.", "tech.jhipster.lite", properties.basePackage().get());
   }
 }

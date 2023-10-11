@@ -16,8 +16,8 @@ public class SpringdocModuleFactory {
   private static final JHipsterSource SOURCE = from("server/springboot/apidocumentation/springdoccore");
   private static final String DESTINATION = "wire/springdoc/infrastructure/primary";
 
-  private static final PropertyValue ALPHA = propertyValue("alpha");
-  private static final PropertyValue TRUE = propertyValue("true");
+  private static final PropertyValue<String> ALPHA = propertyValue("alpha");
+  private static final PropertyValue<Boolean> TRUE = propertyValue(true);
 
   private static final String SPRINGDOC_CONFIG_JAVA_FILE = "SpringdocConfiguration.java";
 

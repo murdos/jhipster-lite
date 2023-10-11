@@ -7,7 +7,7 @@ import tech.jhipster.lite.shared.error.domain.Assert;
 
 public class JHipsterModuleSpringFactories {
 
-  private final Map<PropertyKey, PropertyValue> factories;
+  private final Map<PropertyKey, PropertyValue<String>> factories;
 
   private JHipsterModuleSpringFactories(JHipsterModuleSpringFactoriesBuilder builder) {
     factories = JHipsterCollections.immutable(builder.factories);
@@ -17,14 +17,14 @@ public class JHipsterModuleSpringFactories {
     return new JHipsterModuleSpringFactoriesBuilder(module);
   }
 
-  public Map<PropertyKey, PropertyValue> factories() {
+  public Map<PropertyKey, PropertyValue<String>> factories() {
     return factories;
   }
 
   public static class JHipsterModuleSpringFactoriesBuilder {
 
     private final JHipsterModuleBuilder module;
-    private final Map<PropertyKey, PropertyValue> factories = new HashMap<>();
+    private final Map<PropertyKey, PropertyValue<String>> factories = new HashMap<>();
 
     private JHipsterModuleSpringFactoriesBuilder(JHipsterModuleBuilder module) {
       Assert.notNull("module", module);
@@ -32,7 +32,7 @@ public class JHipsterModuleSpringFactories {
       this.module = module;
     }
 
-    public JHipsterModuleSpringFactoriesBuilder append(PropertyKey key, PropertyValue value) {
+    public JHipsterModuleSpringFactoriesBuilder append(PropertyKey key, PropertyValue<String> value) {
       Assert.notNull("key", key);
       Assert.notNull("value", value);
 

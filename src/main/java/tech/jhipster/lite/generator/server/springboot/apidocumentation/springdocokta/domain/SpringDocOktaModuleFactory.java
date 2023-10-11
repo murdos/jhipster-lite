@@ -32,11 +32,11 @@ public class SpringDocOktaModuleFactory {
     //@formatter:on
   }
 
-  private static PropertyValue clientId(JHipsterModuleProperties properties) {
+  private static PropertyValue<String> clientId(JHipsterModuleProperties properties) {
     return propertyValue(properties.getString(OKTA_CLIENT_ID_PROPERTY));
   }
 
-  private static PropertyValue authorizationUrl(JHipsterModuleProperties properties) {
+  private static PropertyValue<String> authorizationUrl(JHipsterModuleProperties properties) {
     return propertyValue(
       new StringBuilder()
         .append("https://")

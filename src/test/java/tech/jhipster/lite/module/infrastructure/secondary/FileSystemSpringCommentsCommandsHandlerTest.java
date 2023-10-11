@@ -340,7 +340,7 @@ class FileSystemSpringCommentsCommandsHandlerTest {
   }
 
   private SpringPropertiesBlockComments springPropertiesBlockCommentsOnPropertyType(SpringPropertyType springPropertyType) {
-    Map<PropertyKey, PropertyValue> properties = new LinkedHashMap<>();
+    Map<PropertyKey, PropertyValue<?>> properties = new LinkedHashMap<>();
     properties.put(propertyKey("springdoc.swagger-ui.operationsSorter"), propertyValue("alpha"));
     properties.put(propertyKey("springdoc.swagger-ui.tagsSorter"), propertyValue("alpha"));
     properties.put(propertyKey("springdoc.swagger-ui.tryItOutEnabled"), propertyValue("alpha"));

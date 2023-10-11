@@ -10,7 +10,7 @@ import tech.jhipster.lite.shared.error.domain.Assert;
 
 public class JHipsterModuleSpringProperties {
 
-  private final Map<PropertyKey, PropertyValue> properties;
+  private final Map<PropertyKey, PropertyValue<?>> properties;
   private final Map<PropertyKey, Comment> comments;
   private final Collection<PropertiesBlockComment> propertiesBlockComments;
 
@@ -24,7 +24,7 @@ public class JHipsterModuleSpringProperties {
     return new JHipsterModuleSpringPropertiesBuilder(module);
   }
 
-  public Map<PropertyKey, PropertyValue> properties() {
+  public Map<PropertyKey, PropertyValue<?>> properties() {
     return properties;
   }
 
@@ -39,7 +39,7 @@ public class JHipsterModuleSpringProperties {
   public static class JHipsterModuleSpringPropertiesBuilder {
 
     private final JHipsterModuleBuilder module;
-    private final Map<PropertyKey, PropertyValue> properties = new HashMap<>();
+    private final Map<PropertyKey, PropertyValue<?>> properties = new HashMap<>();
     private final Map<PropertyKey, Comment> comments = new HashMap<>();
     private final Collection<PropertiesBlockComment> propertiesBlockComments = new ArrayList<>();
 
@@ -49,7 +49,7 @@ public class JHipsterModuleSpringProperties {
       this.module = module;
     }
 
-    public JHipsterModuleSpringPropertiesBuilder set(PropertyKey key, PropertyValue value) {
+    public JHipsterModuleSpringPropertiesBuilder set(PropertyKey key, PropertyValue<?> value) {
       Assert.notNull("key", key);
       Assert.notNull("value", value);
 

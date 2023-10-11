@@ -6,7 +6,7 @@ public class SpringProperty implements SpringPropertyTypeFileName {
 
   private final SpringPropertyType type;
   private final PropertyKey key;
-  private final PropertyValue value;
+  private final PropertyValue<?> value;
   private final SpringProfile profile;
 
   private SpringProperty(SpringPropertyBuilder builder) {
@@ -40,7 +40,7 @@ public class SpringProperty implements SpringPropertyTypeFileName {
     return key;
   }
 
-  public PropertyValue value() {
+  public PropertyValue<?> value() {
     return value;
   }
 
@@ -57,7 +57,7 @@ public class SpringProperty implements SpringPropertyTypeFileName {
 
     private final SpringPropertyType type;
     private PropertyKey key;
-    private PropertyValue value;
+    private PropertyValue<?> value;
     private SpringProfile profile;
 
     private SpringPropertyBuilder(SpringPropertyType type) {
@@ -74,7 +74,7 @@ public class SpringProperty implements SpringPropertyTypeFileName {
     }
 
     @Override
-    public SpringPropertyProfileBuilder value(PropertyValue value) {
+    public SpringPropertyProfileBuilder value(PropertyValue<?> value) {
       this.value = value;
 
       return this;
@@ -98,7 +98,7 @@ public class SpringProperty implements SpringPropertyTypeFileName {
   }
 
   public interface SpringPropertyValueBuilder {
-    SpringPropertyProfileBuilder value(PropertyValue value);
+    SpringPropertyProfileBuilder value(PropertyValue<?> value);
   }
 
   public interface SpringPropertyProfileBuilder {

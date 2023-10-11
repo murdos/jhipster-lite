@@ -16,7 +16,7 @@ public class SpringCloudConfigModuleFactory {
 
   private static final JHipsterSource SOURCE = from("server/springboot/springcloud/configclient");
 
-  private static final PropertyValue FALSE_VALUE = propertyValue("false");
+  private static final PropertyValue<Boolean> FALSE_VALUE = propertyValue(false);
 
   private final DockerImages dockerImages;
 
@@ -27,7 +27,7 @@ public class SpringCloudConfigModuleFactory {
   public JHipsterModule buildModule(JHipsterModuleProperties properties) {
     Assert.notNull("properties", properties);
 
-    PropertyValue baseNameValue = propertyValue(properties.projectBaseName().get());
+    PropertyValue<String> baseNameValue = propertyValue(properties.projectBaseName().get());
 
     JHipsterModuleBuilder builder = initBuilder(properties);
 
@@ -72,7 +72,7 @@ public class SpringCloudConfigModuleFactory {
     //@formatter:on
   }
 
-  private void appendCommonProperties(JHipsterModuleSpringPropertiesBuilder builder, PropertyValue baseNameValue) {
+  private void appendCommonProperties(JHipsterModuleSpringPropertiesBuilder builder, PropertyValue<String> baseNameValue) {
     builder
       .set(propertyKey("spring.application.name"), baseNameValue)
       .set(propertyKey("jhipster.registry.password"), propertyValue("admin"))

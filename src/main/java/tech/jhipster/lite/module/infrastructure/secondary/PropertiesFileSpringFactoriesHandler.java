@@ -23,7 +23,7 @@ public class PropertiesFileSpringFactoriesHandler {
     this.file = file;
   }
 
-  public void append(PropertyKey key, PropertyValue value) {
+  public void append(PropertyKey key, PropertyValue<String> value) {
     Assert.notNull("key", key);
     Assert.notNull("value", value);
 
@@ -31,7 +31,7 @@ public class PropertiesFileSpringFactoriesHandler {
   }
 
   @ExcludeFromGeneratedCodeCoverage(reason = "Hard to cover IOException")
-  private void updateFactories(PropertyKey key, PropertyValue value) {
+  private void updateFactories(PropertyKey key, PropertyValue<String> value) {
     try {
       String properties = buildFactories(key, value);
 
@@ -41,7 +41,7 @@ public class PropertiesFileSpringFactoriesHandler {
     }
   }
 
-  private String buildFactories(PropertyKey key, PropertyValue value) throws IOException {
+  private String buildFactories(PropertyKey key, PropertyValue<String> value) throws IOException {
     String currentProperties = readOrInitFactories();
 
     int propertyIndex = currentProperties.indexOf(propertyId(key));
@@ -51,18 +51,18 @@ public class PropertiesFileSpringFactoriesHandler {
     return addNewFactory(key, value, currentProperties);
   }
 
-  private String addNewFactory(PropertyKey key, PropertyValue value, String currentProperties) {
+  private String addNewFactory(PropertyKey key, PropertyValue<String> value, String currentProperties) {
     return currentProperties + propertyLine(key, value) + LINE_BREAK;
   }
 
-  private static String appendValuesToExistingPropertyKey(int propertyIndex, PropertyValue value, String currentProperties) {
+  private static String appendValuesToExistingPropertyKey(int propertyIndex, PropertyValue<String> value, String currentProperties) {
     StringBuilder newProperties = new StringBuilder(currentProperties);
     int eolIndex = newProperties.indexOf(LINE_BREAK, propertyIndex);
 
-    for (String propertyValue : value.get()) {
-      if (!newProperties.substring(propertyIndex, eolIndex).contains(propertyValue)) {
+    for (Object propertyValue : value.get()) {
+      if (!newProperties.substring(propertyIndex, eolIndex).contains(propertyValue.toString())) {
         newProperties.insert(eolIndex, COLLECTION_SEPARATOR + propertyValue);
-        eolIndex = eolIndex + COLLECTION_SEPARATOR.length() + propertyValue.length();
+        eolIndex = eolIndex + COLLECTION_SEPARATOR.length() + propertyValue.toString().length();
       }
     }
     return newProperties.toString();
@@ -79,11 +79,11 @@ public class PropertiesFileSpringFactoriesHandler {
     return Files.readString(file);
   }
 
-  private String propertyLine(PropertyKey key, PropertyValue value) {
+  private String propertyLine(PropertyKey key, PropertyValue<String> value) {
     return propertyId(key) + joinedPropertyValues(value);
   }
 
-  private static String joinedPropertyValues(PropertyValue value) {
+  private static String joinedPropertyValues(PropertyValue<String> value) {
     return String.join(COLLECTION_SEPARATOR, value.get());
   }
 

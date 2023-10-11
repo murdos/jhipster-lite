@@ -6,7 +6,7 @@ public class SpringFactory {
 
   private final SpringFactoryType type;
   private final PropertyKey key;
-  private final PropertyValue value;
+  private final PropertyValue<String> value;
 
   private SpringFactory(SpringFactoryBuilder builder) {
     Assert.notNull("type", builder.type);
@@ -30,7 +30,7 @@ public class SpringFactory {
     return key;
   }
 
-  public PropertyValue value() {
+  public PropertyValue<String> value() {
     return value;
   }
 
@@ -38,7 +38,7 @@ public class SpringFactory {
 
     private final SpringFactoryType type;
     private PropertyKey key;
-    private PropertyValue value;
+    private PropertyValue<String> value;
 
     private SpringFactoryBuilder(SpringFactoryType type) {
       this.type = type;
@@ -52,7 +52,7 @@ public class SpringFactory {
     }
 
     @Override
-    public SpringFactory value(PropertyValue value) {
+    public SpringFactory value(PropertyValue<String> value) {
       this.value = value;
 
       return new SpringFactory(this);
@@ -64,6 +64,6 @@ public class SpringFactory {
   }
 
   public interface SpringFactoryValueBuilder {
-    SpringFactory value(PropertyValue value);
+    SpringFactory value(PropertyValue<String> value);
   }
 }

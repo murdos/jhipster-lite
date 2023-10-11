@@ -32,11 +32,11 @@ public class SpringDocAuth0ModuleFactory {
     //@formatter:on
   }
 
-  private static PropertyValue clientId(JHipsterModuleProperties properties) {
+  private static PropertyValue<String> clientId(JHipsterModuleProperties properties) {
     return propertyValue(properties.getString(AUTH0_CLIENT_ID_PROPERTY));
   }
 
-  private static PropertyValue authorizationUrl(JHipsterModuleProperties properties) {
+  private static PropertyValue<String> authorizationUrl(JHipsterModuleProperties properties) {
     String auth0Domain = properties.getString(AUTH0_DOMAIN_PROPERTY);
     return propertyValue(
       new StringBuilder()
