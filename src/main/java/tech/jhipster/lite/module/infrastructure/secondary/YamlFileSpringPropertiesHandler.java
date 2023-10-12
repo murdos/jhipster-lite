@@ -33,14 +33,14 @@ class YamlFileSpringPropertiesHandler {
     this.yaml = createYaml();
   }
 
-  public void set(PropertyKey key, PropertyValue<?> value) {
+  public void set(PropertyKey key, PropertyValue value) {
     Assert.notNull("key", key);
     Assert.notNull("value", value);
 
     updateProperties(key, value);
   }
 
-  private void updateProperties(PropertyKey key, PropertyValue<?> value) {
+  private void updateProperties(PropertyKey key, PropertyValue value) {
     Map<String, Object> configuration = null;
     try {
       configuration = loadConfiguration(file.toFile());
@@ -52,7 +52,7 @@ class YamlFileSpringPropertiesHandler {
   }
 
   @SuppressWarnings("unchecked")
-  private static void appendPropertyToConfiguration(PropertyKey key, PropertyValue<?> value, Map<String, Object> configuration) {
+  private static void appendPropertyToConfiguration(PropertyKey key, PropertyValue value, Map<String, Object> configuration) {
     String[] allKeys = extractKeysParts(key);
     String[] parentKeys = Arrays.copyOfRange(allKeys, 0, allKeys.length - 1);
     String localKey = allKeys[allKeys.length - 1];
@@ -76,7 +76,7 @@ class YamlFileSpringPropertiesHandler {
       .toArray(String[]::new);
   }
 
-  private static Object simplifiedValue(PropertyValue<?> value) {
+  private static Object simplifiedValue(PropertyValue value) {
     if (value.values().size() == 1) {
       return value.values().iterator().next();
     }

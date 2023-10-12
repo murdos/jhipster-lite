@@ -27,7 +27,7 @@ public class PropertiesFileSpringPropertiesBlockCommentsHandler {
     this.file = file;
   }
 
-  public void set(Comment comment, Map<PropertyKey, PropertyValue<?>> properties) {
+  public void set(Comment comment, Map<PropertyKey, PropertyValue> properties) {
     Assert.notNull("comment", comment);
     Assert.notNull("properties", properties);
 
@@ -35,7 +35,7 @@ public class PropertiesFileSpringPropertiesBlockCommentsHandler {
   }
 
   @ExcludeFromGeneratedCodeCoverage
-  private void updatePropertiesBlockComments(Comment comment, Map<PropertyKey, PropertyValue<?>> properties) {
+  private void updatePropertiesBlockComments(Comment comment, Map<PropertyKey, PropertyValue> properties) {
     try {
       String propertiesBlock = buildPropertiesBlockComments(comment, properties);
       if (propertiesBlock.isEmpty()) {
@@ -48,7 +48,7 @@ public class PropertiesFileSpringPropertiesBlockCommentsHandler {
     }
   }
 
-  private String buildPropertiesBlockComments(Comment comment, Map<PropertyKey, PropertyValue<?>> properties) throws IOException {
+  private String buildPropertiesBlockComments(Comment comment, Map<PropertyKey, PropertyValue> properties) throws IOException {
     String currentProperties = readProperties();
 
     if (currentProperties.isEmpty()) {
@@ -66,7 +66,7 @@ public class PropertiesFileSpringPropertiesBlockCommentsHandler {
     return Files.readString(file);
   }
 
-  private String organizePropertiesInBlock(String currentProperties, Map<PropertyKey, PropertyValue<?>> properties, Comment comment) {
+  private String organizePropertiesInBlock(String currentProperties, Map<PropertyKey, PropertyValue> properties, Comment comment) {
     ExtractedProperties extractedProperties = extractPropertiesToBlock(currentProperties, properties);
 
     return new StringBuilder()
@@ -77,7 +77,7 @@ public class PropertiesFileSpringPropertiesBlockCommentsHandler {
       .toString();
   }
 
-  private ExtractedProperties extractPropertiesToBlock(String currentProperties, Map<PropertyKey, PropertyValue<?>> properties) {
+  private ExtractedProperties extractPropertiesToBlock(String currentProperties, Map<PropertyKey, PropertyValue> properties) {
     String updateProperties = currentProperties;
     StringBuilder propertiesInBlock = new StringBuilder();
     for (PropertyKey propertyKey : properties.keySet()) {

@@ -31,8 +31,8 @@ public class OAuth2ModuleFactory {
   private static final String PRIMARY = "infrastructure/primary";
   private static final String AUTHENTICATION_DESTINATION = "shared/authentication";
 
-  private static final PropertyValue<String> CLIENT_ID = propertyValue("web_app");
-  private static final PropertyValue<String> CLIENT_SECRET = propertyValue("web_app");
+  private static final PropertyValue CLIENT_ID = propertyValue("web_app");
+  private static final PropertyValue CLIENT_SECRET = propertyValue("web_app");
 
   private final DockerImages dockerImages;
 

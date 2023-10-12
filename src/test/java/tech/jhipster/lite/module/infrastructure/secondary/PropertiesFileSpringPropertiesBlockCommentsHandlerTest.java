@@ -25,7 +25,7 @@ class PropertiesFileSpringPropertiesBlockCommentsHandlerTest {
   void shouldNotOrganizePropertiesWhenFileNotExists() {
     String path = TestFileUtils.tmpDirForTest();
     Path propertiesFile = Paths.get(path, "src/main/resources/config/application.properties");
-    Map<PropertyKey, PropertyValue<?>> properties = new LinkedHashMap<>();
+    Map<PropertyKey, PropertyValue> properties = new LinkedHashMap<>();
     properties.put(propertyKey("springdoc.swagger-ui.operationsSorter"), propertyValue("alpha"));
     properties.put(propertyKey("springdoc.swagger-ui.tagsSorter"), propertyValue("alpha"));
     properties.put(propertyKey("springdoc.swagger-ui.tryItOutEnabled"), propertyValue("alpha"));

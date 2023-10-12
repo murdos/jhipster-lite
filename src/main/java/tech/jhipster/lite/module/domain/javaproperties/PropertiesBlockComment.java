@@ -7,7 +7,7 @@ import tech.jhipster.lite.shared.error.domain.Assert;
 public class PropertiesBlockComment {
 
   private final Comment comment;
-  private final Map<PropertyKey, PropertyValue<?>> properties;
+  private final Map<PropertyKey, PropertyValue> properties;
 
   private PropertiesBlockComment(PropertiesBlockCommentBuilder builder) {
     Assert.notNull("comment", builder.comment);
@@ -21,7 +21,7 @@ public class PropertiesBlockComment {
     return comment;
   }
 
-  public Map<PropertyKey, PropertyValue<?>> properties() {
+  public Map<PropertyKey, PropertyValue> properties() {
     return properties;
   }
 
@@ -33,7 +33,7 @@ public class PropertiesBlockComment {
     implements PropertiesBlockCommentCommentBuilder, PropertiesBlockCommentPropertiesBuilder {
 
     private Comment comment;
-    private final Map<PropertyKey, PropertyValue<?>> properties = new LinkedHashMap<>();
+    private final Map<PropertyKey, PropertyValue> properties = new LinkedHashMap<>();
 
     @Override
     public PropertiesBlockCommentPropertiesBuilder comment(Comment comment) {
@@ -42,7 +42,7 @@ public class PropertiesBlockComment {
     }
 
     @Override
-    public PropertiesBlockCommentPropertiesBuilder add(PropertyKey propertyKey, PropertyValue<?> propertyValue) {
+    public PropertiesBlockCommentPropertiesBuilder add(PropertyKey propertyKey, PropertyValue propertyValue) {
       Assert.notNull("propertyKey", propertyKey);
       Assert.notNull("propertyValue", propertyValue);
 
@@ -61,7 +61,7 @@ public class PropertiesBlockComment {
   }
 
   public interface PropertiesBlockCommentPropertiesBuilder {
-    PropertiesBlockCommentPropertiesBuilder add(PropertyKey propertyKey, PropertyValue<?> propertyValue);
+    PropertiesBlockCommentPropertiesBuilder add(PropertyKey propertyKey, PropertyValue propertyValue);
 
     PropertiesBlockComment build();
   }

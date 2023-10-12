@@ -7,45 +7,45 @@ import java.util.Objects;
 import tech.jhipster.lite.shared.collection.domain.JHipsterCollections;
 import tech.jhipster.lite.shared.error.domain.Assert;
 
-public final class PropertyValue<T> {
+public final class PropertyValue {
 
-  private final Collection<T> values;
+  private final Collection<Object> values;
 
-  private PropertyValue(T[] values) {
+  private PropertyValue(Object[] values) {
     this(List.of(values));
   }
 
-  private PropertyValue(Collection<T> values) {
+  private PropertyValue(Collection<Object> values) {
     Assert.field("values", values).noNullElement();
 
     this.values = JHipsterCollections.immutable(values);
   }
 
-  public static PropertyValue<String> of(String[] values) {
-    return new PropertyValue<>(values);
+  public static PropertyValue of(String[] values) {
+    return new PropertyValue(values);
   }
 
-  public static PropertyValue<Boolean> of(Boolean[] values) {
-    return new PropertyValue<>(values);
+  public static PropertyValue of(Boolean[] values) {
+    return new PropertyValue(values);
   }
 
-  public static PropertyValue<Number> of(Number[] values) {
-    return new PropertyValue<>(values);
+  public static PropertyValue of(Number[] values) {
+    return new PropertyValue(values);
   }
 
-  public Collection<T> get() {
+  public Collection<Object> get() {
     return values();
   }
 
-  public static <T> PropertyValue<T> merge(PropertyValue<T> v1, PropertyValue<T> v2) {
-    Collection<T> mergedValues = new ArrayList<>();
+  public static PropertyValue merge(PropertyValue v1, PropertyValue v2) {
+    Collection<Object> mergedValues = new ArrayList<>();
     mergedValues.addAll(v1.get());
     mergedValues.addAll(v2.get());
 
-    return new PropertyValue<>(mergedValues);
+    return new PropertyValue(mergedValues);
   }
 
-  public Collection<T> values() {
+  public Collection<Object> values() {
     return values;
   }
 
@@ -57,7 +57,7 @@ public final class PropertyValue<T> {
     if (obj == null || obj.getClass() != this.getClass()) {
       return false;
     }
-    var that = (PropertyValue<?>) obj;
+    var that = (PropertyValue) obj;
     return Objects.equals(this.values, that.values);
   }
 

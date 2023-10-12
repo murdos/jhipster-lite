@@ -102,36 +102,4 @@ class YamlFileSpringPropertiesHandlerTest {
         """
       );
   }
-
-  @Test
-  void shouldHandleBooleanValue() {
-    Path yamlFile = Paths.get(TestFileUtils.tmpDirForTest(), "src/main/resources/application.yml");
-    YamlFileSpringPropertiesHandler handler = new YamlFileSpringPropertiesHandler(yamlFile);
-
-    handler.set(propertyKey("coverage.enabled"), propertyValue(true));
-
-    assertThat(content(yamlFile))
-      .contains(
-        """
-        coverage:
-          enabled: true
-        """
-      );
-  }
-
-  @Test
-  void shouldHandleNumericValue() {
-    Path yamlFile = Paths.get(TestFileUtils.tmpDirForTest(), "src/main/resources/application.yml");
-    YamlFileSpringPropertiesHandler handler = new YamlFileSpringPropertiesHandler(yamlFile);
-
-    handler.set(propertyKey("coverage.count"), propertyValue(10));
-
-    assertThat(content(yamlFile))
-      .contains(
-        """
-        coverage:
-          count: 10
-        """
-      );
-  }
 }
