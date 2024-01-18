@@ -25,7 +25,7 @@ jobs:
         id: setup
         uses: ./.github/actions/setup
       - name: 'Init: cache local Maven repository'
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         with:
           path: ~/.m2/repository
           key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
@@ -57,7 +57,7 @@ jobs:
         id: setup
         uses: ./.github/actions/setup
       - name: 'Init: cache local Maven repository'
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         with:
           path: ~/.m2/repository
           key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
@@ -209,7 +209,7 @@ jobs:
           echo $MD5SUM_POM_XML
           echo "md5sum_pom_xml=${MD5SUM_POM_XML}" >> $GITHUB_OUTPUT
       - name: 'Init: cache local Maven repository'
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         with:
           path: ~/.m2/repository
           key: ${{ runner.os }}-maven-${{ matrix.app }}-${{ steps.cache_md5sum.outputs.md5sum_pom_xml }}
