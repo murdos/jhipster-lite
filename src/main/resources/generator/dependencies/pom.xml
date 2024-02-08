@@ -36,7 +36,7 @@
     <archunit-junit5.version>1.2.1</archunit-junit5.version>
     <cucumber.version>7.15.0</cucumber.version>
     <pulsar.version>2.10.0</pulsar.version>
-    <liquibase.version>4.25.1</liquibase.version>
+    <liquibase.version>4.26.0</liquibase.version>
     <compiler-plugin.version>3.12.1</compiler-plugin.version>
     <surefire-plugin.version>3.2.3</surefire-plugin.version>
     <failsafe-plugin.version>3.0.0-M5</failsafe-plugin.version>
