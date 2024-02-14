@@ -6,7 +6,7 @@
     "keycloak-js": "23.0.3",
     "rxjs": "7.8.1",
     "tslib": "2.6.2",
-    "zone.js": "0.14.2"
+    "zone.js": "0.14.4"
   },
   "devDependencies": {
     "@angular-builders/jest": "17.0.0",
