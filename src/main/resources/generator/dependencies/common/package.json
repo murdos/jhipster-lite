@@ -34,7 +34,7 @@
     "postcss-cli": "11.0.0",
     "prettier": "3.2.5",
     "prettier-plugin-gherkin": "2.2.1",
-    "prettier-plugin-java": "2.5.0",
+    "prettier-plugin-java": "2.6.0",
     "prettier-plugin-packagejson": "2.4.11",
     "recursive-copy-cli": "1.0.20",
     "tailwindcss": "3.4.1",
