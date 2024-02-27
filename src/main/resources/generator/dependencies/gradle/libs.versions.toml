@@ -1,6 +1,6 @@
 [versions]
 checkstyle = "10.13.0"
-jib = "3.4.0"
+jib = "3.4.1"
 git-properties = "2.4.1"
 protobuf-plugin = "0.9.4"
 
