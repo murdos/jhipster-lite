@@ -13,6 +13,6 @@
     "fileMatch": ["^src/main/docker/[^/]*\\.ya?ml$"]
   },
   "npm": {
-    "ignorePaths": ["^src/main/resources/generator/dependencies/"]
+    "ignorePaths": ["^src/"]
   }
 }
