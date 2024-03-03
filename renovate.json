@@ -11,5 +11,8 @@
   "enabledManagers": ["maven-wrapper", "gradle-wrapper", "docker-compose", "npm"],
   "docker-compose": {
     "fileMatch": ["^src/main/docker/[^/]*\\.ya?ml$"]
+  },
+  "npm": {
+    "ignorePaths": ["^src/main/resources/generator/dependencies/"]
   }
 }
