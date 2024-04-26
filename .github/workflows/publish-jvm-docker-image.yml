@@ -36,6 +36,22 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
+      - name: Restore cache for local Maven repository
+        id: cache
+        uses: actions/cache@v4
+        with:
+          path: maven-repository
+          key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
+
+      - name: inject maven-cache into docker
+        uses: reproducible-containers/buildkit-cache-dance@v3.1.0
+        with:
+          cache-map: |
+            {
+              "maven-repository": "/root/.m2",
+            }
+          skip-extraction: ${{ steps.cache.outputs.cache-hit }}
+
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
 
