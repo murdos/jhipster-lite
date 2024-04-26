@@ -15,21 +15,21 @@ Feature: Apache Kafka
       | KafkaProperties.java    |
       | KafkaConfiguration.java |
 
-  Scenario: Should apply Apache Kafka dummy producer consumer module
-    When I apply "spring-boot-kafka-dummy-producer-consumer" module to default project with maven file
+  Scenario: Should apply Apache Kafka sample producer consumer module
+    When I apply "spring-boot-kafka-sample-producer-consumer" module to default project with maven file
       | packageName | tech.jhipster.chips |
       | baseName    | jhipster            |
-    Then I should have files in "src/main/java/tech/jhipster/chips/dummy/infrastructure/secondary/kafka/producer"
-      | DummyProducer.java |
-    Then I should have files in "src/test/java/tech/jhipster/chips/dummy/infrastructure/secondary/kafka/producer"
-      | DummyProducerTest.java |
-      | DummyProducerIT.java   |
-    Then I should have files in "src/main/java/tech/jhipster/chips/dummy/infrastructure/primary/kafka/consumer"
-      | DummyConsumer.java    |
+    Then I should have files in "src/main/java/tech/jhipster/chips/sample/infrastructure/secondary/kafka/producer"
+      | SampleProducer.java |
+    Then I should have files in "src/test/java/tech/jhipster/chips/sample/infrastructure/secondary/kafka/producer"
+      | SampleProducerTest.java |
+      | SampleProducerIT.java   |
+    Then I should have files in "src/main/java/tech/jhipster/chips/sample/infrastructure/primary/kafka/consumer"
+      | SampleConsumer.java   |
       | AbstractConsumer.java |
-    Then I should have files in "src/test/java/tech/jhipster/chips/dummy/infrastructure/primary/kafka/consumer"
-      | DummyConsumerTest.java |
-      | DummyConsumerTest.java |
+    Then I should have files in "src/test/java/tech/jhipster/chips/sample/infrastructure/primary/kafka/consumer"
+      | SampleConsumerTest.java |
+      | SampleConsumerTest.java |
 
   Scenario: Should apply Apache Kafka AKHQ module
     When I apply "spring-boot-kafka-akhq" module to default project with maven file

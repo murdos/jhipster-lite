@@ -3,7 +3,6 @@ package tech.jhipster.lite.cucumber.rest;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.List;
-import org.assertj.core.api.Assertions;
 
 class HeaderAssertions {
 
@@ -12,7 +11,7 @@ class HeaderAssertions {
   HeaderAssertions(String header) {
     this.header = header;
 
-    Assertions.assertThat(CucumberRestTestContext.getResponseHeader(header)).as("Can't find header " + header).isNotEmpty();
+    assertThat(CucumberRestTestContext.getResponseHeader(header)).as("Can't find header " + header).isNotEmpty();
   }
 
   public void containing(String value) {

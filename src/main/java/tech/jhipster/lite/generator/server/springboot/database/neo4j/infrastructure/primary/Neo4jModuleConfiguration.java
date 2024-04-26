@@ -17,7 +17,12 @@ class Neo4jModuleConfiguration {
     return JHipsterModuleResource.builder()
       .slug(NEO4J)
       .propertiesDefinition(
-        JHipsterModulePropertiesDefinition.builder().addBasePackage().addIndentation().addProjectBaseName().addConfigurationFormat().build()
+        JHipsterModulePropertiesDefinition.builder()
+          .addBasePackage()
+          .addIndentation()
+          .addProjectBaseName()
+          .addSpringConfigurationFormat()
+          .build()
       )
       .apiDoc("Spring Boot - Database", "Add Neo4j drivers and dependencies, with testcontainers")
       .organization(JHipsterModuleOrganization.SPRINGBOOT_DEPENDENCY)

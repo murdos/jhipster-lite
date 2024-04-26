@@ -184,7 +184,7 @@ class JHipsterModulePropertiesTest {
   @Test
   void testToStringShowsProjectName() {
     //Given
-    final JHipsterModuleProperties properties = properties();
+    JHipsterModuleProperties properties = properties();
     //When Then
     assertThat(properties).hasToString(properties.projectName().toString());
   }

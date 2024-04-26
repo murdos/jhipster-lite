@@ -72,7 +72,7 @@ class BeanValidationErrorsHandler {
     return error -> {
       String propertyPath = error.getPropertyPath().toString();
 
-      return propertyPath.substring(propertyPath.lastIndexOf(".") + 1);
+      return propertyPath.substring(propertyPath.lastIndexOf('.') + 1);
     };
   }
 }

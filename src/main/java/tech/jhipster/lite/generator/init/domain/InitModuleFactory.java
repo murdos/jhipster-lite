@@ -27,7 +27,7 @@ public class InitModuleFactory {
     return moduleBuilder(properties)
       .context()
         .put("dasherizedBaseName", properties.projectBaseName().kebabCase())
-        .put("nodeVersion", npmVersions.getNodeVersion())
+        .put("nodeMajorVersion", npmVersions.nodeVersion().majorVersion())
         .put("endOfLine", endOfLine(properties))
         .and()
       .files()

@@ -223,7 +223,7 @@ class JavaDependencyManagementTest {
     return new ChangesBuilder();
   }
 
-  private static class ChangesBuilder {
+  private static final class ChangesBuilder {
 
     private JavaDependency dependency = defaultVersionDependency();
     private JavaDependenciesVersions currentVersions = currentJavaDependenciesVersion();

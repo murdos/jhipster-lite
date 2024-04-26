@@ -42,9 +42,9 @@ public interface NpmVersions {
   }
 
   /**
-   * @return The version of the NodeJS.
+   * @return The version of Node.js.
    */
-  default String getNodeVersion() {
-    return get("node", NpmVersionSource.COMMON).get();
+  default NpmPackageVersion nodeVersion() {
+    return get("node", NpmVersionSource.COMMON);
   }
 }

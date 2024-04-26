@@ -66,7 +66,7 @@ final class RestJHipsterLandscapeModule implements RestJHipsterLandscapeElement 
     return dependencies;
   }
 
-  private static class RestJHipsterLandscapeModuleBuilder {
+  private static final class RestJHipsterLandscapeModuleBuilder {
 
     private String slug;
     private String operation;

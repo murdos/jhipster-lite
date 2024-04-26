@@ -36,6 +36,11 @@ class SpringBootWebfluxModuleConfiguration {
   }
 
   private static JHipsterModulePropertiesDefinition properties() {
-    return JHipsterModulePropertiesDefinition.builder().addBasePackage().addIndentation().addServerPort().addConfigurationFormat().build();
+    return JHipsterModulePropertiesDefinition.builder()
+      .addBasePackage()
+      .addIndentation()
+      .addServerPort()
+      .addSpringConfigurationFormat()
+      .build();
   }
 }

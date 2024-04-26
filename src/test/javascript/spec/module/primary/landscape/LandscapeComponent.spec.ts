@@ -299,12 +299,12 @@ describe('Landscape', () => {
     it('should highlight dependant feature', async () => {
       const wrapper = await componentWithLandscape();
 
-      wrapper.find(wrappedElement('dummy-feature-module')).trigger('mouseover');
+      wrapper.find(wrappedElement('sample-feature-module')).trigger('mouseover');
       await wrapper.vm.$nextTick();
 
-      const dummyFeatureClasses = wrapper.find(wrappedElement('dummy-feature-module')).classes();
-      expect(dummyFeatureClasses).toContain('-not-selectable-highlighted');
-      expect(dummyFeatureClasses).toContain('-compacted');
+      const sampleFeatureClasses = wrapper.find(wrappedElement('sample-feature-module')).classes();
+      expect(sampleFeatureClasses).toContain('-not-selectable-highlighted');
+      expect(sampleFeatureClasses).toContain('-compacted');
 
       const springMvcClasses = wrapper.find(wrappedElement('spring-mvc-feature')).classes();
       expect(springMvcClasses).toContain('-not-selectable-highlighted');

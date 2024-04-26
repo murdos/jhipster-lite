@@ -8,7 +8,6 @@ import static tech.jhipster.lite.module.domain.JHipsterModule.propertyValue;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import org.junit.jupiter.api.Test;
-import tech.jhipster.lite.TestFileUtils;
 import tech.jhipster.lite.UnitTest;
 
 @UnitTest
@@ -20,7 +19,7 @@ class PropertiesFileSpringFactoriesHandlerTest {
 
   @Test
   void shouldCreateUnknownFile() {
-    Path factoriesFile = Paths.get(TestFileUtils.tmpDirForTest(), "src/test/resources/META-INF/spring.factories");
+    Path factoriesFile = Paths.get(tmpDirForTest(), "src/test/resources/META-INF/spring.factories");
     PropertiesFileSpringFactoriesHandler handler = new PropertiesFileSpringFactoriesHandler(factoriesFile);
 
     handler.append(propertyKey("o.s.c.ApplicationListener"), propertyValue("c.m.m.MyListener1", "c.m.m.MyListener2"));
@@ -34,7 +33,7 @@ class PropertiesFileSpringFactoriesHandlerTest {
 
   @Test
   void shouldAppendPropertyToFileWithProperties() {
-    Path factoriesFile = Paths.get(TestFileUtils.tmpDirForTest(), "src/test/resources/META-INF/spring.factories");
+    Path factoriesFile = Paths.get(tmpDirForTest(), "src/test/resources/META-INF/spring.factories");
     loadDefaultProperties(EXISTING_SPRING_FACTORIES, factoriesFile);
     PropertiesFileSpringFactoriesHandler handler = new PropertiesFileSpringFactoriesHandler(factoriesFile);
 
@@ -50,7 +49,7 @@ class PropertiesFileSpringFactoriesHandlerTest {
 
   @Test
   void shouldAppendToExistingProperty() {
-    Path factoriesFile = Paths.get(TestFileUtils.tmpDirForTest(), "src/test/resources/META-INF/spring.factories");
+    Path factoriesFile = Paths.get(tmpDirForTest(), "src/test/resources/META-INF/spring.factories");
     loadDefaultProperties(EXISTING_SPRING_FACTORIES, factoriesFile);
     PropertiesFileSpringFactoriesHandler handler = new PropertiesFileSpringFactoriesHandler(factoriesFile);
 
@@ -68,7 +67,7 @@ class PropertiesFileSpringFactoriesHandlerTest {
 
   @Test
   void shouldAppendNewAndExistingProperties() {
-    Path factoriesFile = Paths.get(TestFileUtils.tmpDirForTest(), "src/test/resources/META-INF/spring.factories");
+    Path factoriesFile = Paths.get(tmpDirForTest(), "src/test/resources/META-INF/spring.factories");
     loadDefaultProperties(EXISTING_SPRING_FACTORIES, factoriesFile);
     PropertiesFileSpringFactoriesHandler handler = new PropertiesFileSpringFactoriesHandler(factoriesFile);
 
@@ -88,7 +87,7 @@ class PropertiesFileSpringFactoriesHandlerTest {
 
   @Test
   void shouldNotAppendExistingValue() {
-    Path factoriesFile = Paths.get(TestFileUtils.tmpDirForTest(), "src/test/resources/META-INF/spring.factories");
+    Path factoriesFile = Paths.get(tmpDirForTest(), "src/test/resources/META-INF/spring.factories");
     PropertiesFileSpringFactoriesHandler handler = new PropertiesFileSpringFactoriesHandler(factoriesFile);
 
     handler.append(

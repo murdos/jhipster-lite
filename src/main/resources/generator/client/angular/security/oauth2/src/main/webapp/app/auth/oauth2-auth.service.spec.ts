@@ -71,9 +71,7 @@ describe('Oauth2 Auth Service', () => {
 
     it('should init refresh token and return true when the user is authenticated', async () => {
       // Given
-      jest
-        .spyOn(keycloakInstance, 'init')
-        .mockReturnValue(Promise.resolve(true).then() as unknown as Promise<boolean>);
+      jest.spyOn(keycloakInstance, 'init').mockReturnValue(Promise.resolve(true).then() as unknown as Promise<boolean>);
 
       // When
       const authenticated = await lastValueFrom(service.initAuthentication());
@@ -93,9 +91,7 @@ describe('Oauth2 Auth Service', () => {
 
     it('should reload window and return false when the user is not authenticated', async () => {
       // Given
-      jest
-        .spyOn(keycloakInstance, 'init')
-        .mockReturnValue(Promise.resolve(false).then() as unknown as Promise<boolean>);
+      jest.spyOn(keycloakInstance, 'init').mockReturnValue(Promise.resolve(false).then() as unknown as Promise<boolean>);
 
       // When
       const authenticated = await lastValueFrom(service.initAuthentication());

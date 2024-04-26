@@ -48,7 +48,7 @@ class SpringdocModuleConfiguration {
       .addBasePackage()
       .addProjectBaseName()
       .addIndentation()
-      .addConfigurationFormat()
+      .addSpringConfigurationFormat()
       .build();
   }
 }

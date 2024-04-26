@@ -67,7 +67,7 @@ export const defaultLandscape = (): Landscape =>
     },
     {
       elements: [
-        initialModule('dummy-feature', 'Add dummy feature', [], [featureSlug('spring-mvc'), moduleSlug('bean-validation-test')]),
+        initialModule('sample-feature', 'Add sample feature', [], [featureSlug('spring-mvc'), moduleSlug('bean-validation-test')]),
         initialModule('liquibase', 'Add liquibase', [], featureSlugs('jpa')),
       ],
     },

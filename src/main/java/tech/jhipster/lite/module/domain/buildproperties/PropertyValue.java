@@ -4,7 +4,7 @@ import tech.jhipster.lite.shared.error.domain.Assert;
 
 public record PropertyValue(String value) {
   public PropertyValue {
-    Assert.notBlank("value", value);
+    Assert.notNull("value", value);
   }
 
   public String get() {

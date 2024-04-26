@@ -1,15 +1,14 @@
 package tech.jhipster.lite.generator.server.sonarqube.domain;
 
 import static tech.jhipster.lite.module.domain.JHipsterModule.*;
-import static tech.jhipster.lite.module.domain.mavenplugin.MavenBuildPhase.INITIALIZE;
+import static tech.jhipster.lite.module.domain.mavenplugin.MavenBuildPhase.*;
 
 import tech.jhipster.lite.module.domain.JHipsterModule;
-import tech.jhipster.lite.module.domain.JHipsterModule.JHipsterModuleBuilder;
 import tech.jhipster.lite.module.domain.docker.DockerImages;
 import tech.jhipster.lite.module.domain.file.JHipsterDestination;
 import tech.jhipster.lite.module.domain.file.JHipsterSource;
 import tech.jhipster.lite.module.domain.gradleplugin.GradleCommunityPlugin;
-import tech.jhipster.lite.module.domain.gradleplugin.GradlePlugin;
+import tech.jhipster.lite.module.domain.gradleplugin.GradleMainBuildPlugin;
 import tech.jhipster.lite.module.domain.mavenplugin.MavenPlugin;
 import tech.jhipster.lite.module.domain.properties.JHipsterModuleProperties;
 import tech.jhipster.lite.shared.error.domain.Assert;
@@ -95,7 +94,7 @@ public class SonarQubeModulesFactory {
       .build();
   }
 
-  private GradlePlugin gradleSonarPlugin() {
+  private GradleMainBuildPlugin gradleSonarPlugin() {
     String configuration =
       """
       fun loadSonarProperties(): Map<String, List<String>> {

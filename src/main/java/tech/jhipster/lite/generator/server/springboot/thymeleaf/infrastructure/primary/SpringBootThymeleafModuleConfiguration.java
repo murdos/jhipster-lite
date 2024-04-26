@@ -18,7 +18,7 @@ class SpringBootThymeleafModuleConfiguration {
     return JHipsterModuleResource.builder()
       .slug(SPRING_BOOT_THYMELEAF)
       .propertiesDefinition(
-        JHipsterModulePropertiesDefinition.builder().addBasePackage().addProjectBaseName().addConfigurationFormat().build()
+        JHipsterModulePropertiesDefinition.builder().addBasePackage().addProjectBaseName().addSpringConfigurationFormat().build()
       )
       .apiDoc("Spring Boot", "Add Spring Boot Thymeleaf to the project")
       .organization(JHipsterModuleOrganization.builder().addDependency(SPRING_SERVER).build())

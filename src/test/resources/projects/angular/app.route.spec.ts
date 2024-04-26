@@ -1,6 +1,5 @@
 import { TestBed } from '@angular/core/testing';
-import { Router } from '@angular/router';
-import { RouterTestingModule } from '@angular/router/testing';
+import { Router, provideRouter } from '@angular/router';
 import { routes } from './app.route';
 
 describe('AppRoutes', () => {
@@ -8,7 +7,7 @@ describe('AppRoutes', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [RouterTestingModule.withRoutes(routes)],
+      providers: [provideRouter(routes)],
     }).compileComponents();
     router = TestBed.inject(Router);
     router.initialNavigation();

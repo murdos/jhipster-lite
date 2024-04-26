@@ -21,7 +21,7 @@ public final class JHipsterModuleContext {
     return new JHipsterModuleContext(JHipsterCollections.concat(context, additionalValues));
   }
 
-  static JHipsterModuleContextBuilder builder(JHipsterModuleBuilder module) {
+  public static JHipsterModuleContextBuilder builder(JHipsterModuleBuilder module) {
     return new JHipsterModuleContextBuilder(module);
   }
 
@@ -51,6 +51,7 @@ public final class JHipsterModuleContext {
       init.put(JHipsterModuleProperties.INDENTATION_PARAMETER, properties.indentation().spacesCount());
       init.put(JHipsterModuleProperties.JAVA_VERSION, properties.javaVersion().get());
       init.put(JHipsterModuleProperties.PROJECT_BUILD_DIRECTORY, JavaBuildTool.MAVEN.buildDirectory().get());
+      init.put(JHipsterModuleProperties.SPRING_CONFIGURATION_FORMAT, properties.springConfigurationFormat().get());
 
       return init;
     }

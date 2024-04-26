@@ -198,7 +198,7 @@ public final class CucumberRestTestContext {
       try {
         ClientHttpResponse response = execution.execute(request, body);
 
-        CucumberRestTestContext.addResponse(request, response, execution, body);
+        addResponse(request, response, execution, body);
       } catch (IOException e) {
         throw new AssertionError("Error while retrying last call: " + e.getMessage(), e);
       }

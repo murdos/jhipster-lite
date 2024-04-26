@@ -1,8 +1,9 @@
 package tech.jhipster.lite.module.infrastructure.secondary;
 
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.assertj.core.api.Assertions.*;
 import static tech.jhipster.lite.module.domain.JHipsterModule.*;
-import static tech.jhipster.lite.module.domain.JHipsterModulesFixture.context;
+import static tech.jhipster.lite.module.domain.JHipsterModule.from;
+import static tech.jhipster.lite.module.domain.JHipsterModulesFixture.*;
 
 import ch.qos.logback.classic.Level;
 import java.io.IOException;
@@ -26,6 +27,7 @@ import tech.jhipster.lite.module.domain.file.JHipsterFilesToDelete;
 import tech.jhipster.lite.module.domain.file.JHipsterFilesToMove;
 import tech.jhipster.lite.module.domain.file.JHipsterTemplatedFile;
 import tech.jhipster.lite.module.domain.file.JHipsterTemplatedFiles;
+import tech.jhipster.lite.module.domain.file.TemplateRenderer;
 import tech.jhipster.lite.module.domain.properties.JHipsterProjectFolder;
 import tech.jhipster.lite.shared.error.domain.Assert;
 import tech.jhipster.lite.shared.error.domain.GeneratorException;
@@ -34,7 +36,10 @@ import tech.jhipster.lite.shared.error.domain.GeneratorException;
 @ExtendWith(LogsSpyExtension.class)
 class FileSystemJHipsterModuleFilesTest {
 
-  private static final FileSystemJHipsterModuleFiles files = new FileSystemJHipsterModuleFiles(new FileSystemProjectFiles());
+  private static final FileSystemJHipsterModuleFiles files = new FileSystemJHipsterModuleFiles(
+    new FileSystemProjectFiles(),
+    TemplateRenderer.NOOP
+  );
 
   @Logs
   private LogsSpy logs;

@@ -42,7 +42,7 @@ class FileSystemJHipsterModulesRepositoryTest {
       .containing("com.test.myapp")
       .and()
       .hasFile("pom.xml")
-      .containing("<dummy-dependency.version>4.5.8</dummy-dependency.version>")
+      .containing("<spring-profiles-active>local</spring-profiles-active>")
       .notContaining(
         """
               <dependency>
@@ -384,7 +384,7 @@ class FileSystemJHipsterModulesRepositoryTest {
 
   @Test
   void shouldApplyModuleToGradleProject() {
-    JHipsterModule module = gradleSupportedModule();
+    JHipsterModule module = fullModule();
 
     // @formatter:off
     assertThatModuleWithFiles(
@@ -406,9 +406,10 @@ class FileSystemJHipsterModulesRepositoryTest {
       .containing("com.test.myapp")
       .and()
       .hasFile("gradle/libs.versions.toml")
-      .containing("dummy-dependency = \"4.5.8\"")
       .containing("spring-boot = \"")
       .containing("json-web-token = \"")
+      .containing("cassandraunit = \"")
+      .containing("git-properties = \"")
       .and()
       .hasFile("build.gradle.kts")
       .notContaining("implementation(libs.logstash.logback.encoder)")
@@ -431,6 +432,91 @@ class FileSystemJHipsterModulesRepositoryTest {
         checkstyle {
           toolVersion = libs.versions.checkstyle.get()
         }
+        """
+      )
+      .containing(
+        """
+        val profiles = (project.findProperty("profiles") as String? ?: "")
+          .split(",")
+          .map { it.trim() }
+          .filter { it.isNotEmpty() }
+        if (profiles.contains("local")) {
+          apply(plugin = "profile-local")
+        }
+        // jhipster-needle-profile-activation\
+        """
+      )
+      .containing(
+        """
+        val springProfilesActive by extra("local")
+        // jhipster-needle-gradle-properties
+        """
+      )
+      .containing(
+        """
+        tasks.build {
+          dependsOn("processResources")
+        }
+
+        tasks.processResources {
+          filesMatching("**/*.yml", "**/*.properties") {
+            filter {
+              it.replace("@spring.profiles.active@", springProfilesActive)
+            }
+          }
+        }
+
+        // jhipster-needle-gradle-free-configuration-blocks
+        """
+      )
+      .and()
+      .hasFile("buildSrc/build.gradle.kts")
+      .containing(
+        """
+          implementation(libs.gradle.git.properties)
+          // jhipster-needle-gradle-implementation-dependencies\
+        """
+      )
+      .and()
+      .hasFile("buildSrc/src/main/kotlin/profile-local.gradle.kts")
+      .containing(
+        """
+        plugins {
+          java
+          checkstyle
+          id("com.gorylenko.gradle-git-properties")
+          // jhipster-needle-gradle-plugins
+        }
+        """
+      )
+      .containing(
+        """
+        checkstyle {
+          toolVersion = libs.versions.checkstyle.get()
+        }
+        """
+      )
+      .containing(
+        """
+
+        gitProperties {
+          failOnNoGitDirectory = false
+          keys = listOf("git.branch", "git.commit.id.abbrev", "git.commit.id.describe", "git.build.version")
+        }
+
+        // jhipster-needle-gradle-plugins-configurations
+        """
+      )
+      .containing(
+        """
+          testImplementation(libs.findLibrary("cassandra.unit").get())
+          // jhipster-needle-gradle-test-dependencies
+        """
+      )
+      .containing(
+        """
+        val springProfilesActive by extra("local")
+        // jhipster-needle-gradle-properties
         """
       )
       .and()

@@ -14,7 +14,7 @@ public class JHipsterModuleProperties {
   public static final String PROJECT_NAME_PARAMETER = "projectName";
   public static final String PROJECT_BASE_NAME_PARAMETER = "baseName";
   public static final String SERVER_PORT_PARAMETER = "serverPort";
-  public static final String SERVER_CONFIGURATION_FORMAT = "configurationFormat";
+  public static final String SPRING_CONFIGURATION_FORMAT = "springConfigurationFormat";
   public static final String JAVA_VERSION = "javaVersion";
   public static final String PROJECT_BUILD_DIRECTORY = "projectBuildDirectory";
 
@@ -27,7 +27,7 @@ public class JHipsterModuleProperties {
   private final JHipsterProjectName projectName;
   private final JHipsterProjectBaseName projectBaseName;
   private final JHipsterServerPort serverPort;
-  private final SpringConfigurationFormat configurationFormat;
+  private final SpringConfigurationFormat springConfigurationFormat;
   private final Version javaVersion = new Version("21");
 
   public JHipsterModuleProperties(String projectFolder, boolean commitModule, Map<String, Object> parameters) {
@@ -40,7 +40,9 @@ public class JHipsterModuleProperties {
     projectName = new JHipsterProjectName(this.parameters.getOrDefault(PROJECT_NAME_PARAMETER, null, String.class));
     projectBaseName = new JHipsterProjectBaseName(this.parameters.getOrDefault(PROJECT_BASE_NAME_PARAMETER, null, String.class));
     serverPort = new JHipsterServerPort(this.parameters.getOrDefault(SERVER_PORT_PARAMETER, null, Integer.class));
-    configurationFormat = SpringConfigurationFormat.from(this.parameters.getOrDefault(SERVER_CONFIGURATION_FORMAT, null, String.class));
+    springConfigurationFormat = SpringConfigurationFormat.from(
+      this.parameters.getOrDefault(SPRING_CONFIGURATION_FORMAT, SpringConfigurationFormat.YAML.get(), String.class)
+    );
   }
 
   public JHipsterProjectFolder projectFolder() {
@@ -114,8 +116,8 @@ public class JHipsterModuleProperties {
     return serverPort;
   }
 
-  public SpringConfigurationFormat configurationFormat() {
-    return configurationFormat;
+  public SpringConfigurationFormat springConfigurationFormat() {
+    return springConfigurationFormat;
   }
 
   public Map<String, Object> getParameters() {

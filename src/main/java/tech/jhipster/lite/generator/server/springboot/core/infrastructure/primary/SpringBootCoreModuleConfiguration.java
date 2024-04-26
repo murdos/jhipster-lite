@@ -18,7 +18,12 @@ class SpringBootCoreModuleConfiguration {
     return JHipsterModuleResource.builder()
       .slug(SPRING_BOOT)
       .propertiesDefinition(
-        JHipsterModulePropertiesDefinition.builder().addBasePackage().addProjectBaseName().addIndentation().addConfigurationFormat().build()
+        JHipsterModulePropertiesDefinition.builder()
+          .addBasePackage()
+          .addProjectBaseName()
+          .addIndentation()
+          .addSpringConfigurationFormat()
+          .build()
       )
       .apiDoc("Spring Boot", "Init Spring Boot project with dependencies, App, and properties")
       .organization(JHipsterModuleOrganization.builder().addDependency(JAVA_BUILD_TOOL).addDependency(JAVA_BASE).build())

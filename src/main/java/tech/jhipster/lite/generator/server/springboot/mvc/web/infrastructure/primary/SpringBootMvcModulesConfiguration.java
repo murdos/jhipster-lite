@@ -55,7 +55,12 @@ class SpringBootMvcModulesConfiguration {
   }
 
   private JHipsterModulePropertiesDefinition properties() {
-    return JHipsterModulePropertiesDefinition.builder().addBasePackage().addIndentation().addServerPort().addConfigurationFormat().build();
+    return JHipsterModulePropertiesDefinition.builder()
+      .addBasePackage()
+      .addIndentation()
+      .addServerPort()
+      .addSpringConfigurationFormat()
+      .build();
   }
 
   private JHipsterModuleOrganization mvcServerOrganization() {

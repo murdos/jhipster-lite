@@ -37,7 +37,7 @@ class FileSystemDockerImagesReader implements DockerImagesReader {
 
   private Function<String, Optional<DockerImageVersion>> toDockerImage() {
     return line -> {
-      int versionSeparatorIndex = line.lastIndexOf(":");
+      int versionSeparatorIndex = line.lastIndexOf(':');
 
       if (versionSeparatorIndex == -1) {
         return Optional.empty();

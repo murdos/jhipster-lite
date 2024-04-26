@@ -7,7 +7,6 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 import net.minidev.json.JSONArray;
-import org.assertj.core.api.Assertions;
 
 class ElementAssertions {
 
@@ -16,7 +15,7 @@ class ElementAssertions {
   public ElementAssertions(String jsonPath) {
     this.jsonPath = buildJsonPath(jsonPath);
 
-    Assertions.assertThat(CucumberRestTestContext.getElement(this.jsonPath)).as("Can't find " + this.jsonPath + " in response").isNotNull();
+    assertThat(CucumberRestTestContext.getElement(this.jsonPath)).as("Can't find " + this.jsonPath + " in response").isNotNull();
   }
 
   private String buildJsonPath(String jsonPath) {

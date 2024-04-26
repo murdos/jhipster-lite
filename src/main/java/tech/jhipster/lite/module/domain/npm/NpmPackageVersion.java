@@ -10,4 +10,8 @@ public record NpmPackageVersion(String version) {
   public String get() {
     return version();
   }
+
+  public String majorVersion() {
+    return version().split("\\.")[0];
+  }
 }

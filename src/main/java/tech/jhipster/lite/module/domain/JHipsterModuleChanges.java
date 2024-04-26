@@ -173,8 +173,6 @@ public final class JHipsterModuleChanges {
     private SpringComments springYamlComments = SpringComments.EMPTY;
     private SpringFactories springFactories;
 
-    private JHipsterModuleChangesBuilder() {}
-
     @Override
     public JHipsterModuleChangesIndentationBuilder projectFolder(JHipsterProjectFolder projectFolder) {
       this.projectFolder = projectFolder;

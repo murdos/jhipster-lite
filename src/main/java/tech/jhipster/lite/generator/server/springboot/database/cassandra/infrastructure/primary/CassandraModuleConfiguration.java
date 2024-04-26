@@ -16,7 +16,9 @@ class CassandraModuleConfiguration {
   JHipsterModuleResource cassandraModule(CassandraApplicationService cassandra) {
     return JHipsterModuleResource.builder()
       .slug(CASSANDRA)
-      .propertiesDefinition(JHipsterModulePropertiesDefinition.builder().addBasePackage().addIndentation().addConfigurationFormat().build())
+      .propertiesDefinition(
+        JHipsterModulePropertiesDefinition.builder().addBasePackage().addIndentation().addSpringConfigurationFormat().build()
+      )
       .apiDoc("Spring Boot - Database", "Add Cassandra drivers and dependencies")
       .organization(JHipsterModuleOrganization.SPRINGBOOT_DEPENDENCY)
       .tags("server", "spring", "spring-boot", "database")

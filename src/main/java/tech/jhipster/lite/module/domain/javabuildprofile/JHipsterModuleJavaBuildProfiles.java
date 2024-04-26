@@ -6,11 +6,9 @@ import java.util.Map;
 import java.util.function.Function;
 import java.util.stream.Stream;
 import tech.jhipster.lite.module.domain.JHipsterModule.JHipsterModuleBuilder;
-import tech.jhipster.lite.module.domain.buildproperties.BuildProperty;
 import tech.jhipster.lite.module.domain.javabuild.command.AddJavaBuildProfile;
 import tech.jhipster.lite.module.domain.javabuild.command.JavaBuildCommand;
 import tech.jhipster.lite.module.domain.javabuild.command.JavaBuildCommands;
-import tech.jhipster.lite.module.domain.javabuild.command.SetBuildProperty;
 import tech.jhipster.lite.module.domain.javabuildprofile.JHipsterModuleJavaBuildProfile.JHipsterModuleJavaBuildProfileBuilder;
 import tech.jhipster.lite.module.domain.javadependency.JavaDependenciesVersions;
 import tech.jhipster.lite.module.domain.javadependency.ProjectJavaDependencies;
@@ -32,6 +30,7 @@ public final class JHipsterModuleJavaBuildProfiles {
     Stream<JavaBuildCommand> addProfileCommands = profiles.stream().map(toAddProfileCommands());
     Stream<JavaBuildCommand> addPropertyCommands = profiles.stream().flatMap(toAddPropertyCommands());
     Stream<JavaBuildCommand> mavenPluginCommands = profiles.stream().flatMap(toMavenPluginCommands(versions, projectJavaDependencies));
+    Stream<JavaBuildCommand> gradlePluginCommands = profiles.stream().flatMap(toGradlePluginCommands(versions));
     Stream<JavaBuildCommand> javaDependenciesCommands = profiles
       .stream()
       .flatMap(toJavaDependenciesCommands(versions, projectJavaDependencies));
@@ -40,6 +39,7 @@ public final class JHipsterModuleJavaBuildProfiles {
       addProfileCommands,
       addPropertyCommands,
       mavenPluginCommands,
+      gradlePluginCommands,
       javaDependenciesCommands
     )
       .flatMap(Function.identity())
@@ -53,26 +53,25 @@ public final class JHipsterModuleJavaBuildProfiles {
   }
 
   private Function<JHipsterModuleJavaBuildProfile, Stream<JavaBuildCommand>> toAddPropertyCommands() {
-    return profile ->
-      profile
-        .properties()
-        .entrySet()
-        .stream()
-        .map(property -> new SetBuildProperty(new BuildProperty(property.getKey(), property.getValue()), profile.id()));
+    return profile -> profile.properties().buildChanges(profile.id());
   }
 
   private Function<JHipsterModuleJavaBuildProfile, Stream<JavaBuildCommand>> toMavenPluginCommands(
     JavaDependenciesVersions versions,
     ProjectJavaDependencies projectJavaDependencies
   ) {
-    return profile -> profile.mavenPlugins().buildChanges(versions, projectJavaDependencies, profile.id()).commands().stream();
+    return profile -> profile.mavenPlugins().buildChanges(versions, projectJavaDependencies, profile.id()).get().stream();
+  }
+
+  private Function<JHipsterModuleJavaBuildProfile, Stream<JavaBuildCommand>> toGradlePluginCommands(JavaDependenciesVersions versions) {
+    return profile -> profile.gradlePlugins().buildChanges(versions, profile.id()).get().stream();
   }
 
   private Function<JHipsterModuleJavaBuildProfile, Stream<JavaBuildCommand>> toJavaDependenciesCommands(
     JavaDependenciesVersions versions,
     ProjectJavaDependencies projectJavaDependencies
   ) {
-    return profile -> profile.javaDependencies().buildChanges(versions, projectJavaDependencies, profile.id()).commands().stream();
+    return profile -> profile.javaDependencies().buildChanges(versions, projectJavaDependencies, profile.id()).get().stream();
   }
 
   public static final class JHipsterModuleJavaBuildProfilesBuilder {

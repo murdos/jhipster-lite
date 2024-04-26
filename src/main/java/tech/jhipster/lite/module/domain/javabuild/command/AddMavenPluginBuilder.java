@@ -1,6 +1,7 @@
 package tech.jhipster.lite.module.domain.javabuild.command;
 
-import java.util.*;
+import java.util.Collection;
+import java.util.LinkedHashSet;
 import java.util.function.Function;
 import tech.jhipster.lite.module.domain.javabuildprofile.BuildProfileId;
 import tech.jhipster.lite.module.domain.javadependency.JavaDependencyVersion;
@@ -58,6 +59,7 @@ class AddMavenPluginBuilder<T extends AddMavenPlugin> implements AddMavenPluginP
     return this;
   }
 
+  @Override
   public T build() {
     return factory.apply(this);
   }

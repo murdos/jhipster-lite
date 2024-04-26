@@ -145,12 +145,7 @@ public record JHipsterLandscapeLevels(Collection<JHipsterLandscapeLevel> levels)
     private Predicate<JHipsterLandscapeElement> withAllKnownDependencies(Set<JHipsterSlug> knownSlugs) {
       return element ->
         knownSlugs.containsAll(
-          element
-            .dependencies()
-            .stream()
-            .flatMap(dependencies -> dependencies.get().stream())
-            .map(JHipsterLandscapeDependency::slug)
-            .toList()
+          element.dependencies().stream().flatMap(JHipsterLandscapeDependencies::stream).map(JHipsterLandscapeDependency::slug).toList()
         );
     }
 

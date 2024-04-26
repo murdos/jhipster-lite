@@ -11,7 +11,7 @@ import tech.jhipster.lite.shared.error.domain.GeneratorException;
 import tech.jhipster.lite.shared.generation.domain.ExcludeFromGeneratedCodeCoverage;
 
 @Service
-class FileSystemProjectFiles implements ProjectFiles {
+public class FileSystemProjectFiles implements ProjectFiles {
 
   private static final String SLASH = "/";
 

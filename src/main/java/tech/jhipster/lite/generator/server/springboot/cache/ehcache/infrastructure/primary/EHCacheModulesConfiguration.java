@@ -39,7 +39,7 @@ class EHCacheModulesConfiguration {
   }
 
   private JHipsterModulePropertiesDefinition properties() {
-    return JHipsterModulePropertiesDefinition.builder().addBasePackage().addIndentation().addConfigurationFormat().build();
+    return JHipsterModulePropertiesDefinition.builder().addBasePackage().addIndentation().addSpringConfigurationFormat().build();
   }
 
   private JHipsterModuleOrganization organization() {

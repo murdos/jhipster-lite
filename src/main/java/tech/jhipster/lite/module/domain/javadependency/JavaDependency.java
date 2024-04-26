@@ -104,7 +104,7 @@ public final class JavaDependency {
   }
 
   private JavaDependency merge(JavaDependency other) {
-    return JavaDependency.builder()
+    return builder()
       .groupId(groupId())
       .artifactId(artifactId())
       .versionSlug(mergeVersionsSlugs(other))
@@ -212,8 +212,6 @@ public final class JavaDependency {
     private boolean optional;
     private JavaDependencyType type;
     private final Collection<DependencyId> exclusions = new ArrayList<>();
-
-    private JavaDependencyBuilder() {}
 
     @Override
     public JavaDependencyArtifactIdBuilder groupId(GroupId groupId) {

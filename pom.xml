@@ -2,19 +2,19 @@
 <project
   xmlns="http://maven.apache.org/POM/4.0.0"
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd https://www.gradle.com/develocity-maven-project https://www.gradle.com/schema/develocity-maven-project.xsd"
 >
   <modelVersion>4.0.0</modelVersion>
 
   <parent>
     <groupId>org.springframework.boot</groupId>
     <artifactId>spring-boot-starter-parent</artifactId>
-    <version>3.2.3</version>
+    <version>3.2.5</version>
   </parent>
 
   <groupId>tech.jhipster.lite</groupId>
   <artifactId>jhlite</artifactId>
-  <version>1.5.1-SNAPSHOT</version>
+  <version>1.7.1-SNAPSHOT</version>
   <name>jhlite</name>
   <description>JHipster Lite</description>
   <packaging>jar</packaging>
@@ -49,33 +49,34 @@
     <java.version>21</java.version>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-    <node.version>v20.11.1</node.version>
-    <npm.version>10.4.0</npm.version>
+    <node.version>v20.12.2</node.version>
+    <npm.version>10.5.2</npm.version>
 
-    <maven.version>3.9.5</maven.version>
+    <maven.version>3.6.3</maven.version>
     <maven-enforcer-plugin.version>3.4.1</maven-enforcer-plugin.version>
-    <maven-gpg-plugin.version>3.1.0</maven-gpg-plugin.version>
+    <maven-gpg-plugin.version>3.2.4</maven-gpg-plugin.version>
     <maven-javadoc-plugin.version>3.6.3</maven-javadoc-plugin.version>
-    <maven-source-plugin.version>3.3.0</maven-source-plugin.version>
+    <maven-source-plugin.version>3.3.1</maven-source-plugin.version>
     <nexus-staging-maven-plugin.version>1.6.13</nexus-staging-maven-plugin.version>
     <start-class>tech.jhipster.lite.JHLiteApp</start-class>
 
-    <byte-buddy.version>1.14.12</byte-buddy.version>
-    <compiler-plugin.version>3.12.1</compiler-plugin.version>
+    <byte-buddy.version>1.14.14</byte-buddy.version>
+    <compiler-plugin.version>3.13.0</compiler-plugin.version>
     <surefire-plugin.version>3.2.5</surefire-plugin.version>
-    <jacoco.version>0.8.11</jacoco.version>
-    <jgit.version>6.8.0.202311291450-r</jgit.version>
-    <archunit-junit5.version>1.2.1</archunit-junit5.version>
-    <springdoc-openapi-starter-webmvc-ui.version>2.3.0</springdoc-openapi-starter-webmvc-ui.version>
+    <jacoco.version>0.8.12</jacoco.version>
+    <jgit.version>6.9.0.202403050737-r</jgit.version>
+    <archunit-junit5.version>1.3.0</archunit-junit5.version>
+    <springdoc-openapi-starter-webmvc-ui.version>2.5.0</springdoc-openapi-starter-webmvc-ui.version>
     <properties-maven-plugin.version>1.2.1</properties-maven-plugin.version>
-    <sonar-maven-plugin.version>3.10.0.2594</sonar-maven-plugin.version>
-    <apache-commons-io.version>2.15.1</apache-commons-io.version>
-    <cucumber.version>7.15.0</cucumber.version>
-    <maven-model-helper.version>28</maven-model-helper.version>
+    <sonar-maven-plugin.version>3.11.0.3922</sonar-maven-plugin.version>
+    <apache-commons-io.version>2.16.1</apache-commons-io.version>
+    <cucumber.version>7.17.0</cucumber.version>
+    <maven-model-helper.version>36</maven-model-helper.version>
+    <mustache.java.version>0.9.11</mustache.java.version>
     <night-config.version>3.6.7</night-config.version>
-    <testcontainers.version>1.19.6</testcontainers.version>
-    <mongock.version>5.4.0</mongock.version>
-    <git-commit-id-plugin.version>7.0.0</git-commit-id-plugin.version>
+    <testcontainers.version>1.19.7</testcontainers.version>
+    <mongock.version>5.4.2</mongock.version>
+    <git-commit-id-plugin.version>8.0.2</git-commit-id-plugin.version>
     <maven-checkstyle-plugin.version>3.3.1</maven-checkstyle-plugin.version>
 
     <frontend-maven-plugin.version>1.15.0</frontend-maven-plugin.version>
@@ -174,6 +175,12 @@
     <dependency>
       <groupId>org.yaml</groupId>
       <artifactId>snakeyaml</artifactId>
+    </dependency>
+
+    <dependency>
+      <groupId>com.github.spullara.mustache.java</groupId>
+      <artifactId>compiler</artifactId>
+      <version>${mustache.java.version}</version>
     </dependency>
 
     <dependency>
@@ -279,6 +286,12 @@
           <source>${java.version}</source>
           <target>${java.version}</target>
           <parameters>true</parameters>
+          <annotationProcessorPaths>
+            <path>
+              <groupId>org.springframework.boot</groupId>
+              <artifactId>spring-boot-configuration-processor</artifactId>
+            </path>
+          </annotationProcessorPaths>
         </configuration>
       </plugin>
 
@@ -313,20 +326,6 @@
             <include>**/*CucumberTest*</include>
           </includes>
         </configuration>
-        <executions>
-          <execution>
-            <id>integration-test</id>
-            <goals>
-              <goal>integration-test</goal>
-            </goals>
-          </execution>
-          <execution>
-            <id>verify</id>
-            <goals>
-              <goal>verify</goal>
-            </goals>
-          </execution>
-        </executions>
       </plugin>
 
       <plugin>
@@ -718,6 +717,405 @@
               </goals>
             </execution>
           </executions>
+        </plugin>
+        <plugin>
+          <groupId>com.gradle</groupId>
+          <artifactId>develocity-maven-extension</artifactId>
+          <configuration>
+            <develocity xmlns="https://www.gradle.com/develocity-maven-project">
+              <normalization>
+                <systemProperties>
+                  <ignoredKeys>
+                    <ignore>junit.platform.listeners.uid.tracking.output.dir</ignore>
+                  </ignoredKeys>
+                </systemProperties>
+                <runtimeClassPath>
+                  <propertiesNormalizations>
+                    <propertiesNormalization>
+                      <path>**/git.properties</path>
+                      <ignoredProperties>
+                        <ignore>git.build.time</ignore>
+                      </ignoredProperties>
+                    </propertiesNormalization>
+                  </propertiesNormalizations>
+                </runtimeClassPath>
+              </normalization>
+              <plugins>
+                <plugin>
+                  <groupId>com.github.eirslett</groupId>
+                  <artifactId>frontend-maven-plugin</artifactId>
+                  <executions>
+                    <execution>
+                      <id>npm install</id>
+                      <inputs>
+                        <properties>
+                          <property>
+                            <name>arguments</name>
+                          </property>
+                          <property>
+                            <name>environmentVariables</name>
+                          </property>
+                          <property>
+                            <name>npmInheritsProxyConfigFromMaven</name>
+                          </property>
+                          <property>
+                            <name>npmRegistryURL</name>
+                          </property>
+                          <property>
+                            <name>skip</name>
+                          </property>
+                          <property>
+                            <name>testFailureIgnore</name>
+                          </property>
+                        </properties>
+                        <ignoredProperties>
+                          <ignore>execution</ignore>
+                          <ignore>project</ignore>
+                          <ignore>repositorySystemSession</ignore>
+                          <ignore>workingDirectory</ignore>
+                          <ignore>skipTests</ignore>
+                          <ignore>session</ignore>
+                          <ignore>installDirectory</ignore>
+                        </ignoredProperties>
+                        <fileSets>
+                          <fileSet>
+                            <name>package-json</name>
+                            <paths>
+                              <path>${project.basedir}/package.json</path>
+                            </paths>
+                            <normalization>RELATIVE_PATH</normalization>
+                          </fileSet>
+                          <fileSet>
+                            <name>package-lock</name>
+                            <paths>
+                              <path>${project.basedir}/package-lock.json</path>
+                            </paths>
+                            <normalization>RELATIVE_PATH</normalization>
+                          </fileSet>
+                        </fileSets>
+                      </inputs>
+                      <outputs>
+                        <directories>
+                          <directory>
+                            <name>node_modules</name>
+                            <path>${project.basedir}/node_modules</path>
+                          </directory>
+                        </directories>
+                        <cacheableBecause>just need to build in case source or deps have changed</cacheableBecause>
+                      </outputs>
+                    </execution>
+                    <execution>
+                      <id>build front</id>
+                      <inputs>
+                        <properties>
+                          <property>
+                            <name>arguments</name>
+                          </property>
+                          <property>
+                            <name>environmentVariables</name>
+                          </property>
+                          <property>
+                            <name>npmInheritsProxyConfigFromMaven</name>
+                          </property>
+                          <property>
+                            <name>npmRegistryURL</name>
+                          </property>
+                          <property>
+                            <name>skip</name>
+                          </property>
+                          <property>
+                            <name>testFailureIgnore</name>
+                          </property>
+                        </properties>
+                        <ignoredProperties>
+                          <ignore>execution</ignore>
+                          <ignore>project</ignore>
+                          <ignore>repositorySystemSession</ignore>
+                          <ignore>workingDirectory</ignore>
+                          <ignore>skipTests</ignore>
+                          <ignore>session</ignore>
+                          <ignore>installDirectory</ignore>
+                        </ignoredProperties>
+                        <fileSets>
+                          <fileSet>
+                            <name>sources</name>
+                            <paths>
+                              <path>${project.basedir}/src/main/webapp</path>
+                              <path>${project.basedir}/src/main/style</path>
+                              <path>${project.basedir}/src/main/glyph</path>
+                            </paths>
+                            <includes>
+                              <include>**/*.*</include>
+                            </includes>
+                            <normalization>RELATIVE_PATH</normalization>
+                          </fileSet>
+                          <fileSet>
+                            <name>build-config</name>
+                            <paths>
+                              <path>${project.basedir}/</path>
+                            </paths>
+                            <includes>
+                              <include>tikuiconfig.json</include>
+                              <include>tsconfig*.json</include>
+                              <include>vite.config.*</include>
+                            </includes>
+                            <normalization>RELATIVE_PATH</normalization>
+                          </fileSet>
+                        </fileSets>
+                      </inputs>
+                      <outputs>
+                        <directories>
+                          <directory>
+                            <name>target-classes-public</name>
+                            <path>${project.basedir}/target/classes/public</path>
+                          </directory>
+                          <directory>
+                            <name>target-classes-static</name>
+                            <path>${project.basedir}/target/classes/static</path>
+                          </directory>
+                        </directories>
+                        <cacheableBecause>just need to build in case source or deps have changed</cacheableBecause>
+                      </outputs>
+                    </execution>
+                    <execution>
+                      <id>front test</id>
+                      <inputs>
+                        <properties>
+                          <property>
+                            <name>arguments</name>
+                          </property>
+                          <property>
+                            <name>environmentVariables</name>
+                          </property>
+                          <property>
+                            <name>npmInheritsProxyConfigFromMaven</name>
+                          </property>
+                          <property>
+                            <name>npmRegistryURL</name>
+                          </property>
+                          <property>
+                            <name>skip</name>
+                          </property>
+                          <property>
+                            <name>testFailureIgnore</name>
+                          </property>
+                        </properties>
+                        <ignoredProperties>
+                          <ignore>execution</ignore>
+                          <ignore>project</ignore>
+                          <ignore>repositorySystemSession</ignore>
+                          <ignore>workingDirectory</ignore>
+                          <ignore>skipTests</ignore>
+                          <ignore>session</ignore>
+                          <ignore>installDirectory</ignore>
+                        </ignoredProperties>
+                        <fileSets>
+                          <fileset>
+                            <name>sources</name>
+                            <paths>
+                              <path>${project.basedir}/src/main/webapp</path>
+                              <path>${project.basedir}/src/main/style</path>
+                              <path>${project.basedir}/src/main/glyph</path>
+                            </paths>
+                            <includes>
+                              <include>**/*.*</include>
+                            </includes>
+                            <normalization>RELATIVE_PATH</normalization>
+                          </fileset>
+                          <fileSet>
+                            <name>test-sources</name>
+                            <paths>
+                              <path>${project.basedir}/src/test/javascript</path>
+                            </paths>
+                            <includes>
+                              <include>**/*.*</include>
+                            </includes>
+                            <normalization>RELATIVE_PATH</normalization>
+                          </fileSet>
+                          <fileSet>
+                            <name>build-config</name>
+                            <paths>
+                              <path>${project.basedir}/</path>
+                            </paths>
+                            <includes>
+                              <include>tikuiconfig.json</include>
+                              <include>tsconfig*.json</include>
+                              <include>vite.config.*</include>
+                              <include>vitest.config.*</include>
+                            </includes>
+                            <normalization>RELATIVE_PATH</normalization>
+                          </fileSet>
+                        </fileSets>
+                      </inputs>
+                      <outputs>
+                        <directories>
+                          <directory>
+                            <name>target-test-results</name>
+                            <path>${project.basedir}/target/test-results</path>
+                          </directory>
+                        </directories>
+                        <cacheableBecause>just need to test in case source or deps have changed</cacheableBecause>
+                      </outputs>
+                    </execution>
+                  </executions>
+                </plugin>
+                <plugin>
+                  <groupId>org.apache.maven.plugins</groupId>
+                  <artifactId>maven-compiler-plugin</artifactId>
+                  <executions>
+                    <execution>
+                      <id>default-compile</id>
+                      <outputs>
+                        <cacheableBecause>compilation outcome does not change with property</cacheableBecause>
+                      </outputs>
+                    </execution>
+                    <execution>
+                      <id>default-testCompile</id>
+                      <outputs>
+                        <cacheableBecause>compilation outcome does not change with property</cacheableBecause>
+                      </outputs>
+                    </execution>
+                  </executions>
+                </plugin>
+                <plugin>
+                  <groupId>org.apache.maven.plugins</groupId>
+                  <artifactId>maven-enforcer-plugin</artifactId>
+                  <executions>
+                    <execution>
+                      <id>enforce-versions</id>
+                      <outputs>
+                        <cacheableBecause>version check should be cached</cacheableBecause>
+                      </outputs>
+                      <inputs>
+                        <properties>
+                          <property>
+                            <name>fail</name>
+                          </property>
+                          <property>
+                            <name>failFast</name>
+                          </property>
+                          <property>
+                            <name>failIfNoRules</name>
+                          </property>
+                          <property>
+                            <name>rulesToSkip</name>
+                          </property>
+                          <property>
+                            <name>rulesToExecute</name>
+                          </property>
+                          <property>
+                            <name>rules</name>
+                          </property>
+                          <property>
+                            <name>skip</name>
+                          </property>
+                        </properties>
+                        <ignoredProperties>
+                          <ignore>ignoreCache</ignore>
+                          <ignore>mojoExecution</ignore>
+                          <ignore>session</ignore>
+                        </ignoredProperties>
+                      </inputs>
+                      <nestedProperties>
+                        <property>
+                          <name>project</name>
+                          <iteratedProperties>
+                            <property>
+                              <name>dependencies</name>
+                              <inputs>
+                                <properties>
+                                  <property>
+                                    <name>groupId</name>
+                                  </property>
+                                  <property>
+                                    <name>artifactId</name>
+                                  </property>
+                                  <property>
+                                    <name>version</name>
+                                  </property>
+                                  <property>
+                                    <name>type</name>
+                                  </property>
+                                  <property>
+                                    <name>scope</name>
+                                  </property>
+                                </properties>
+                              </inputs>
+                            </property>
+                          </iteratedProperties>
+                        </property>
+                      </nestedProperties>
+                    </execution>
+                    <execution>
+                      <id>enforce-dependencyConvergence</id>
+                      <outputs>
+                        <cacheableBecause>depencency convergenve should be cached</cacheableBecause>
+                      </outputs>
+                      <inputs>
+                        <properties>
+                          <property>
+                            <name>fail</name>
+                          </property>
+                          <property>
+                            <name>failFast</name>
+                          </property>
+                          <property>
+                            <name>failIfNoRules</name>
+                          </property>
+                          <property>
+                            <name>rulesToSkip</name>
+                          </property>
+                          <property>
+                            <name>rulesToExecute</name>
+                          </property>
+                          <property>
+                            <name>rules</name>
+                          </property>
+                          <property>
+                            <name>skip</name>
+                          </property>
+                        </properties>
+                        <ignoredProperties>
+                          <ignore>ignoreCache</ignore>
+                          <ignore>mojoExecution</ignore>
+                          <ignore>session</ignore>
+                        </ignoredProperties>
+                      </inputs>
+                      <nestedProperties>
+                        <property>
+                          <name>project</name>
+                          <iteratedProperties>
+                            <property>
+                              <name>dependencies</name>
+                              <inputs>
+                                <properties>
+                                  <property>
+                                    <name>groupId</name>
+                                  </property>
+                                  <property>
+                                    <name>artifactId</name>
+                                  </property>
+                                  <property>
+                                    <name>version</name>
+                                  </property>
+                                  <property>
+                                    <name>type</name>
+                                  </property>
+                                  <property>
+                                    <name>scope</name>
+                                  </property>
+                                </properties>
+                              </inputs>
+                            </property>
+                          </iteratedProperties>
+                        </property>
+                      </nestedProperties>
+                    </execution>
+                  </executions>
+                </plugin>
+              </plugins>
+            </develocity>
+          </configuration>
         </plugin>
       </plugins>
     </pluginManagement>

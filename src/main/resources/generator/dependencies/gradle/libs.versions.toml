@@ -1,6 +1,6 @@
 [versions]
-checkstyle = "10.14.0"
-jib = "3.4.1"
+checkstyle = "10.15.0"
+jib = "3.4.2"
 git-properties = "2.4.1"
 protobuf-plugin = "0.9.4"
 jacoco = "0.8.11"

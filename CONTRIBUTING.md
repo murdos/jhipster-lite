@@ -69,12 +69,12 @@ javac 21
 
 ```
 $ node -v
-v20.11.1
+v20.12.2
 ```
 
 ```
 $ npm -v
-10.4.0
+10.5.2
 ```
 
 #### Docker
@@ -342,6 +342,7 @@ from the main (upstream) repository:
 - The `tests-ci/generate.sh` file is used in the Continuous Integration pipeline to test generated projects.
 - This script takes as input:
   - the **application-name**: this is the type of project you would like to generate.
+  - the **java-build-tool**: this is the build tool for the project.
   - the **spring-configuration-format**: this is the format of spring configuration files.
 - Below is the list of applications that can be generated for testing (supported input params for the generate.sh script):
   - spring
@@ -369,6 +370,9 @@ from the main (upstream) repository:
   - reactiveapp
   - customjhlite
   - typescriptapp
+- Below is the list of build tools that can be used for testing (supported input params for the generate.sh script):
+  - gradle
+  - maven
 - Below is the list of formats that can be used for testing (supported input params for the generate.sh script):
   - properties
   - yaml
@@ -381,7 +385,7 @@ from the main (upstream) repository:
   ```
 - Run the generate.sh script with the desired project build name.
   ```shell
-  ./tests-ci/generate.sh <application>
+  ./tests-ci/generate.sh <application> <java-build-tool> <spring-configuration-format>
   ```
 - This will generate the project in `/tmp/jhlite/<application>`. Then, you can test it.
 - The project location of the generated build is configured in the `test-ci/modulePayload.json`.

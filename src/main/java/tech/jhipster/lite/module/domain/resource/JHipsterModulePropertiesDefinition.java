@@ -9,6 +9,8 @@ import java.util.Comparator;
 import java.util.Set;
 import java.util.TreeSet;
 import java.util.stream.Stream;
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
 import tech.jhipster.lite.shared.error.domain.Assert;
 
 public final class JHipsterModulePropertiesDefinition {
@@ -44,6 +46,11 @@ public final class JHipsterModulePropertiesDefinition {
     return definitions.stream();
   }
 
+  @Override
+  public String toString() {
+    return new ToStringBuilder(this, ToStringStyle.SHORT_PREFIX_STYLE).append("definitions", definitions).build();
+  }
+
   public static final class JHipsterModulePropertiesDefinitionBuilder {
 
     private final Collection<JHipsterModulePropertyDefinition> definitions = new ArrayList<>();
@@ -70,8 +77,8 @@ public final class JHipsterModulePropertiesDefinition {
       return add(indentationProperty());
     }
 
-    public JHipsterModulePropertiesDefinitionBuilder addConfigurationFormat() {
-      return add(configurationFormatProperty());
+    public JHipsterModulePropertiesDefinitionBuilder addSpringConfigurationFormat() {
+      return add(springConfigurationFormatProperty());
     }
 
     public JHipsterModulePropertiesDefinitionBuilder addEndOfLine() {

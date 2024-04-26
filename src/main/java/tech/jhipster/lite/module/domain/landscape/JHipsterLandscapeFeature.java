@@ -2,7 +2,6 @@ package tech.jhipster.lite.module.domain.landscape;
 
 import java.util.Collection;
 import java.util.Optional;
-import java.util.function.Function;
 import java.util.stream.Stream;
 import tech.jhipster.lite.module.domain.JHipsterFeatureSlug;
 import tech.jhipster.lite.module.domain.JHipsterSlug;
@@ -30,13 +29,9 @@ public final class JHipsterLandscapeFeature implements JHipsterLandscapeElement 
         .map(JHipsterLandscapeModule::dependencies)
         .filter(Optional::isPresent)
         .map(Optional::get)
-        .flatMap(toDependencies())
+        .flatMap(JHipsterLandscapeDependencies::stream)
         .toList()
     );
-  }
-
-  private Function<JHipsterLandscapeDependencies, Stream<JHipsterLandscapeDependency>> toDependencies() {
-    return dep -> dep.dependencies().stream();
   }
 
   @Override

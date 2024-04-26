@@ -58,6 +58,8 @@ spring_boot() {
   "github-actions-${java_build_tool}" \
   "java-base" \
   "checkstyle" \
+  "approval-tests" \
+  "jqwik" \
   "protobuf" \
   "protobuf-backwards-compatibility-check" \
   "jacoco-with-min-coverage-check" \
@@ -136,6 +138,7 @@ elif [[ $application == 'gradleapp' ]]; then
   applyModules \
     "java-memoizers" \
     "java-enums" \
+    "spring-boot-local-profile" \
     "jib" \
     "dockerfile-${java_build_tool}" \
     "pagination-domain" \
@@ -170,7 +173,8 @@ elif [[ $application == 'fullapp' ]]; then
   "internationalized-errors" \
   "spring-boot-cache" \
   "caffeine-cache" \
-  "license-apache"
+  "license-apache" \
+  "renovate"
 
   cucumber_with_jwt
 
@@ -182,9 +186,9 @@ elif [[ $application == 'fullapp' ]]; then
   applyModules \
   "kipe-expression" \
   "kipe-authorization" \
-  "dummy-feature" \
-  "dummy-jpa-persistence" \
-  "dummy-liquibase-changelog" \
+  "sample-feature" \
+  "sample-jpa-persistence" \
+  "sample-liquibase-changelog" \
 
   applyModules "ehcache-java-config"
 
@@ -213,7 +217,7 @@ elif [[ $application == 'oauth2app' ]]; then
   "spring-boot-cucumber-oauth2-authentication" \
   "kipe-expression" \
   "kipe-authorization" \
-  "dummy-feature"
+  "sample-feature"
 
 elif [[ $application == 'mysqlapp' ]]; then
   init_server
@@ -230,9 +234,9 @@ elif [[ $application == 'mysqlapp' ]]; then
   "spring-boot-local-profile" \
   "kipe-expression" \
   "kipe-authorization" \
-  "dummy-feature" \
-  "dummy-jpa-persistence" \
-  "dummy-liquibase-changelog" \
+  "sample-feature" \
+  "sample-jpa-persistence" \
+  "sample-liquibase-changelog" \
 
   applyModules "ehcache-xml-config"
 
@@ -267,9 +271,9 @@ elif [[ $application == 'flywayapp' ]]; then
   applyModules \
   "kipe-expression" \
   "kipe-authorization" \
-  "dummy-feature" \
-  "dummy-jpa-persistence" \
-  "dummy-postgresql-flyway-changelog" \
+  "sample-feature" \
+  "sample-jpa-persistence" \
+  "sample-postgresql-flyway-changelog" \
 
 elif [[ $application == 'undertowapp' ]]; then
   init_server
@@ -287,9 +291,9 @@ elif [[ $application == 'undertowapp' ]]; then
   applyModules \
   "kipe-expression" \
   "kipe-authorization" \
-  "dummy-feature" \
-  "dummy-jpa-persistence" \
-  "dummy-not-postgresql-flyway-changelog" \
+  "sample-feature" \
+  "sample-jpa-persistence" \
+  "sample-not-postgresql-flyway-changelog" \
 
   applyModules "spring-boot-cache"
 
@@ -331,8 +335,8 @@ elif [[ $application == 'mongodbapp' ]]; then
   applyModules \
   "kipe-expression" \
   "kipe-authorization" \
-  "dummy-feature" \
-  "dummy-mongodb-persistence"
+  "sample-feature" \
+  "sample-mongodb-persistence"
 
 elif [[ $application == 'redisapp' ]]; then
   init_server
@@ -354,8 +358,8 @@ elif [[ $application == 'cassandraapp' ]]; then
   "cassandra-migration" \
   "kipe-expression" \
   "kipe-authorization" \
-  "dummy-feature" \
-  "dummy-cassandra-persistence"
+  "sample-feature" \
+  "sample-cassandra-persistence"
 
 elif [[ $application == 'neo4japp' ]]; then
   init_server

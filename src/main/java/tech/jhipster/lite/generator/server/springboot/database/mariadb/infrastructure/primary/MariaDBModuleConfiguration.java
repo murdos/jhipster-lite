@@ -19,7 +19,12 @@ class MariaDBModuleConfiguration {
     return JHipsterModuleResource.builder()
       .slug(MARIADB)
       .propertiesDefinition(
-        JHipsterModulePropertiesDefinition.builder().addBasePackage().addIndentation().addProjectBaseName().addConfigurationFormat().build()
+        JHipsterModulePropertiesDefinition.builder()
+          .addBasePackage()
+          .addIndentation()
+          .addProjectBaseName()
+          .addSpringConfigurationFormat()
+          .build()
       )
       .apiDoc("Spring Boot - Database", "Add MariaDB to project")
       .organization(JHipsterModuleOrganization.builder().feature(JPA_PERSISTENCE).addDependency(SPRING_BOOT).build())

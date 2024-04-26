@@ -5,7 +5,7 @@ import static tech.jhipster.lite.module.domain.mavenplugin.MavenBuildPhase.*;
 
 import java.util.regex.Pattern;
 import tech.jhipster.lite.module.domain.JHipsterModule;
-import tech.jhipster.lite.module.domain.gradleplugin.GradlePlugin;
+import tech.jhipster.lite.module.domain.gradleplugin.GradleMainBuildPlugin;
 import tech.jhipster.lite.module.domain.javabuild.ArtifactId;
 import tech.jhipster.lite.module.domain.javabuild.GroupId;
 import tech.jhipster.lite.module.domain.javabuild.VersionSlug;
@@ -188,7 +188,7 @@ public class JacocoModuleFactory {
       );
   }
 
-  private static GradlePlugin gradleJacocoPlugin() {
+  private static GradleMainBuildPlugin gradleJacocoPlugin() {
     return gradleCorePlugin()
       .id(JACOCO)
       .toolVersionSlug(JACOCO)
@@ -211,7 +211,7 @@ public class JacocoModuleFactory {
       .build();
   }
 
-  private static GradlePlugin gradleJacocoWithMinCoverageCheckPlugin() {
+  private static GradleMainBuildPlugin gradleJacocoWithMinCoverageCheckPlugin() {
     return gradleCorePlugin()
       .id(JACOCO)
       .toolVersionSlug(JACOCO)

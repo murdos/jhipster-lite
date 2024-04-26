@@ -65,13 +65,13 @@ public final class ProjectJavaDependencies {
   public ProjectJavaDependencies merge(ProjectJavaDependencies other) {
     Assert.notNull("other", other);
 
-    return ProjectJavaDependencies.builder()
+    return builder()
       .versions(versions.merge(other.versions()))
       .dependenciesManagements(dependenciesManagement.merge(other.dependenciesManagement))
       .dependencies(dependencies.merge(other.dependencies));
   }
 
-  private static class ProjectJavaDependenciesBuilder
+  private static final class ProjectJavaDependenciesBuilder
     implements
       ProjectJavaDependenciesVersionsBuilder,
       ProjectJavaDependenciesDependenciesManagementBuilder,

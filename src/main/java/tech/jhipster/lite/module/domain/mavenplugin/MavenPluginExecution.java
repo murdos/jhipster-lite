@@ -45,7 +45,7 @@ public final class MavenPluginExecution {
     return configuration;
   }
 
-  private static class MavenPluginExecutionBuilder implements MavenPluginExecutionGoalsBuilder, MavenPluginExecutionOptionalBuilder {
+  private static final class MavenPluginExecutionBuilder implements MavenPluginExecutionGoalsBuilder, MavenPluginExecutionOptionalBuilder {
 
     private MavenPluginExecutionId id;
     private MavenBuildPhase phase;

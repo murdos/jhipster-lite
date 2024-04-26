@@ -12,7 +12,7 @@ import org.springframework.context.annotation.Configuration;
  */
 @Configuration
 @ConditionalOnProperty(name = "application.logging.logstash.tcp.enabled", havingValue = "true")
-public class LogstashTcpConfiguration {
+class LogstashTcpConfiguration {
 
   public static final String FIELD_APP_NAME = "app_name";
   public static final String FIELD_APP_PORT = "app_port";

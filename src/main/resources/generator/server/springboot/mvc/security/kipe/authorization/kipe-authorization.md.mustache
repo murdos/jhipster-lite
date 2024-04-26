@@ -45,7 +45,7 @@ class RolesConfiguration {
 }
 ```
 
-For each role, you'll be able to define multiple accesses. There are 3 things defining an access:
+For each role, you'll be able to define multiple accesses. There are three things defining an access:
 
 * The scope: can be `all` or `specific`;
 * The action, it's a verb (`read` in the example);

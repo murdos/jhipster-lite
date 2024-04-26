@@ -84,11 +84,11 @@ class JGitGitRepositoryTest {
     @Test
     void shouldCommitAllFiles() throws IOException {
       Path path = gitInit();
-      Files.copy(Paths.get("src/test/resources/projects/files/application.properties"), path.resolve("application.properties"));
+      Files.copy(Paths.get("src/test/resources/projects/files/dummy.txt"), path.resolve("dummy.txt"));
 
-      git.commitAll(new JHipsterProjectFolder(path.toString()), "Add application.properties");
+      git.commitAll(new JHipsterProjectFolder(path.toString()), "Add dummy.txt");
 
-      assertThat(GitTestUtil.getCommits(path)).contains("Add application.properties");
+      assertThat(GitTestUtil.getCommits(path)).contains("Add dummy.txt");
       assertThat(GitTestUtil.getCurrentBranch(path)).contains("main");
     }
   }

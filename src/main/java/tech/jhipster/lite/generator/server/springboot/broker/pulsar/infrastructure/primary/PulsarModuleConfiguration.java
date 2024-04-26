@@ -17,7 +17,9 @@ class PulsarModuleConfiguration {
   JHipsterModuleResource pulsarModule(PulsarApplicationService pulsar) {
     return JHipsterModuleResource.builder()
       .slug(SPRING_BOOT_PULSAR)
-      .propertiesDefinition(JHipsterModulePropertiesDefinition.builder().addBasePackage().addIndentation().addConfigurationFormat().build())
+      .propertiesDefinition(
+        JHipsterModulePropertiesDefinition.builder().addBasePackage().addIndentation().addSpringConfigurationFormat().build()
+      )
       .apiDoc("Spring Boot - Broker", "Add Pulsar dependencies, with testcontainers")
       .organization(JHipsterModuleOrganization.builder().addDependency(SPRING_BOOT).build())
       .tags("server", "spring", "spring-boot", "broker")

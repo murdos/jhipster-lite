@@ -5,7 +5,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 import java.time.Duration;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
-import org.assertj.core.api.Assertions;
 import org.assertj.core.description.Description;
 import org.springframework.http.HttpStatus;
 
@@ -30,7 +29,7 @@ public final class CucumberRestAssertions {
   }
 
   static void assertHttpStatus(HttpStatus status) {
-    Assertions.assertThat(CucumberRestTestContext.getStatus())
+    assertThat(CucumberRestTestContext.getStatus())
       .as(() -> "Expecting request to result in " + status + " but got " + CucumberRestTestContext.getStatus() + callContext())
       .isEqualTo(status);
   }
@@ -58,7 +57,7 @@ public final class CucumberRestAssertions {
     return CucumberRestTestContext.getResponse().get();
   }
 
-  private static class CallDescription extends Description {
+  private static final class CallDescription extends Description {
 
     @Override
     public String value() {

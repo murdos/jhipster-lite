@@ -349,7 +349,7 @@ public final class JHipsterModulesAssertions {
     return () -> "Found file " + path + " in project folder, found " + projectFiles(projectFolder);
   }
 
-  private static class FileModifiedTimeUpdater implements FileVisitor<Path> {
+  private static final class FileModifiedTimeUpdater implements FileVisitor<Path> {
 
     @Override
     public FileVisitResult preVisitDirectory(Path dir, BasicFileAttributes attrs) {

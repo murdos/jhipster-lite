@@ -4,7 +4,7 @@ import static tech.jhipster.lite.module.domain.JHipsterModule.*;
 
 import tech.jhipster.lite.module.domain.JHipsterModule;
 import tech.jhipster.lite.module.domain.file.JHipsterSource;
-import tech.jhipster.lite.module.domain.gradleplugin.GradlePlugin;
+import tech.jhipster.lite.module.domain.gradleplugin.GradleMainBuildPlugin;
 import tech.jhipster.lite.module.domain.mavenplugin.MavenPlugin;
 import tech.jhipster.lite.module.domain.mavenplugin.MavenPluginConfiguration;
 import tech.jhipster.lite.module.domain.properties.JHipsterModuleProperties;
@@ -99,7 +99,7 @@ public class SpringBootDockerModuleFactory {
     );
   }
 
-  private GradlePlugin gradleJibPlugin(JHipsterModuleProperties properties) {
+  private GradleMainBuildPlugin gradleJibPlugin(JHipsterModuleProperties properties) {
     return gradleCommunityPlugin()
       .id("com.google.cloud.tools.jib")
       .pluginSlug("jib")

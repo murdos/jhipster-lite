@@ -12,4 +12,5 @@ public sealed interface JavaBuildCommand
     RemoveDirectJavaDependency,
     RemoveJavaDependencyManagement,
     SetBuildProperty,
-    SetVersion {}
+    SetVersion,
+    AddGradleConfiguration {}

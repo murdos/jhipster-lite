@@ -1,6 +1,5 @@
 import { TestBed } from '@angular/core/testing';
-import { Router } from '@angular/router';
-import { RouterTestingModule } from '@angular/router/testing';
+import { Router, provideRouter } from '@angular/router';
 import AdminRoutingModule, { routes } from './admin-routing.module';
 
 describe('AdminRoutingModule', () => {
@@ -8,7 +7,7 @@ describe('AdminRoutingModule', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [RouterTestingModule.withRoutes(routes)],
+      providers: [provideRouter(routes)],
     }).compileComponents();
     router = TestBed.inject(Router);
     router.initialNavigation();

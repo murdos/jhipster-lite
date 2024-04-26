@@ -17,7 +17,12 @@ class DevToolsModuleConfiguration {
     return JHipsterModuleResource.builder()
       .slug(SPRING_BOOT_DEVTOOLS)
       .propertiesDefinition(
-        JHipsterModulePropertiesDefinition.builder().addBasePackage().addProjectBaseName().addIndentation().addConfigurationFormat().build()
+        JHipsterModulePropertiesDefinition.builder()
+          .addBasePackage()
+          .addProjectBaseName()
+          .addIndentation()
+          .addSpringConfigurationFormat()
+          .build()
       )
       .apiDoc("Spring Boot - Tools", "Add Spring Boot devtools.")
       .organization(JHipsterModuleOrganization.SPRINGBOOT_DEPENDENCY)

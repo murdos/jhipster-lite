@@ -1,7 +1,7 @@
 include /atom/icon/icon.mixin.pug
 
 mixin jhlite-toast(type)
-  .jhlite-toast(class=`-${type}` role='alert')
+  .jhlite-toast(class=`-${type}`, role='alert')
     .jhlite-toast--message
       block
     button.jhlite-toast--action(aria-label='Close')

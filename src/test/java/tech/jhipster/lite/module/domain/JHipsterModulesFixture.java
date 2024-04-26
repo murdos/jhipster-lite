@@ -8,11 +8,11 @@ import java.util.Map;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import tech.jhipster.lite.TestFileUtils;
-import tech.jhipster.lite.module.domain.JHipsterModule.JHipsterModuleBuilder;
 import tech.jhipster.lite.module.domain.buildproperties.BuildProperty;
 import tech.jhipster.lite.module.domain.buildproperties.PropertyKey;
 import tech.jhipster.lite.module.domain.buildproperties.PropertyValue;
-import tech.jhipster.lite.module.domain.gradleplugin.GradlePlugin;
+import tech.jhipster.lite.module.domain.gradleplugin.GradleMainBuildPlugin;
+import tech.jhipster.lite.module.domain.gradleplugin.GradleProfilePlugin;
 import tech.jhipster.lite.module.domain.javabuild.ArtifactId;
 import tech.jhipster.lite.module.domain.javabuild.GroupId;
 import tech.jhipster.lite.module.domain.javabuild.MavenBuildExtension;
@@ -33,6 +33,8 @@ import tech.jhipster.lite.module.domain.javaproperties.SpringPropertyType;
 import tech.jhipster.lite.module.domain.mavenplugin.MavenPlugin;
 import tech.jhipster.lite.module.domain.packagejson.VersionSource;
 import tech.jhipster.lite.module.domain.properties.JHipsterModuleProperties;
+import tech.jhipster.lite.module.domain.properties.SpringConfigurationFormat;
+import tech.jhipster.lite.shared.error.domain.Assert;
 
 public final class JHipsterModulesFixture {
 
@@ -40,42 +42,7 @@ public final class JHipsterModulesFixture {
 
   private JHipsterModulesFixture() {}
 
-  /**
-   * Module that contains all features currently supported with Gradle
-   * @implNote This is a temporary method to be used until all features are supported with Gradle
-   */
-  public static JHipsterModule gradleSupportedModule() {
-    return gradleSupportedModuleBuilder().build();
-  }
-
-  /**
-   * Module that contains all features currently supported with Maven
-   */
   public static JHipsterModule fullModule() {
-    // @formatter:off
-   return gradleSupportedModuleBuilder()
-    .javaBuildProfiles()
-      .addProfile(localMavenProfile())
-        .activation(buildProfileActivation().activeByDefault(false))
-        .properties()
-          .set(buildPropertyKey("spring.profiles.active"), buildPropertyValue("local"))
-          .and()
-        .mavenPlugins()
-          .pluginManagement(mavenEnforcerPluginManagement())
-          .plugin(mavenEnforcerPlugin())
-          .and()
-        .javaDependencies()
-          .addTestDependency(groupId("org.cassandraunit"), artifactId("cassandra-unit"), versionSlug("cassandraunit"))
-          .removeDependency(dependencyId("org.springframework.boot", "spring-boot-starter-web"))
-          .removeDependencyManagement(dependencyId("org.springframework.boot", "spring-boot-starter-web"))
-          .and()
-        .and()
-     .and()
-    .build();
-    // @formatter:on
-  }
-
-  public static JHipsterModuleBuilder gradleSupportedModuleBuilder() {
     // @formatter:off
    return moduleBuilder(testModuleProperties())
     .context()
@@ -117,8 +84,10 @@ public final class JHipsterModulesFixture {
         .add(text("Ensure that the input is not null"), "Dummy replacement")
         .and()
       .and()
+    .javaBuildProperties()
+      .set(buildPropertyKey("spring-profiles-active"), buildPropertyValue("local"))
+      .and()
     .javaDependencies()
-      .setVersion(javaDependencyVersion("dummy-dependency", "4.5.8"))
       .removeDependency(dependencyId("net.logstash.logback", "logstash-logback-encoder"))
       .addDependency(groupId("org.springframework.boot"), artifactId("spring-boot-starter"))
       .addDependency(groupId("io.jsonwebtoken"), artifactId("jjwt-api"), versionSlug("json-web-token.version"))
@@ -133,9 +102,47 @@ public final class JHipsterModulesFixture {
       .plugin(mavenEnforcerPlugin())
       .plugin(asciidoctorPlugin())
       .and()
+    .gradleConfigurations()
+      .configuration(
+        """
+        tasks.build {
+          dependsOn("processResources")
+        }
+
+        tasks.processResources {
+          filesMatching("**/*.yml", "**/*.properties") {
+            filter {
+              it.replace("@spring.profiles.active@", springProfilesActive)
+            }
+          }
+        }
+        """
+      )
+      .and()
     .gradlePlugins()
       .plugin(jacocoGradlePlugin())
       .plugin(checkstyleGradlePlugin())
+      .and()
+    .javaBuildProfiles()
+      .addProfile(localBuildProfile())
+        .activation(buildProfileActivation().activeByDefault(false))
+        .properties()
+          .set(buildPropertyKey("spring.profiles.active"), buildPropertyValue("local"))
+          .and()
+        .mavenPlugins()
+          .pluginManagement(mavenEnforcerPluginManagement())
+          .plugin(mavenEnforcerPlugin())
+          .and()
+        .gradleProfilePlugins()
+          .plugin(checkstyleGradleProfilePlugin())
+          .plugin(gitPropertiesGradleProfilePlugin())
+          .and()
+        .javaDependencies()
+          .addTestDependency(groupId("org.cassandraunit"), artifactId("cassandra-unit"), versionSlug("cassandraunit"))
+          .removeDependency(dependencyId("org.springframework.boot", "spring-boot-starter-web"))
+          .removeDependencyManagement(dependencyId("org.springframework.boot", "spring-boot-starter-web"))
+          .and()
+        .and()
       .and()
     .packageJson()
       .addScript(scriptKey("serve"), scriptCommand("tikui-core serve"))
@@ -173,7 +180,8 @@ public final class JHipsterModulesFixture {
     .springTestFactories()
      .append(propertyKey("o.s.c.ApplicationListener"), propertyValue("c.m.m.MyListener1"))
      .append(propertyKey("o.s.c.ApplicationListener"), propertyValue("c.m.m.MyListener2"))
-     .and();
+     .and()
+    .build();
     // @formatter:on
   }
 
@@ -258,7 +266,7 @@ public final class JHipsterModulesFixture {
     return DependencyId.of(new GroupId("io.jsonwebtoken"), new ArtifactId("jjwt-api"));
   }
 
-  public static BuildProfileId localMavenProfile() {
+  public static BuildProfileId localBuildProfile() {
     return buildProfileId("local");
   }
 
@@ -387,7 +395,7 @@ public final class JHipsterModulesFixture {
       .build();
   }
 
-  public static GradlePlugin jacocoGradlePlugin() {
+  public static GradleMainBuildPlugin jacocoGradlePlugin() {
     return gradleCorePlugin()
       .id("jacoco")
       .toolVersionSlug("jacoco")
@@ -410,7 +418,7 @@ public final class JHipsterModulesFixture {
       .build();
   }
 
-  public static GradlePlugin checkstyleGradlePlugin() {
+  public static GradleMainBuildPlugin checkstyleGradlePlugin() {
     return gradleCorePlugin()
       .id("checkstyle")
       .toolVersionSlug("checkstyle")
@@ -421,6 +429,44 @@ public final class JHipsterModulesFixture {
         }
         """
       )
+      .build();
+  }
+
+  public static GradleProfilePlugin checkstyleGradleProfilePlugin() {
+    return gradleCorePlugin()
+      .id("checkstyle")
+      .toolVersionSlug("checkstyle")
+      .configuration(
+        """
+        checkstyle {
+          toolVersion = libs.versions.checkstyle.get()
+        }
+        """
+      )
+      .build();
+  }
+
+  public static GradleProfilePlugin gitPropertiesGradleProfilePlugin() {
+    return gradleProfilePlugin()
+      .id("com.gorylenko.gradle-git-properties")
+      .dependency(groupId("com.gorylenko.gradle-git-properties"), artifactId("gradle-git-properties"))
+      .versionSlug("git-properties")
+      .configuration(
+        """
+        gitProperties {
+          failOnNoGitDirectory = false
+          keys = listOf("git.branch", "git.commit.id.abbrev", "git.commit.id.describe", "git.build.version")
+        }
+        """
+      )
+      .build();
+  }
+
+  public static GradleProfilePlugin dockerGradlePluginDependency() {
+    return gradleProfilePlugin()
+      .id("com.bmuschko.docker-remote-api")
+      .dependency(groupId("com.bmuschko"), artifactId("gradle-docker-plugin"))
+      .versionSlug("docker-plugin")
       .build();
   }
 
@@ -500,6 +546,13 @@ public final class JHipsterModulesFixture {
 
     public JHipsterModulePropertiesBuilder projectName(String projectName) {
       properties.put("projectName", projectName);
+
+      return this;
+    }
+
+    public JHipsterModulePropertiesBuilder springConfigurationFormat(SpringConfigurationFormat format) {
+      Assert.notNull("format", format);
+      properties.put("springConfigurationFormat", format.get());
 
       return this;
     }

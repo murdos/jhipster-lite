@@ -19,7 +19,9 @@ class SpringDocAuth0ModuleConfiguration {
   JHipsterModuleResource springDocAuth0Module(SpringDocAuth0ApplicationService springdocAuth0) {
     return JHipsterModuleResource.builder()
       .slug(SPRINGDOC_OAUTH_2_AUTH_0)
-      .propertiesDefinition(JHipsterModulePropertiesDefinition.builder().addBasePackage().addIndentation().addConfigurationFormat().build())
+      .propertiesDefinition(
+        JHipsterModulePropertiesDefinition.builder().addBasePackage().addIndentation().addSpringConfigurationFormat().build()
+      )
       .apiDoc("Spring Boot - API Documentation", "Add Auth0 authentication for springdoc")
       .organization(
         JHipsterModuleOrganization.builder()

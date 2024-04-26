@@ -1,12 +1,12 @@
 package tech.jhipster.lite.generator.server.springboot.dbmigration.liquibase.domain;
 
 import static tech.jhipster.lite.module.domain.JHipsterModule.*;
+import static tech.jhipster.lite.module.domain.JHipsterModule.from;
+import static tech.jhipster.lite.module.domain.properties.SpringConfigurationFormat.*;
 
 import tech.jhipster.lite.module.domain.JHipsterModule;
 import tech.jhipster.lite.module.domain.LogLevel;
 import tech.jhipster.lite.module.domain.file.JHipsterSource;
-import tech.jhipster.lite.module.domain.javadependency.JavaDependency;
-import tech.jhipster.lite.module.domain.javadependency.JavaDependencyScope;
 import tech.jhipster.lite.module.domain.properties.JHipsterModuleProperties;
 import tech.jhipster.lite.shared.error.domain.Assert;
 
@@ -25,9 +25,12 @@ public class LiquibaseModuleFactory {
 
     //@formatter:off
     return moduleBuilder(properties)
+      .context()
+        .put("yamlSpringConfigurationFormat", properties.springConfigurationFormat() == YAML)
+        .put("propertiesSpringConfigurationFormat", properties.springConfigurationFormat() == PROPERTIES)
+      .and()
       .javaDependencies()
         .addDependency(groupId("org.liquibase"), artifactId("liquibase-core"), versionSlug(LIQUIBASE))
-        .addDependency(h2Dependency())
         .and()
       .springMainProperties()
         .set(propertyKey("spring.liquibase.change-log"), propertyValue("classpath:config/liquibase/master.xml"))
@@ -54,9 +57,5 @@ public class LiquibaseModuleFactory {
       .springTestLogger("com.zaxxer.hikari", LogLevel.WARN)
       .build();
     //@formatter:on
-  }
-
-  private JavaDependency h2Dependency() {
-    return javaDependency().groupId("com.h2database").artifactId("h2").scope(JavaDependencyScope.TEST).build();
   }
 }

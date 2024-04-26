@@ -2,14 +2,21 @@
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
   "extends": [
     "config:recommended",
+    "npm:unpublishSafe",
+    "schedule:daily",
+    ":maintainLockFilesWeekly",
     ":disableDependencyDashboard",
     ":automergeMinor",
     ":automergePr",
     ":automergeRequireAllStatusChecks",
     ":label(area: dependencies)"
   ],
-  "enabledManagers": ["maven-wrapper", "gradle-wrapper", "docker-compose"],
+  "prHourlyLimit": 20,
+  "enabledManagers": ["maven-wrapper", "gradle-wrapper", "docker-compose", "npm"],
   "docker-compose": {
     "fileMatch": ["^src/main/docker/[^/]*\\.ya?ml$"]
+  },
+  "npm": {
+    "ignorePaths": ["src/**"]
   }
 }

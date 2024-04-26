@@ -1,11 +1,11 @@
 package tech.jhipster.lite.generator.server.javatool.checkstyle.domain;
 
 import static tech.jhipster.lite.module.domain.JHipsterModule.*;
-import static tech.jhipster.lite.module.domain.mavenplugin.MavenBuildPhase.VALIDATE;
+import static tech.jhipster.lite.module.domain.mavenplugin.MavenBuildPhase.*;
 
 import tech.jhipster.lite.module.domain.JHipsterModule;
 import tech.jhipster.lite.module.domain.file.JHipsterSource;
-import tech.jhipster.lite.module.domain.gradleplugin.GradlePlugin;
+import tech.jhipster.lite.module.domain.gradleplugin.GradleMainBuildPlugin;
 import tech.jhipster.lite.module.domain.javabuild.VersionSlug;
 import tech.jhipster.lite.module.domain.mavenplugin.MavenPlugin;
 import tech.jhipster.lite.module.domain.properties.JHipsterModuleProperties;
@@ -50,7 +50,7 @@ public class CheckstyleModuleFactory {
       .build();
   }
 
-  private GradlePlugin checkstyleGradlePlugin() {
+  private GradleMainBuildPlugin checkstyleGradlePlugin() {
     VersionSlug toolVersionSlug = new VersionSlug("checkstyle");
     return gradleCorePlugin()
       .id("checkstyle")
@@ -60,13 +60,6 @@ public class CheckstyleModuleFactory {
         checkstyle {
           configFile = rootProject.file("checkstyle.xml")
           toolVersion = libs.versions.%s.get()
-        }
-
-        // Workaround for https://github.com/gradle/gradle/issues/27035
-        configurations.checkstyle {
-          resolutionStrategy.capabilitiesResolution.withCapability("com.google.collections:google-collections") {
-            select("com.google.guava:guava:0")
-          }
         }
         """.formatted(toolVersionSlug.slug())
       )

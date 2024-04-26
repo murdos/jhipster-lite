@@ -16,7 +16,6 @@ import tech.jhipster.lite.module.domain.JHipsterModulesFixture;
 import tech.jhipster.lite.module.domain.docker.DockerImageVersion;
 import tech.jhipster.lite.module.domain.docker.DockerImages;
 import tech.jhipster.lite.module.domain.properties.JHipsterModuleProperties;
-import tech.jhipster.lite.module.infrastructure.secondary.JHipsterModulesAssertions.JHipsterModuleAsserter;
 
 @UnitTest
 @ExtendWith(MockitoExtension.class)

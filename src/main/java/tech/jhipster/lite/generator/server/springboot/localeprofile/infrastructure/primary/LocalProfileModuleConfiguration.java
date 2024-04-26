@@ -17,7 +17,12 @@ class LocalProfileModuleConfiguration {
     return JHipsterModuleResource.builder()
       .slug(SPRING_BOOT_LOCAL_PROFILE)
       .propertiesDefinition(
-        JHipsterModulePropertiesDefinition.builder().addBasePackage().addProjectBaseName().addIndentation().addConfigurationFormat().build()
+        JHipsterModulePropertiesDefinition.builder()
+          .addBasePackage()
+          .addProjectBaseName()
+          .addIndentation()
+          .addSpringConfigurationFormat()
+          .build()
       )
       .apiDoc("Spring Boot", "Use Spring local profile by default for development.")
       .organization(JHipsterModuleOrganization.SPRINGBOOT_DEPENDENCY)

@@ -47,7 +47,7 @@ class MemoizersTest {
     assertThat(supplier.get()).isEqualTo("Pouet");
   }
 
-  private static class NullFactory implements Function<Object, String> {
+  private static final class NullFactory implements Function<Object, String> {
 
     private final AtomicInteger callsCount = new AtomicInteger();
 

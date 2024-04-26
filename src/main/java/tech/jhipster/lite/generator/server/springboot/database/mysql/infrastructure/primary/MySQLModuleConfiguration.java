@@ -19,7 +19,12 @@ class MySQLModuleConfiguration {
     return JHipsterModuleResource.builder()
       .slug(MYSQL)
       .propertiesDefinition(
-        JHipsterModulePropertiesDefinition.builder().addBasePackage().addIndentation().addProjectBaseName().addConfigurationFormat().build()
+        JHipsterModulePropertiesDefinition.builder()
+          .addBasePackage()
+          .addIndentation()
+          .addProjectBaseName()
+          .addSpringConfigurationFormat()
+          .build()
       )
       .apiDoc("Spring Boot - Database", "Add MySQL to project")
       .organization(JHipsterModuleOrganization.builder().feature(JPA_PERSISTENCE).addDependency(SPRING_BOOT).build())

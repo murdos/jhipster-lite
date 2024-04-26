@@ -28,7 +28,6 @@ class VueModulesFactoryTest {
       .hasFiles("documentation/vue.md")
       .hasFile("package.json")
         .containing(nodeDependency("vue"))
-        .containing(nodeDependency("@rushstack/eslint-patch"))
         .containing(nodeDependency("@typescript-eslint/parser"))
         .containing(nodeDependency("@vitejs/plugin-vue"))
         .containing(nodeDependency("@vue/eslint-config-typescript"))

@@ -39,6 +39,7 @@ final class InvalidPropertyTypeException extends GeneratorException {
     private Class<?> expectedType;
     private Class<?> actualType;
 
+    @Override
     public InvalidPropertyTypeExceptionExpectedTypeBuilder key(String key) {
       this.key = key;
 

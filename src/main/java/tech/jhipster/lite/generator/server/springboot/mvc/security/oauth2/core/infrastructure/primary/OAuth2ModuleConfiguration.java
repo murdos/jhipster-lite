@@ -21,7 +21,12 @@ class OAuth2ModuleConfiguration {
     return JHipsterModuleResource.builder()
       .slug(SPRING_BOOT_OAUTH_2)
       .propertiesDefinition(
-        JHipsterModulePropertiesDefinition.builder().addBasePackage().addProjectBaseName().addIndentation().addConfigurationFormat().build()
+        JHipsterModulePropertiesDefinition.builder()
+          .addBasePackage()
+          .addProjectBaseName()
+          .addIndentation()
+          .addSpringConfigurationFormat()
+          .build()
       )
       .apiDoc(
         "Spring Boot - MVC - Security",

@@ -18,7 +18,10 @@ public final class JHipsterModuleOptionalReplacementsFactory extends JHipsterMod
     upgrades = Optional.empty();
   }
 
-  private JHipsterModuleOptionalReplacementsFactory(Collection<ContentReplacer> replacers, JHipsterUpgradeFilesReplacements upgrade) {
+  private JHipsterModuleOptionalReplacementsFactory(
+    Collection<? extends ContentReplacer> replacers,
+    JHipsterUpgradeFilesReplacements upgrade
+  ) {
     super(replacers);
     this.upgrades = Optional.of(upgrade);
   }

@@ -77,16 +77,6 @@ class CheckstyleModuleFactoryTest {
         }
         """
       )
-      .containing(
-        """
-        // Workaround for https://github.com/gradle/gradle/issues/27035
-        configurations.checkstyle {
-          resolutionStrategy.capabilitiesResolution.withCapability("com.google.collections:google-collections") {
-            select("com.google.guava:guava:0")
-          }
-        }
-        """
-      )
       .and()
       .hasFile("gradle/libs.versions.toml")
       .containing("checkstyle = \"")

@@ -11,19 +11,19 @@ public class KafkaApplicationService {
 
   private final KafkaModuleFactory kafkaModuleFactory;
 
-  public KafkaApplicationService(final DockerImages dockerImages) {
+  public KafkaApplicationService(DockerImages dockerImages) {
     this.kafkaModuleFactory = new KafkaModuleFactory(dockerImages);
   }
 
-  public JHipsterModule init(final JHipsterModuleProperties properties) {
+  public JHipsterModule init(JHipsterModuleProperties properties) {
     return kafkaModuleFactory.buildModuleInit(properties);
   }
 
-  public JHipsterModule addDummyProducerConsumer(final JHipsterModuleProperties properties) {
-    return kafkaModuleFactory.buildModuleDummyProducerConsumer(properties);
+  public JHipsterModule addSampleProducerConsumer(JHipsterModuleProperties properties) {
+    return kafkaModuleFactory.buildModuleSampleProducerConsumer(properties);
   }
 
-  public JHipsterModule addAkhq(final JHipsterModuleProperties properties) {
+  public JHipsterModule addAkhq(JHipsterModuleProperties properties) {
     return kafkaModuleFactory.buildModuleAkhq(properties);
   }
 }

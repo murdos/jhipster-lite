@@ -40,7 +40,7 @@ class BeanValidationErrorsHandlerTest {
   public void failingMethod() {}
 
   @Test
-  void shouldLogConstraintViolationInInfo() throws NoSuchMethodException, SecurityException {
+  void shouldLogConstraintViolationInInfo() throws SecurityException {
     handler.handleConstraintViolationException(
       new ConstraintViolationException(Validation.buildDefaultValidatorFactory().getValidator().validate(new ValidatedBean()))
     );

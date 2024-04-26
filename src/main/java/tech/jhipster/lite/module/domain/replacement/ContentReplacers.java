@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.function.Consumer;
 import tech.jhipster.lite.shared.error.domain.Assert;
 
-public record ContentReplacers(Collection<ContentReplacer> replacers) {
+public record ContentReplacers(Collection<? extends ContentReplacer> replacers) {
   public ContentReplacers {
     Assert.field("replacers", replacers).notNull().noNullElement();
   }

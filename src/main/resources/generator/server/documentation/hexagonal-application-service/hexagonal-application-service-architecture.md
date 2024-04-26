@@ -27,7 +27,7 @@ It's not that the users don't know what they want, in fact, nobody knows. Buildi
 
 So, as professional software developers we have to ensure that the code we are writing can welcome those changes. This often starts by lowering the solution complexity!
 
-We often talk about 3 types of complexity:
+We often talk about three types of complexity:
 
 - **Essential**: When building Software we have to solve a problem of complexity X: this is the essential complexity. This complexity directly relates to the problem we are trying to solve and we can't really make that lower.
 - **Mandatory**: No matter the efforts, we are going to have to add some complexity to the system since we have technical stuff to do (persist data, send messages, ...). This complexity is called mandatory complexity.

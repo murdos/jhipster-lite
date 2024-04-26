@@ -19,9 +19,13 @@ repositories {
 group = "com.jhipster.test"
 version = "0.0.1-SNAPSHOT"
 
-ext {
-  // jhipster-needle-gradle-properties
-}
+// jhipster-needle-gradle-properties
+
+val profiles = (project.findProperty("profiles") as String? ?: "")
+  .split(",")
+  .map { it.trim() }
+  .filter { it.isNotEmpty() }
+// jhipster-needle-profile-activation
 
 dependencies {
   // jhipster-needle-gradle-implementation-dependencies
@@ -29,6 +33,8 @@ dependencies {
   // jhipster-needle-gradle-runtime-dependencies
   // jhipster-needle-gradle-test-dependencies
 }
+
+// jhipster-needle-gradle-free-configuration-blocks
 
 tasks.test {
   filter {

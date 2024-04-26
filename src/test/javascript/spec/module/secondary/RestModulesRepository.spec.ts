@@ -199,7 +199,7 @@ const restLandscape = (): RestLandscape => ({
     },
     {
       elements: [
-        landscapeModule('dummy-feature', 'Add dummy feature', emptyProperties(), [
+        landscapeModule('sample-feature', 'Add sample feature', emptyProperties(), [
           featureDependency('spring-mvc'),
           moduleDependency('bean-validation-test'),
         ]),

@@ -21,7 +21,7 @@ class WebjarsModuleConfiguration {
     return JHipsterModuleResource.builder()
       .slug(WEBJARS_LOCATOR)
       .propertiesDefinition(
-        JHipsterModulePropertiesDefinition.builder().addBasePackage().addProjectBaseName().addConfigurationFormat().build()
+        JHipsterModulePropertiesDefinition.builder().addBasePackage().addProjectBaseName().addSpringConfigurationFormat().build()
       )
       .apiDoc(WEBJARS_GROUP, "Add webjars locator to the project")
       .organization(JHipsterModuleOrganization.builder().addDependency(SPRING_BOOT_THYMELEAF).build())
@@ -34,7 +34,7 @@ class WebjarsModuleConfiguration {
     return JHipsterModuleResource.builder()
       .slug(HTMX_WEBJARS)
       .propertiesDefinition(
-        JHipsterModulePropertiesDefinition.builder().addBasePackage().addProjectBaseName().addConfigurationFormat().build()
+        JHipsterModulePropertiesDefinition.builder().addBasePackage().addProjectBaseName().addSpringConfigurationFormat().build()
       )
       .apiDoc(WEBJARS_GROUP, "Add HTMX webjar to the project")
       .organization(JHipsterModuleOrganization.builder().addDependency(WEBJARS_LOCATOR).build())
@@ -47,7 +47,7 @@ class WebjarsModuleConfiguration {
     return JHipsterModuleResource.builder()
       .slug(ALPINE_JS_WEBJARS)
       .propertiesDefinition(
-        JHipsterModulePropertiesDefinition.builder().addBasePackage().addProjectBaseName().addConfigurationFormat().build()
+        JHipsterModulePropertiesDefinition.builder().addBasePackage().addProjectBaseName().addSpringConfigurationFormat().build()
       )
       .apiDoc(WEBJARS_GROUP, "Add alpine.js webjar to the project")
       .organization(JHipsterModuleOrganization.builder().addDependency(WEBJARS_LOCATOR).build())

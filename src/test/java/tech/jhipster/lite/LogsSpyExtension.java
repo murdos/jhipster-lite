@@ -9,7 +9,6 @@ import org.junit.jupiter.api.extension.BeforeAllCallback;
 import org.junit.jupiter.api.extension.BeforeEachCallback;
 import org.junit.jupiter.api.extension.ExtensionContext;
 import org.junit.jupiter.api.extension.ParameterContext;
-import org.junit.jupiter.api.extension.ParameterResolutionException;
 import org.junit.jupiter.api.extension.ParameterResolver;
 import org.junit.jupiter.api.extension.TestInstancePostProcessor;
 import org.junit.platform.commons.support.ModifierSupport;
@@ -30,14 +29,12 @@ public final class LogsSpyExtension
   }
 
   @Override
-  public boolean supportsParameter(ParameterContext parameterContext, ExtensionContext extensionContext)
-    throws ParameterResolutionException {
+  public boolean supportsParameter(ParameterContext parameterContext, ExtensionContext extensionContext) {
     return parameterContext.getParameter().getType().equals(LogsSpy.class);
   }
 
   @Override
-  public LogsSpy resolveParameter(ParameterContext parameterContext, ExtensionContext extensionContext)
-    throws ParameterResolutionException {
+  public LogsSpy resolveParameter(ParameterContext parameterContext, ExtensionContext extensionContext) {
     return logsSpy;
   }
 

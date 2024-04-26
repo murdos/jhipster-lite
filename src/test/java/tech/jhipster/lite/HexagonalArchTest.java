@@ -1,7 +1,7 @@
 package tech.jhipster.lite;
 
-import static com.tngtech.archunit.lang.syntax.ArchRuleDefinition.classes;
-import static com.tngtech.archunit.lang.syntax.ArchRuleDefinition.noClasses;
+import static com.tngtech.archunit.lang.syntax.ArchRuleDefinition.*;
+import static java.util.function.Predicate.*;
 
 import com.tngtech.archunit.core.domain.JavaClasses;
 import com.tngtech.archunit.core.importer.ClassFileImporter;
@@ -20,18 +20,20 @@ import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RestController;
 
 @UnitTest
 class HexagonalArchTest {
 
   private static final String ROOT_PACKAGE = "tech.jhipster.lite";
+  private static final String GENERATION_SHARED_KERNEL_PACKAGES = ROOT_PACKAGE.concat(".shared.generation..");
+  private static final String WIRE_PACKAGES = ROOT_PACKAGE.concat(".wire..");
 
   private static final JavaClasses classes = new ClassFileImporter()
     .withImportOption(ImportOption.Predefined.DO_NOT_INCLUDE_TESTS)
     .importPackages(ROOT_PACKAGE);
 
   private static final Collection<String> businessContexts = packagesWithAnnotation(BusinessContext.class);
+  private static final Collection<String> businessContextsPackages = buildPackagesPatterns(businessContexts);
 
   private static final Collection<String> sharedKernels = packagesWithAnnotation(SharedKernel.class);
   private static final Collection<String> sharedKernelsPackages = buildPackagesPatterns(sharedKernels);
@@ -50,7 +52,7 @@ class HexagonalArchTest {
 
   private static Collection<String> packagesWithAnnotation(Class<? extends Annotation> annotationClass) throws AssertionError {
     try {
-      return Files.walk(Paths.get("src", "main", "java", "tech", "jhipster", "lite"))
+      return Files.walk(rootPackagePath())
         .filter(path -> path.toString().endsWith("package-info.java"))
         .map(toPackageName())
         .map(path -> path.replaceAll("[\\/]", "."))
@@ -63,6 +65,10 @@ class HexagonalArchTest {
     } catch (IOException e) {
       throw new AssertionError(e);
     }
+  }
+
+  private static Path rootPackagePath() {
+    return Stream.of(ROOT_PACKAGE.split("\\.")).map(Paths::get).reduce(Paths.get("src", "main", "java"), Path::resolve);
   }
 
   private static Function<Path, String> toPackageName() {
@@ -206,7 +212,7 @@ class HexagonalArchTest {
 
     @Test
     void shouldNotHavePublicControllers() {
-      noClasses().that().areAnnotatedWith(RestController.class).or().areAnnotatedWith(Controller.class).should().bePublic().check(classes);
+      noClasses().that().areMetaAnnotatedWith(Controller.class).should().bePublic().check(classes);
     }
   }
 
@@ -238,6 +244,63 @@ class HexagonalArchTest {
             .because("Secondary should not loop to its own context's primary")
             .check(classes)
       );
+    }
+  }
+
+  @Nested
+  class SharedKernels {
+
+    @Test
+    void sharedPackageShouldOnlyContainSharedKernels() {
+      classes()
+        .that()
+        .haveSimpleName("package-info")
+        .and()
+        .resideInAPackage(ROOT_PACKAGE.concat(".shared.."))
+        .should()
+        .beMetaAnnotatedWith(SharedKernel.class)
+        .because(ROOT_PACKAGE + ".shared package should only contain shared kernels")
+        .check(classes);
+    }
+  }
+
+  @Nested
+  class Wire {
+
+    @Test
+    void shouldNotDependOnBoundedContextsOrSharedKernels() {
+      noClasses()
+        .that()
+        .resideInAPackage(WIRE_PACKAGES)
+        .should()
+        .dependOnClassesThat()
+        .resideInAnyPackage(businessContextsOrSharedKernelsPackages())
+        .because("Wire should not depend on business contexts or shared kernel should not depend")
+        .check(classes);
+    }
+
+    @Test
+    void boundedContextsAndSharedKernelsShouldNotDependOnWire() {
+      noClasses()
+        .that()
+        .resideInAnyPackage(businessContextsOrSharedKernelsPackages())
+        .should()
+        .dependOnClassesThat()
+        .resideInAPackage(WIRE_PACKAGES)
+        .because("Business contexts and shared kernel should not depend on wire")
+        .check(classes);
+    }
+
+    private static String[] businessContextsOrSharedKernelsPackages() {
+      return Stream.of(businessContextsPackages, sharedKernelsPackages)
+        .flatMap(Collection::stream)
+        .filter(not(GENERATION_SHARED_KERNEL_PACKAGES::equals))
+        .toArray(String[]::new);
+    }
+
+    @Test
+    void shouldNotHavePublicClasses() {
+      noClasses().that().resideInAnyPackage(WIRE_PACKAGES).should().bePublic().check(classes);
     }
   }
 }

@@ -133,7 +133,7 @@ public final class JHipsterModulesResourceFixture {
     public JHipsterModuleResource build() {
       return JHipsterModuleResource.builder()
         .slug(() -> slug)
-        .propertiesDefinition(JHipsterModulesResourceFixture.propertiesDefinition())
+        .propertiesDefinition(propertiesDefinition())
         .apiDoc(group, operation)
         .organization(buildOrganization())
         .tags(tags)

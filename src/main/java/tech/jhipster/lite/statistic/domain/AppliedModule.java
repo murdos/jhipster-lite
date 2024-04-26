@@ -69,8 +69,6 @@ public final class AppliedModule {
     private Instant date;
     private ModuleProperties properties;
 
-    private ModuleAppliedBuilder() {}
-
     @Override
     public ModuleAppliedPathBuilder id(AppliedModuleId id) {
       this.id = id;

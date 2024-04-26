@@ -7,7 +7,6 @@
 [![JHipster Lite Docker Hub][jhipster-lite-docker-hub]][jhipster-lite-docker-hub-url]
 
 [![Build Status][github-actions-jhlite-image]][github-actions-url]
-[![Coverage Status][codecov-image]][codecov-url]
 [![sonarcloud-coverage][sonarcloud-coverage]][sonarcloud-url]
 
 [![sonarcloud-quality-gate][sonarcloud-quality-gate]][sonarcloud-url]
@@ -17,6 +16,8 @@
 [![sonarcloud-vulnerabilities][sonarcloud-vulnerabilities]][sonarcloud-url]
 [![sonarcloud-security][sonarcloud-security]][sonarcloud-url]
 [![sonarcloud-code-smells][sonarcloud-code-smells]][sonarcloud-url]
+
+[![Revved up by Develocity][develocity-badge]][develocity-url]
 
 ## Description
 
@@ -149,12 +150,11 @@ To run your existing tests in a native image, run the following goal:
 
 We use multiple linters check and lint your code:
 
-- [ESlint](https://eslint.org/) for JavaScript/TypeScript
+- [ESLint](https://eslint.org/) for JavaScript/TypeScript
 - [Prettier](https://github.com/prettier/prettier) for the format
   - [prettier-java](https://github.com/jhipster/prettier-java) for Java
 - [Stylelint](https://stylelint.io/) for style
   - [stylelint-scss](https://github.com/stylelint-scss) for SCSS
-- [pug-lint](https://www.npmjs.com/package/pug-lint) for Pug
 
 To check:
 
@@ -287,8 +287,6 @@ Support this project by becoming a sponsor! [Become a sponsor](https://opencolle
 [jhipster-lite-docker-hub-url]: https://hub.docker.com/r/jhipster/jhipster-lite
 [github-actions-jhlite-image]: https://github.com/jhipster/jhipster-lite/workflows/build/badge.svg
 [github-actions-url]: https://github.com/jhipster/jhipster-lite/actions
-[codecov-image]: https://codecov.io/gh/jhipster/jhipster-lite/branch/main/graph/badge.svg
-[codecov-url]: https://codecov.io/gh/jhipster/jhipster-lite
 [jhipster-image]: https://raw.githubusercontent.com/jhipster/jhipster-artwork/main/logos/lite/JHipster-Lite-neon-blue.png
 [jhipster-url]: https://www.jhipster.tech/
 [sonarcloud-url]: https://sonarcloud.io/project/overview?id=jhipster_jhipster-lite
@@ -308,3 +306,5 @@ Support this project by becoming a sponsor! [Become a sponsor](https://opencolle
 [webservices-with-jhlite]: https://youtu.be/mEECPRZjajI
 [jhipster-vs-jhlite]: https://youtu.be/t5GA329FMfU
 [cdamon]: https://www.linkedin.com/in/colin-damon/
+[develocity-badge]: https://img.shields.io/badge/Revved%20up%20by-Develocity-06A0CE?logo=Gradle&labelColor=02303A
+[develocity-url]: https://ge.jhipster.tech/scans

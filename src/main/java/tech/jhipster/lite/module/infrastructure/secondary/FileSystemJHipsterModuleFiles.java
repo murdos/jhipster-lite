@@ -19,27 +19,30 @@ import tech.jhipster.lite.module.domain.file.JHipsterFilesToDelete;
 import tech.jhipster.lite.module.domain.file.JHipsterFilesToMove;
 import tech.jhipster.lite.module.domain.file.JHipsterTemplatedFile;
 import tech.jhipster.lite.module.domain.file.JHipsterTemplatedFiles;
+import tech.jhipster.lite.module.domain.file.TemplateRenderer;
 import tech.jhipster.lite.module.domain.properties.JHipsterProjectFolder;
 import tech.jhipster.lite.shared.error.domain.GeneratorException;
 import tech.jhipster.lite.shared.generation.domain.ExcludeFromGeneratedCodeCoverage;
 
 @Repository
-class FileSystemJHipsterModuleFiles {
+public class FileSystemJHipsterModuleFiles {
 
   private static final Logger log = LoggerFactory.getLogger(FileSystemJHipsterModuleFiles.class);
   private static final Set<PosixFilePermission> EXECUTABLE_FILE_PERMISSIONS = buildExecutableFilePermission();
 
   private final ProjectFiles files;
+  private final TemplateRenderer templateRenderer;
 
-  public FileSystemJHipsterModuleFiles(ProjectFiles files) {
+  public FileSystemJHipsterModuleFiles(ProjectFiles files, TemplateRenderer templateRenderer) {
     this.files = files;
+    this.templateRenderer = templateRenderer;
   }
 
   private static Set<PosixFilePermission> buildExecutableFilePermission() {
     return Set.of(OWNER_READ, OWNER_WRITE, OWNER_EXECUTE, GROUP_READ, GROUP_WRITE, GROUP_EXECUTE);
   }
 
-  void create(JHipsterProjectFolder projectFolder, JHipsterTemplatedFiles files) {
+  public void create(JHipsterProjectFolder projectFolder, JHipsterTemplatedFiles files) {
     files.get().forEach(writeFile(projectFolder));
   }
 
@@ -49,7 +52,7 @@ class FileSystemJHipsterModuleFiles {
 
       try {
         Files.createDirectories(file.folder(projectFolder));
-        Files.write(filePath, file.content(files));
+        Files.write(filePath, file.content(files, templateRenderer));
 
         setExecutable(file, filePath);
 

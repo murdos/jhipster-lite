@@ -8,7 +8,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import tech.jhipster.lite.UnitTest;
@@ -17,8 +16,7 @@ import tech.jhipster.lite.UnitTest;
 class JHipsterCollectionsTest {
 
   @Nested
-  @DisplayName("Collection")
-  class JHipsterCollectionsCollectionTest {
+  class ImmutableCollection {
 
     @Test
     void shouldGetEmptyImmutableCollectionFromNullCollection() {
@@ -38,11 +36,18 @@ class JHipsterCollectionsTest {
       assertThat(collection).containsExactly("test");
       assertThatThrownBy(collection::clear).isExactlyInstanceOf(UnsupportedOperationException.class);
     }
+
+    @Test
+    void shouldAcceptCovariantCollectionAsInput() {
+      List<Long> inputCollection = List.of(1L);
+      Collection<Number> collection = JHipsterCollections.immutable(inputCollection);
+
+      assertThat(collection).containsExactly(1L);
+    }
   }
 
   @Nested
-  @DisplayName("Map")
-  class JHipsterCollectionsMapTest {
+  class ImmutableMap {
 
     @Test
     void shouldGetEmptyImmutableMapFromNullMap() {
@@ -62,10 +67,18 @@ class JHipsterCollectionsTest {
       assertThat(map).containsExactly(entry("key", "value"));
       assertThatThrownBy(map::clear).isExactlyInstanceOf(UnsupportedOperationException.class);
     }
+
+    @Test
+    void shouldAcceptCovariantCollectionAsInput() {
+      Map<Integer, Double> inputMap = Map.of(1, 1.0);
+      Map<Number, Number> resultMap = JHipsterCollections.immutable(inputMap);
+
+      assertThat(resultMap).containsExactly(entry(1, 1.0));
+    }
   }
 
   @Nested
-  class Concat {
+  class ConcatCollections {
 
     @Test
     void shouldGetEmptyCollectionFromNullCollections() {
@@ -83,10 +96,54 @@ class JHipsterCollectionsTest {
     }
 
     @Test
+    void shouldConcatCollectionsWithCovariance() {
+      List<Long> longs = List.of(1L);
+      List<Double> doubles = List.of(2.0);
+      Collection<Number> collection = JHipsterCollections.concat(longs, doubles);
+
+      assertThat(collection).containsExactly(1L, 2.0);
+    }
+
+    @Test
     void shouldIgnoreNullInputs() {
       Collection<String> collection = JHipsterCollections.concat(List.of("first"), null);
 
       assertThat(collection).containsExactly("first");
+    }
+  }
+
+  @Nested
+  class ConcatMaps {
+
+    @Test
+    void shouldGetEmptyMapFromNullMaps() {
+      Map<Number, String> concatenedMap = JHipsterCollections.concat((Map<Number, String>) null);
+
+      assertThat(concatenedMap).isEmpty();
+    }
+
+    @Test
+    void shouldConcatMaps() {
+      Map<Number, String> map = JHipsterCollections.concat(Map.of(1, "first"), Map.of(2, "second"));
+
+      assertThat(map).containsOnly(entry(1, "first"), entry(2, "second"));
+      assertThatThrownBy(map::clear).isExactlyInstanceOf(UnsupportedOperationException.class);
+    }
+
+    @Test
+    void shouldConcatMapsWithCovariance() {
+      Map<Integer, Long> first = Map.of(1, 1L);
+      Map<Double, Float> second = Map.of(2.0, 2.0f);
+      Map<Number, Number> map = JHipsterCollections.concat(first, second);
+
+      assertThat(map).containsOnly(entry(1, 1L), entry(2.0, 2.0f));
+    }
+
+    @Test
+    void shouldIgnoreNullInputs() {
+      Map<Number, String> map = JHipsterCollections.concat(Map.of(1, "first"), null);
+
+      assertThat(map).containsOnly(entry(1, "first"));
     }
   }
 }

@@ -6,6 +6,7 @@ module.exports = {
   parserOptions: {
     parser: '@typescript-eslint/parser',
   },
+  plugins: ['pug'],
   rules: {
     quotes: ['error', 'single', { avoidEscape: true }],
     '@typescript-eslint/no-unused-vars': ['error'],

@@ -16,7 +16,7 @@ private final BeersApplicationService beers;
 // ...
 
 ResponseEntity<Rest{{baseName}}Page<RestBeer>> list(@Validated Rest{{baseName}}Pageable pagination) {
-  return ResponseEntity.ok(Rest{{baseName}}Page.from(beers.list(pagination.toPageable()), RestBeer::from))
+  return ResponseEntity.ok(Rest{{baseName}}Page.from(beers.list(pagination.toPageable()), RestBeer::from));
 }
 ```
 

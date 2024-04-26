@@ -1,6 +1,6 @@
 module.exports = {
   parser: '@typescript-eslint/parser',
-  extends: ['eslint:recommended', '@vue/eslint-config-typescript', 'prettier'],
+  extends: ['eslint:recommended', '@vue/eslint-config-typescript', 'prettier', 'plugin:cypress/recommended'],
   root: true,
   plugins: ['cypress', '@typescript-eslint'],
   env: {

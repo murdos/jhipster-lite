@@ -1,7 +1,9 @@
 package tech.jhipster.lite.module.domain.javadependency;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static tech.jhipster.lite.module.domain.JHipsterModulesFixture.*;
+import static tech.jhipster.lite.module.domain.JHipsterModulesFixture.localBuildProfile;
+import static tech.jhipster.lite.module.domain.JHipsterModulesFixture.springBootDependencyId;
+import static tech.jhipster.lite.module.domain.JHipsterModulesFixture.springBootStarterWebDependency;
 
 import java.util.Optional;
 import org.junit.jupiter.api.Nested;
@@ -28,9 +30,9 @@ class DependenciesCommandsFactoryTest {
 
     @Test
     void shouldAddDependencyWithProfile() {
-      JavaBuildCommand buildCommand = commandsFactory.addDependency(springBootStarterWebDependency(), Optional.of(localMavenProfile()));
+      JavaBuildCommand buildCommand = commandsFactory.addDependency(springBootStarterWebDependency(), Optional.of(localBuildProfile()));
 
-      assertThat(buildCommand).isEqualTo(new AddDirectJavaDependency(springBootStarterWebDependency(), localMavenProfile()));
+      assertThat(buildCommand).isEqualTo(new AddDirectJavaDependency(springBootStarterWebDependency(), localBuildProfile()));
     }
   }
 
@@ -46,9 +48,9 @@ class DependenciesCommandsFactoryTest {
 
     @Test
     void shouldRemoveDependencyWithProfile() {
-      JavaBuildCommand buildCommand = commandsFactory.removeDependency(springBootDependencyId(), Optional.of(localMavenProfile()));
+      JavaBuildCommand buildCommand = commandsFactory.removeDependency(springBootDependencyId(), Optional.of(localBuildProfile()));
 
-      assertThat(buildCommand).isEqualTo(new RemoveDirectJavaDependency(springBootDependencyId(), localMavenProfile()));
+      assertThat(buildCommand).isEqualTo(new RemoveDirectJavaDependency(springBootDependencyId(), localBuildProfile()));
     }
   }
 }

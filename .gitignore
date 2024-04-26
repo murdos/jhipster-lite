@@ -190,3 +190,8 @@ dist/
 # Spring personal profile
 ######################
 src/main/resources/config/application-perso.*
+
+######################
+# Gradle Develocity Settings
+######################
+.mvn/.develocity/develocity-workspace-id

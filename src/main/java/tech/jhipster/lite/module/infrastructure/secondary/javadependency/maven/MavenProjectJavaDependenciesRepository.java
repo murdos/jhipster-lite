@@ -46,7 +46,7 @@ public class MavenProjectJavaDependenciesRepository implements JHipsterProjectFo
 
       return ProjectJavaDependencies.builder()
         .versions(extractVersions(pomContent))
-        .dependenciesManagements(extractDependenciesManagement(pomContent))
+        .dependenciesManagements(extractDependencyManagement(pomContent))
         .dependencies(extractDependencies(pomContent));
     } catch (IOException | XmlPullParserException e) {
       throw GeneratorException.technicalError("Error reading pom file: " + e.getMessage(), e);
@@ -73,7 +73,7 @@ public class MavenProjectJavaDependenciesRepository implements JHipsterProjectFo
     return entry -> new JavaDependencyVersion(entry.getKey().toString(), entry.getValue().toString());
   }
 
-  private JavaDependencies extractDependenciesManagement(Model pomContent) {
+  private JavaDependencies extractDependencyManagement(Model pomContent) {
     DependencyManagement dependencyManagement = pomContent.getDependencyManagement();
 
     if (dependencyManagement == null) {

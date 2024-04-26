@@ -53,7 +53,7 @@ public final class TestFileUtils {
   }
 
   public static JHipsterProjectFolder projectFrom(String sourceProject) {
-    Path targetFolder = Paths.get(TestFileUtils.tmpDirForTest());
+    Path targetFolder = Paths.get(tmpDirForTest());
 
     try {
       Files.createDirectories(targetFolder);

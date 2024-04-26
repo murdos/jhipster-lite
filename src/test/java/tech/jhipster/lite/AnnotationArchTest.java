@@ -38,8 +38,8 @@ class AnnotationArchTest {
         .and().haveSimpleNameEndingWith("Test")
         .and(not(simpleNameEndingWith("IT")))
         .and().areTopLevelClasses()
-      .should().beAnnotatedWith(UnitTest.class)
-      .orShould().beAnnotatedWith(ComponentTest.class)
+      .should().beMetaAnnotatedWith(UnitTest.class)
+      .orShould().beMetaAnnotatedWith(ComponentTest.class)
       .orShould().beInterfaces()
       .check(classes);
     //@formatter:on
@@ -53,7 +53,7 @@ class AnnotationArchTest {
         .resideInAnyPackage(ROOT_PACKAGE_PROJECT)
         .and().haveSimpleNameEndingWith("IT")
         .and().areTopLevelClasses()
-      .should().beAnnotatedWith(IntegrationTest.class)
+      .should().beMetaAnnotatedWith(IntegrationTest.class)
       .check(classes);
     //@formatter:on
   }

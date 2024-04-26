@@ -67,7 +67,7 @@ final class RestJHipsterModulePropertyDefinition {
     return order;
   }
 
-  private static class RestJHipsterModulePropertyDefinitionBuilder {
+  private static final class RestJHipsterModulePropertyDefinitionBuilder {
 
     private JHipsterPropertyType type;
     private boolean mandatory;

@@ -19,7 +19,9 @@ class SpringdocOauth2ModuleConfiguration {
   JHipsterModuleResource springDocOAuth2Module(SpringdocOauth2ApplicationService springdocOauth2) {
     return JHipsterModuleResource.builder()
       .slug(SPRINGDOC_OAUTH_2)
-      .propertiesDefinition(JHipsterModulePropertiesDefinition.builder().addBasePackage().addIndentation().addConfigurationFormat().build())
+      .propertiesDefinition(
+        JHipsterModulePropertiesDefinition.builder().addBasePackage().addIndentation().addSpringConfigurationFormat().build()
+      )
       .apiDoc("Spring Boot - API Documentation", "Add OAuth2 authentication for springdoc")
       .organization(
         JHipsterModuleOrganization.builder()

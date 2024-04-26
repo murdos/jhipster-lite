@@ -23,4 +23,15 @@ class JHipsterModulePropertiesDefinitionTest {
 
     assertThat(properties).usingRecursiveFieldByFieldElementComparator().containsExactly(basePackageProperty(), indentationProperty());
   }
+
+  @Test
+  void shouldHaveMeaningfullToString() {
+    var definition = JHipsterModulePropertiesDefinition.builder().add(basePackageProperty()).build();
+    assertThat(definition.toString()).startsWith("JHipsterModulePropertiesDefinition[definitions=");
+    assertThat(definition.get().iterator().next().toString()).contains(
+      "JHipsterModulePropertyDefinition[type=STRING",
+      "key=",
+      "mandatory="
+    );
+  }
 }

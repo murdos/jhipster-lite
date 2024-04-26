@@ -10,7 +10,6 @@ import static tech.jhipster.lite.module.domain.packagejson.VersionSource.COMMON;
 
 import tech.jhipster.lite.module.domain.JHipsterModule;
 import tech.jhipster.lite.module.domain.file.JHipsterSource;
-import tech.jhipster.lite.module.domain.packagejson.VersionSource;
 import tech.jhipster.lite.module.domain.properties.JHipsterModuleProperties;
 import tech.jhipster.lite.shared.error.domain.Assert;
 
@@ -24,7 +23,7 @@ public class OptionalTypescriptModuleFactory {
     //@formatter:off
     return moduleBuilder(properties)
       .packageJson()
-        .addDevDependency(packageName("jest"), VersionSource.COMMON)
+        .addDevDependency(packageName("jest"), COMMON)
         .addDevDependency(packageName("@types/jest"), COMMON)
         .addDevDependency(packageName("ts-jest"), COMMON)
         .addScript(scriptKey("jest"), scriptCommand("jest src/test/javascript/spec --logHeapUsage --maxWorkers=2 --no-cache"))

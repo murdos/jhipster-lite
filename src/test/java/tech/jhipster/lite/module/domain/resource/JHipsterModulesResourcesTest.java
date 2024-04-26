@@ -39,4 +39,11 @@ class JHipsterModulesResourcesTest {
       DuplicatedSlugException.class
     );
   }
+
+  @Test
+  void shouldHaveMeaningfullToString() {
+    var resource = defaultModuleResourceBuilder().slug("dummy").build();
+
+    assertThat(resource.toString()).contains("JHipsterModuleResource[", "slug=dummy");
+  }
 }

@@ -29,7 +29,7 @@ class CustomJHLiteModuleConfiguration {
       .addProjectBaseName()
       .addIndentation()
       .addServerPort()
-      .addConfigurationFormat()
+      .addSpringConfigurationFormat()
       .build();
   }
 }

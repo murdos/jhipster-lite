@@ -21,11 +21,11 @@ Feature: postgreSQL module
   Scenario: Should get postgreSQL module properties definition
     When I get module "postgresql" properties definition
     Then I should have properties definitions
-      | Key                 | Type    | Mandatory |
-      | packageName         | STRING  | true      |
-      | baseName            | STRING  | true      |
-      | configurationFormat | STRING  | false     |
-      | indentSize          | INTEGER | false     |
+      | Key                       | Type    | Mandatory |
+      | packageName               | STRING  | true      |
+      | baseName                  | STRING  | true      |
+      | indentSize                | INTEGER | false     |
+      | springConfigurationFormat | STRING  | false     |
 
   Scenario: Should add postgreSQL elements using module url
     When I apply "postgresql" module to default project with maven file

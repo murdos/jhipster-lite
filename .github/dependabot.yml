@@ -53,14 +53,6 @@ updates:
       - 'area: dependencies'
 
   - package-ecosystem: 'npm'
-    directory: '/'
-    schedule:
-      interval: 'daily'
-      time: '00:00'
-    open-pull-requests-limit: 10
-    labels:
-      - 'area: dependencies'
-  - package-ecosystem: 'npm'
     directory: '/src/main/resources/generator/dependencies/common'
     schedule:
       interval: 'daily'

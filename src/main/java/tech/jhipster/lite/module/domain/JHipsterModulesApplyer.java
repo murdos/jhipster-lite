@@ -1,8 +1,7 @@
 package tech.jhipster.lite.module.domain;
 
-import static tech.jhipster.lite.module.domain.javabuild.JavaBuildTool.GRADLE;
-import static tech.jhipster.lite.module.domain.javabuild.JavaBuildTool.MAVEN;
-import static tech.jhipster.lite.module.domain.properties.SpringConfigurationFormat.PROPERTIES;
+import static tech.jhipster.lite.module.domain.javabuild.JavaBuildTool.*;
+import static tech.jhipster.lite.module.domain.properties.SpringConfigurationFormat.*;
 
 import java.time.Instant;
 import java.util.Collection;
@@ -22,11 +21,7 @@ import tech.jhipster.lite.module.domain.javadependency.ProjectJavaDependenciesRe
 import tech.jhipster.lite.module.domain.properties.JHipsterProjectFolder;
 import tech.jhipster.lite.module.domain.replacement.ContentReplacer;
 import tech.jhipster.lite.module.domain.replacement.ContentReplacers;
-import tech.jhipster.lite.module.domain.startupcommand.DockerComposeStartupCommandLine;
-import tech.jhipster.lite.module.domain.startupcommand.GradleStartupCommandLine;
-import tech.jhipster.lite.module.domain.startupcommand.JHipsterStartupCommand;
-import tech.jhipster.lite.module.domain.startupcommand.JHipsterStartupCommands;
-import tech.jhipster.lite.module.domain.startupcommand.MavenStartupCommandLine;
+import tech.jhipster.lite.module.domain.startupcommand.*;
 import tech.jhipster.lite.shared.error.domain.Assert;
 
 @SuppressWarnings("java:S6539")
@@ -86,8 +81,10 @@ public class JHipsterModulesApplyer {
         buildDependenciesChanges(module)
           .merge(buildPluginsChanges(module))
           .merge(buildMavenBuildExtensionsChanges(module))
+          .merge(buildPropertiesChanges(module))
           .merge(buildProfilesChanges(module))
           .merge(buildGradlePluginsChanges(module))
+          .merge(buildGradleConfigurationsChanges(module))
       )
       .packageJson(module.packageJson())
       .preActions(module.preActions())
@@ -96,7 +93,7 @@ public class JHipsterModulesApplyer {
     //@formatter:on
 
     JHipsterModuleChanges changes;
-    if (moduleToApply.properties().configurationFormat() == PROPERTIES) {
+    if (moduleToApply.properties().springConfigurationFormat() == PROPERTIES) {
       changes = builder.springProperties(module.springProperties()).springComments(module.springComments());
     } else {
       changes = builder.springYamlProperties(module.springProperties()).springYamlComments(module.springComments());
@@ -132,7 +129,7 @@ public class JHipsterModulesApplyer {
     if (detectedJavaBuildTool.isEmpty()) {
       return jHipsterStartupCommands;
     }
-    List<JHipsterStartupCommand> filteredCommands = jHipsterStartupCommands
+    var filteredCommands = jHipsterStartupCommands
       .get()
       .stream()
       .filter(isStartupCommandCompatibleWith(detectedJavaBuildTool.get()))
@@ -179,12 +176,20 @@ public class JHipsterModulesApplyer {
     return module.javaDependencies().buildChanges(javaVersions.get(), projectDependencies.get(module.projectFolder()));
   }
 
+  private JavaBuildCommands buildPropertiesChanges(JHipsterModule module) {
+    return module.javaBuildProperties().buildChanges();
+  }
+
   private JavaBuildCommands buildProfilesChanges(JHipsterModule module) {
     return module.javaBuildProfiles().buildChanges(javaVersions.get(), projectDependencies.get(module.projectFolder()));
   }
 
   private JavaBuildCommands buildPluginsChanges(JHipsterModule module) {
     return module.mavenPlugins().buildChanges(javaVersions.get(), projectDependencies.get(module.projectFolder()));
+  }
+
+  private JavaBuildCommands buildGradleConfigurationsChanges(JHipsterModule module) {
+    return module.gradleConfigurations().buildChanges();
   }
 
   private JavaBuildCommands buildMavenBuildExtensionsChanges(JHipsterModule module) {

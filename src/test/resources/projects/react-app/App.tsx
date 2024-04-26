@@ -12,7 +12,10 @@ function App() {
         <img alt="JHipster logo" src={JHipsterLiteNeonBlue} />
         <h1>React + TypeScript + Vite</h1>
         <p>
-          Recommended IDE setup:&nbsp;<a href="https://code.visualstudio.com/" target="_blank">VSCode</a>
+          Recommended IDE setup:&nbsp;
+          <a href="https://code.visualstudio.com/" target="_blank">
+            VSCode
+          </a>
         </p>
 
         <p>

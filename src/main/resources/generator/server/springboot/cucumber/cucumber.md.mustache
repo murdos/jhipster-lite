@@ -99,7 +99,7 @@ Sometimes you have to validate the behavior of async operations. You can do:
 assertThatLastAsyncResponse().hasOkStatus();
 ```
 
-To have a default waiting time of 5 second or you can get a custom max with:
+To have a default waiting time of 5 seconds or you can get a custom max with:
 
 ```java
 assertThatLastAsyncResponse(Duration.ofSeconds(30)).hasOkStatus();

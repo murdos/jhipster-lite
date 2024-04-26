@@ -130,7 +130,7 @@ final class ApplicationStartupTraces {
     return "Config Server: " + configServer + BREAK + SEPARATOR + BREAK;
   }
 
-  private static class ApplicationStartupTracesBuilder {
+  private static final class ApplicationStartupTracesBuilder {
 
     private static final String SPACER = "  ";
 

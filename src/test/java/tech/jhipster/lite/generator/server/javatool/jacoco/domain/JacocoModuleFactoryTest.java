@@ -143,25 +143,6 @@ class JacocoModuleFactoryTest {
           """
         );
     }
-    // @Test
-    // void shouldDeclareJacocoPluginAfterFailsafePluginInPomXml() {
-    //   JHipsterModuleProperties properties = JHipsterModulesFixture.propertiesBuilder(TestFileUtils.tmpDirForTest())
-    //     .basePackage("com.jhipster.test")
-    //     .projectBaseName("myApp")
-    //     .projectName("JHipster test")
-    //     .build();
-
-    //   JHipsterModule module = factory.buildMavenModule(properties);
-
-    //   assertThatModuleWithFiles(module, readmeFile())
-    //     .hasFile("pom.xml")
-    //     .containingInSequence(
-    //       "</pluginManagement>",
-    //       "<plugins>",
-    //       "<artifactId>maven-failsafe-plugin</artifactId>",
-    //       "<artifactId>jacoco-maven-plugin</artifactId>"
-    //     );
-    // }
   }
 
   @Nested

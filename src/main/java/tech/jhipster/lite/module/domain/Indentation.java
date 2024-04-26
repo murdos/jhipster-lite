@@ -20,7 +20,7 @@ public record Indentation(int spacesCount) {
   }
 
   private static boolean invalidSpacesCount(Integer spacesCount) {
-    return spacesCount == null || spacesCount.intValue() < 1;
+    return spacesCount == null || spacesCount < 1;
   }
 
   public String times(int times) {

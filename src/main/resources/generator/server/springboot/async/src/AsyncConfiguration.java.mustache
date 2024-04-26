@@ -7,4 +7,4 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 @Configuration
 @EnableAsync
 @EnableScheduling
-public class AsyncConfiguration {}
+class AsyncConfiguration {}

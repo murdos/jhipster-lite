@@ -1,6 +1,6 @@
 package tech.jhipster.lite.shared.collection.domain;
 
-import static java.util.stream.Collectors.toMap;
+import static java.util.stream.Collectors.*;
 
 import java.util.Collection;
 import java.util.Collections;
@@ -14,7 +14,7 @@ public final class JHipsterCollections {
 
   private JHipsterCollections() {}
 
-  public static <T> Collection<T> immutable(Collection<T> collection) {
+  public static <T> Collection<T> immutable(Collection<? extends T> collection) {
     if (collection == null) {
       return List.of();
     }
@@ -22,7 +22,7 @@ public final class JHipsterCollections {
     return Collections.unmodifiableCollection(collection);
   }
 
-  public static <K, V> Map<K, V> immutable(Map<K, V> map) {
+  public static <K, V> Map<K, V> immutable(Map<? extends K, ? extends V> map) {
     if (map == null) {
       return Map.of();
     }
@@ -31,16 +31,18 @@ public final class JHipsterCollections {
   }
 
   @SafeVarargs
-  public static <T> Collection<T> concat(Collection<T>... collections) {
-    return Stream.of(collections).filter(Objects::nonNull).flatMap(Collection::stream).toList();
+  public static <T> Collection<T> concat(Collection<? extends T>... collections) {
+    return Stream.of(collections).filter(Objects::nonNull).flatMap(Collection::stream).map(item -> (T) item).toList();
   }
 
   @SafeVarargs
-  public static <K, V> Map<K, V> concat(Map<K, V>... maps) {
-    return Stream.of(maps)
-      .filter(Objects::nonNull)
-      .map(Map::entrySet)
-      .flatMap(Collection::stream)
-      .collect(toMap(Entry::getKey, Entry::getValue, (value1, value2) -> value2));
+  public static <K, V> Map<K, V> concat(Map<? extends K, ? extends V>... maps) {
+    return Collections.unmodifiableMap(
+      Stream.of(maps)
+        .filter(Objects::nonNull)
+        .map(Map::entrySet)
+        .flatMap(Collection::stream)
+        .collect(toMap(Entry::getKey, Entry::getValue, (value1, value2) -> value2))
+    );
   }
 }

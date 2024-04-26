@@ -26,9 +26,7 @@ repositories {
 group = "tech.jhipster.lite"
 version = "0.0.1-SNAPSHOT"
 
-ext {
-  // jhipster-needle-gradle-properties
-}
+// jhipster-needle-profile-activation
 
 dependencies {
   implementation(libs.checkstyle)

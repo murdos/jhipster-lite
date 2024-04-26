@@ -47,7 +47,6 @@ public class VueModulesFactory {
         .addDependency(packageName("vue"), VUE)
         .addDependency(packageName("axios"), VUE)
         .addDependency(packageName("vue-router"), VUE)
-        .addDevDependency(packageName("@rushstack/eslint-patch"), VUE)
         .addDevDependency(packageName("@typescript-eslint/parser"), VUE)
         .addDevDependency(packageName("@vitejs/plugin-vue"), VUE)
         .addDevDependency(packageName("@vue/eslint-config-typescript"), VUE)

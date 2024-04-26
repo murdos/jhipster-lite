@@ -7,6 +7,7 @@ import tech.jhipster.lite.module.domain.JHipsterModuleApplied;
 import tech.jhipster.lite.module.domain.JHipsterModuleChanges;
 import tech.jhipster.lite.module.domain.JHipsterModulesRepository;
 import tech.jhipster.lite.module.domain.ProjectFiles;
+import tech.jhipster.lite.module.domain.file.TemplateRenderer;
 import tech.jhipster.lite.module.domain.javabuild.ProjectJavaBuildToolRepository;
 import tech.jhipster.lite.module.domain.javaproperties.SpringPropertyType;
 import tech.jhipster.lite.module.domain.landscape.JHipsterLandscape;
@@ -44,14 +45,15 @@ class FileSystemJHipsterModulesRepository implements JHipsterModulesRepository {
     NpmVersions npmVersions,
     JavaProjects projects,
     ProjectJavaBuildToolRepository javaBuildTools,
+    TemplateRenderer templateRenderer,
     JHipsterModulesResources resources
   ) {
     this.projects = projects;
     this.resources = resources;
     landscape = JHipsterLandscape.from(resources);
 
-    files = new FileSystemJHipsterModuleFiles(filesReader);
-    javaBuild = new FileSystemJavaBuildCommandsHandler(javaBuildTools);
+    files = new FileSystemJHipsterModuleFiles(filesReader, templateRenderer);
+    javaBuild = new FileSystemJavaBuildCommandsHandler(javaBuildTools, filesReader, templateRenderer);
     springProperties = new FileSystemSpringPropertiesCommandsHandler();
     springComments = new FileSystemSpringCommentsCommandsHandler();
     yamlSpringProperties = new FileSystemYamlSpringPropertiesCommandsHandler();

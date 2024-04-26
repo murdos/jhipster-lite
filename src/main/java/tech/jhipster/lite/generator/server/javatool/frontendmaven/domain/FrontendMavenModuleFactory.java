@@ -1,13 +1,11 @@
 package tech.jhipster.lite.generator.server.javatool.frontendmaven.domain;
 
 import static tech.jhipster.lite.module.domain.JHipsterModule.*;
-import static tech.jhipster.lite.module.domain.mavenplugin.MavenBuildPhase.COMPILE;
-import static tech.jhipster.lite.module.domain.mavenplugin.MavenBuildPhase.GENERATE_RESOURCES;
+import static tech.jhipster.lite.module.domain.mavenplugin.MavenBuildPhase.*;
 
 import tech.jhipster.lite.module.domain.JHipsterModule;
 import tech.jhipster.lite.module.domain.file.JHipsterDestination;
 import tech.jhipster.lite.module.domain.file.JHipsterSource;
-import tech.jhipster.lite.module.domain.mavenplugin.MavenBuildPhase;
 import tech.jhipster.lite.module.domain.mavenplugin.MavenPlugin;
 import tech.jhipster.lite.module.domain.npm.NpmVersionSource;
 import tech.jhipster.lite.module.domain.npm.NpmVersions;
@@ -37,9 +35,9 @@ public class FrontendMavenModuleFactory {
     JHipsterDestination mainDestination = toSrcMainJava().append(packagePath);
     //@formatter:off
     return moduleBuilder(properties)
-      .javaDependencies()
-        .setVersion(javaDependencyVersion("node", "v" + npmVersions.getNodeVersion()))
-        .setVersion(javaDependencyVersion("npm", npmVersions.get("npm", NpmVersionSource.COMMON).get()))
+      .javaBuildProperties()
+        .set(buildPropertyKey("node.version"), buildPropertyValue("v" + npmVersions.nodeVersion().get()))
+        .set(buildPropertyKey("npm.version"), buildPropertyValue(npmVersions.get("npm", NpmVersionSource.COMMON).get()))
         .and()
       .mavenPlugins()
         .plugin(checksumPlugin())
@@ -166,7 +164,7 @@ public class FrontendMavenModuleFactory {
         pluginExecution()
           .goals("npm")
           .id("front test")
-          .phase(MavenBuildPhase.TEST)
+          .phase(TEST)
           .configuration(
             """
             <arguments>run test</arguments>

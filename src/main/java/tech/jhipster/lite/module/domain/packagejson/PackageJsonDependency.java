@@ -41,7 +41,7 @@ public final class PackageJsonDependency {
       return false;
     }
     var that = (PackageJsonDependency) obj;
-    return Objects.equals(this.packageName, that.packageName) && Objects.equals(this.versionSource, that.versionSource);
+    return Objects.equals(this.packageName, that.packageName) && this.versionSource == that.versionSource;
   }
 
   @Override
@@ -60,7 +60,7 @@ public final class PackageJsonDependency {
     return new PackageJsonDependencyBuilder();
   }
 
-  private static class PackageJsonDependencyBuilder
+  private static final class PackageJsonDependencyBuilder
     implements PackageJsonDependencyPackageNameBuilder, PackageJsonDependencyVersionSourceBuilder, PackageJsonDependencyOptionalBuilder {
 
     private PackageName packageName;

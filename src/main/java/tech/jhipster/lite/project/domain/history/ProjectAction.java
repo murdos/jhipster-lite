@@ -36,7 +36,7 @@ public final class ProjectAction {
     return parameters;
   }
 
-  private static class ProjectActionBuilder
+  private static final class ProjectActionBuilder
     implements ProjectActionModuleBuilder, ProjectActionDateBuilder, ProjectActionParametersBuilder {
 
     private ModuleSlug module;

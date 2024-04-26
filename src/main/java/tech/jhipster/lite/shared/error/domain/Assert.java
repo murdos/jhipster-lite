@@ -52,7 +52,7 @@ public final class Assert {
    *           if the input is blank
    */
   public static void notBlank(String field, String input) {
-    Assert.field(field, input).notBlank();
+    field(field, input).notBlank();
   }
 
   /**

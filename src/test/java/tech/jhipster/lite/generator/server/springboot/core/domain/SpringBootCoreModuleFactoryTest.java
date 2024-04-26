@@ -241,7 +241,7 @@ class SpringBootCoreModuleFactoryTest {
             // jhipster-needle-gradle-plugins
           """
         )
-        .containing("defaultTasks \"bootRun\"")
+        .containing("defaultTasks(\"bootRun\")")
         .containing(
           """
           springBoot {

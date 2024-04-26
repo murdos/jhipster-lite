@@ -102,7 +102,10 @@ describe('Optional', () => {
     });
 
     it('should get supplied error when present', () => {
-      expect(() => Optional.empty().orElseThrow(() => new Error('Supplied error'))).toThrow(new Error('Supplied error'));
+      const throwSuppliedError = () => {
+        throw new Error('Supplied error');
+      };
+      expect(() => Optional.empty().orElseThrow(throwSuppliedError)).toThrow(new Error('Supplied error'));
     });
   });
 

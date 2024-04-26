@@ -1,8 +1,8 @@
 include /atom/icon/icon.mixin.pug
 
 mixin jhlite-icon-text(icon, opts)
-  -const {only} = opts || {};
-  -const onlyClass = only ? `-${only}-only` : null;
+  - const { only } = opts || {};
+  - const onlyClass = only ? `-${only}-only` : null;
   span.jhlite-icon-text
     span.jhlite-icon-text--icon
       +jhlite-icon(icon)

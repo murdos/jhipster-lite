@@ -6,7 +6,7 @@ import tech.jhipster.lite.module.domain.JHipsterModule;
 import tech.jhipster.lite.module.domain.file.JHipsterDestination;
 import tech.jhipster.lite.module.domain.file.JHipsterSource;
 import tech.jhipster.lite.module.domain.gradleplugin.GradleCommunityPlugin;
-import tech.jhipster.lite.module.domain.gradleplugin.GradlePlugin;
+import tech.jhipster.lite.module.domain.gradleplugin.GradleMainBuildPlugin;
 import tech.jhipster.lite.module.domain.mavenplugin.MavenPlugin;
 import tech.jhipster.lite.module.domain.properties.JHipsterModuleProperties;
 import tech.jhipster.lite.shared.error.domain.Assert;
@@ -51,7 +51,7 @@ public class GitInfoModuleFactory {
     //@formatter:on
   }
 
-  private GradlePlugin gradleGitPropertiesPlugin() {
+  private GradleMainBuildPlugin gradleGitPropertiesPlugin() {
     return GradleCommunityPlugin.builder()
       .id("com.gorylenko.gradle-git-properties")
       .pluginSlug("git-properties")

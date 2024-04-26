@@ -18,7 +18,7 @@ class SpringBootActuatorModuleConfiguration {
     return JHipsterModuleResource.builder()
       .slug(SPRING_BOOT_ACTUATOR)
       .propertiesDefinition(
-        JHipsterModulePropertiesDefinition.builder().addBasePackage().addProjectBaseName().addConfigurationFormat().build()
+        JHipsterModulePropertiesDefinition.builder().addBasePackage().addProjectBaseName().addSpringConfigurationFormat().build()
       )
       .apiDoc("Spring Boot", "Add Spring Boot Actuator to the project")
       .organization(JHipsterModuleOrganization.builder().addDependency(SPRING_SERVER).build())

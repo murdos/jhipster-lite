@@ -221,4 +221,10 @@ class JHipsterLandscapeTest {
 
     assertThat(landscape.sort(List.of(moduleSlug("root"), moduleSlug("init")))).containsExactly(moduleSlug("init"), moduleSlug("root"));
   }
+
+  @Test
+  void shouldHaveMeaningfullToString() {
+    assertThat(defaultModuleResource().toString()).contains("slug=", "apiDoc=", "description=");
+    assertThat(noDependencyLandscapeModule("first").toString()).contains("JHipsterLandscapeModule[module=");
+  }
 }

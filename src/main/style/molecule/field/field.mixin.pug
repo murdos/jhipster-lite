@@ -1,10 +1,10 @@
 include /atom/label/label.mixin.pug
 
 mixin jhlite-field(label, opts)
-  -const {forId, optional} = opts || {};
+  - const { forId, optional } = opts || {};
   .jhlite-field
     .jhlite-field--label
-      +jhlite-label({forId: forId||null})=label
+      +jhlite-label({forId: forId||null})= label
     .jhlite-field--field
       block
     if optional

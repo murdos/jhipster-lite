@@ -71,13 +71,13 @@ $jhlite-anchor-point-border-size: 3px;
   &.-extended {
     margin-bottom: 15px;
   }
-  
+
   &.-left-anchor-point::before {
     @extend %anchor-point;
 
     left: -$jhlite-anchor-point-size;
   }
-  
+
   &.-right-anchor-point::after {
     @extend %anchor-point;
 
@@ -89,7 +89,7 @@ $jhlite-anchor-point-border-size: 3px;
     cursor: pointer;
     animation: $jhlite-valid-highlight-animation;
   }
-  
+
   &.-not-selectable-highlighted::before,
   &.-not-selectable-highlighted::after {
     background-color: $jhlite-global-color-fill-disabled-light;

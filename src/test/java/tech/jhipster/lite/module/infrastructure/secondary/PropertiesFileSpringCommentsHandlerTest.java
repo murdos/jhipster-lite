@@ -10,7 +10,6 @@ import java.nio.file.NoSuchFileException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import org.junit.jupiter.api.Test;
-import tech.jhipster.lite.TestFileUtils;
 import tech.jhipster.lite.UnitTest;
 
 @UnitTest
@@ -22,7 +21,7 @@ class PropertiesFileSpringCommentsHandlerTest {
 
   @Test
   void shouldNotCommentWhenFileDoesNotExist() {
-    String path = TestFileUtils.tmpDirForTest();
+    String path = tmpDirForTest();
     Path propertiesFile = Paths.get(path, "src/main/resources/config/application.properties");
 
     new PropertiesFileSpringCommentsHandler(propertiesFile).set(propertyKey("spring.application.name"), comment("This is a comment"));
@@ -33,7 +32,7 @@ class PropertiesFileSpringCommentsHandlerTest {
 
   @Test
   void shouldNotCommentWhenKeyDoesNotExist() {
-    Path propertiesFile = Paths.get(TestFileUtils.tmpDirForTest(), "src/main/resources/application.properties");
+    Path propertiesFile = Paths.get(tmpDirForTest(), "src/main/resources/application.properties");
     loadDefaultProperties(EXISTING_SPRING_PROPERTIES, propertiesFile);
 
     new PropertiesFileSpringCommentsHandler(propertiesFile).set(propertyKey("foo.bar"), comment("This is a comment"));
@@ -43,7 +42,7 @@ class PropertiesFileSpringCommentsHandlerTest {
 
   @Test
   void shouldAddCommentToFirstPartiallyMatchingKey() {
-    Path propertiesFile = Paths.get(TestFileUtils.tmpDirForTest(), "src/main/resources/application.properties");
+    Path propertiesFile = Paths.get(tmpDirForTest(), "src/main/resources/application.properties");
     loadDefaultProperties(EXISTING_SPRING_PROPERTIES, propertiesFile);
 
     new PropertiesFileSpringCommentsHandler(propertiesFile).set(propertyKey("logging.level"), comment("Logging configuration"));
@@ -57,7 +56,7 @@ class PropertiesFileSpringCommentsHandlerTest {
 
   @Test
   void shouldAddSingleLineCommentForExistingProperty() {
-    Path propertiesFile = Paths.get(TestFileUtils.tmpDirForTest(), "src/main/resources/application.properties");
+    Path propertiesFile = Paths.get(tmpDirForTest(), "src/main/resources/application.properties");
     loadDefaultProperties(EXISTING_SPRING_PROPERTIES, propertiesFile);
 
     new PropertiesFileSpringCommentsHandler(propertiesFile).set(propertyKey("spring.application.name"), comment("This is a comment"));
@@ -72,7 +71,7 @@ class PropertiesFileSpringCommentsHandlerTest {
 
   @Test
   void shouldAddMultilineCommentForExistingProperty() {
-    Path propertiesFile = Paths.get(TestFileUtils.tmpDirForTest(), "src/main/resources/application.properties");
+    Path propertiesFile = Paths.get(tmpDirForTest(), "src/main/resources/application.properties");
     loadDefaultProperties(EXISTING_SPRING_PROPERTIES, propertiesFile);
 
     new PropertiesFileSpringCommentsHandler(propertiesFile).set(

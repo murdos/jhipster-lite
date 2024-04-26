@@ -19,7 +19,9 @@ class LiquibaseModuleConfiguration {
   JHipsterModuleResource liquibaseModule(LiquibaseApplicationService liquibase) {
     return JHipsterModuleResource.builder()
       .slug(LIQUIBASE)
-      .propertiesDefinition(JHipsterModulePropertiesDefinition.builder().addIndentation().addBasePackage().addConfigurationFormat().build())
+      .propertiesDefinition(
+        JHipsterModulePropertiesDefinition.builder().addIndentation().addBasePackage().addSpringConfigurationFormat().build()
+      )
       .apiDoc("Spring Boot - Database Migration", "Add Liquibase")
       .organization(
         JHipsterModuleOrganization.builder().feature(DATABASE_MIGRATION).addDependency(JPA_PERSISTENCE).addDependency(LOGS_SPY).build()

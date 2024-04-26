@@ -8,7 +8,6 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
 import org.junit.jupiter.api.Test;
-import tech.jhipster.lite.TestFileUtils;
 import tech.jhipster.lite.UnitTest;
 import tech.jhipster.lite.module.domain.javaproperties.*;
 import tech.jhipster.lite.module.domain.properties.JHipsterProjectFolder;
@@ -23,7 +22,7 @@ class FileSystemSpringFactoriesCommandsHandlerTest {
 
   @Test
   void shouldCreateDefaultTestPropertiesForProjectWithoutProperties() {
-    String folder = TestFileUtils.tmpDirForTest();
+    String folder = tmpDirForTest();
 
     handler.handle(new JHipsterProjectFolder(folder), properties(springTestFactory()));
 
@@ -36,7 +35,7 @@ class FileSystemSpringFactoriesCommandsHandlerTest {
 
   @Test
   void shouldUpdateTestProperties() {
-    String folder = TestFileUtils.tmpDirForTest();
+    String folder = tmpDirForTest();
     Path propertiesFile = Paths.get(folder, "src/test/resources/META-INF/spring.factories");
     loadDefaultProperties(EXISTING_SPRING_FACTORIES, propertiesFile);
 

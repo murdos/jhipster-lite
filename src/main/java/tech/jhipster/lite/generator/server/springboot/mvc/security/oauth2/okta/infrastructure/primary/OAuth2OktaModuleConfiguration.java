@@ -39,7 +39,7 @@ class OAuth2OktaModuleConfiguration {
       .add(oktaDomain())
       .add(oktaClientId())
       .addIndentation()
-      .addConfigurationFormat()
+      .addSpringConfigurationFormat()
       .build();
   }
 

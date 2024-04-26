@@ -18,7 +18,7 @@ class GitInfoModuleConfiguration {
     return JHipsterModuleResource.builder()
       .slug(GIT_INFORMATION)
       .propertiesDefinition(
-        JHipsterModulePropertiesDefinition.builder().addBasePackage().addProjectBaseName().addConfigurationFormat().build()
+        JHipsterModulePropertiesDefinition.builder().addBasePackage().addProjectBaseName().addSpringConfigurationFormat().build()
       )
       .apiDoc("Git Information", "Injecting Git Information into Spring")
       .organization(JHipsterModuleOrganization.builder().addDependency(SPRING_BOOT_ACTUATOR).build())

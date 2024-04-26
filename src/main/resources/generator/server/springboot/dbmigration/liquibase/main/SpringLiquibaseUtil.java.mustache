@@ -18,7 +18,7 @@ import org.springframework.core.env.Environment;
  * It follows implementation of
  * <a href="https://github.com/spring-projects/spring-boot/blob/master/spring-boot-project/spring-boot-autoconfigure/src/main/java/org/springframework/boot/autoconfigure/liquibase/LiquibaseAutoConfiguration.java">LiquibaseAutoConfiguration</a>.
  */
-public final class SpringLiquibaseUtil {
+final class SpringLiquibaseUtil {
 
   private SpringLiquibaseUtil() {}
 

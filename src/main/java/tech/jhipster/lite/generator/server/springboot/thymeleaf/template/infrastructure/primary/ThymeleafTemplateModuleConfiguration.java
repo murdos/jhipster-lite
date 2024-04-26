@@ -25,7 +25,7 @@ class ThymeleafTemplateModuleConfiguration {
     return JHipsterModuleResource.builder()
       .slug(THYMELEAF_TEMPLATE)
       .propertiesDefinition(
-        JHipsterModulePropertiesDefinition.builder().addBasePackage().addProjectBaseName().addConfigurationFormat().build()
+        JHipsterModulePropertiesDefinition.builder().addBasePackage().addProjectBaseName().addSpringConfigurationFormat().build()
       )
       .apiDoc(capitalize(TAG_THYMELEAF), "Add thymeleaf skeleton layout files to the project")
       .organization(JHipsterModuleOrganization.builder().addDependency(SPRING_BOOT_THYMELEAF).build())
@@ -38,7 +38,7 @@ class ThymeleafTemplateModuleConfiguration {
     return JHipsterModuleResource.builder()
       .slug(THYMELEAF_TEMPLATE_TAILWINDCSS)
       .propertiesDefinition(
-        JHipsterModulePropertiesDefinition.builder().addBasePackage().addProjectBaseName().addConfigurationFormat().build()
+        JHipsterModulePropertiesDefinition.builder().addBasePackage().addProjectBaseName().addSpringConfigurationFormat().build()
       )
       .apiDoc(capitalize(TAG_THYMELEAF), "Add tailwindcss to the thymeleaf template")
       .organization(JHipsterModuleOrganization.builder().addDependency(THYMELEAF_TEMPLATE).build())
@@ -51,7 +51,7 @@ class ThymeleafTemplateModuleConfiguration {
     return JHipsterModuleResource.builder()
       .slug(THYMELEAF_TEMPLATE_HTMX_WEBJAR)
       .propertiesDefinition(
-        JHipsterModulePropertiesDefinition.builder().addBasePackage().addProjectBaseName().addConfigurationFormat().build()
+        JHipsterModulePropertiesDefinition.builder().addBasePackage().addProjectBaseName().addSpringConfigurationFormat().build()
       )
       .apiDoc(capitalize(TAG_THYMELEAF), "Add htmx webjars scripts to thymeleaf layout")
       .organization(JHipsterModuleOrganization.builder().addDependency(HTMX_WEBJARS).addDependency(THYMELEAF_TEMPLATE).build())
@@ -64,7 +64,7 @@ class ThymeleafTemplateModuleConfiguration {
     return JHipsterModuleResource.builder()
       .slug(THYMELEAF_TEMPLATE_ALPINEJS_WEBJAR)
       .propertiesDefinition(
-        JHipsterModulePropertiesDefinition.builder().addBasePackage().addProjectBaseName().addConfigurationFormat().build()
+        JHipsterModulePropertiesDefinition.builder().addBasePackage().addProjectBaseName().addSpringConfigurationFormat().build()
       )
       .apiDoc(capitalize(TAG_THYMELEAF), "Add alpine webjars scripts to thymeleaf layout")
       .organization(JHipsterModuleOrganization.builder().addDependency(ALPINE_JS_WEBJARS).addDependency(THYMELEAF_TEMPLATE).build())

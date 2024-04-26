@@ -18,7 +18,9 @@ class FlywayModuleConfiguration {
   JHipsterModuleResource flywayInitializationModule(FlywayApplicationService flyway) {
     return JHipsterModuleResource.builder()
       .slug(FLYWAY)
-      .propertiesDefinition(JHipsterModulePropertiesDefinition.builder().addBasePackage().addIndentation().addConfigurationFormat().build())
+      .propertiesDefinition(
+        JHipsterModulePropertiesDefinition.builder().addBasePackage().addIndentation().addSpringConfigurationFormat().build()
+      )
       .apiDoc("Spring Boot - Database Migration", "Add Flyway")
       .organization(JHipsterModuleOrganization.builder().feature(DATABASE_MIGRATION).addDependency(JPA_PERSISTENCE).build())
       .tags("server", "spring", "spring-boot", "database", "migration")

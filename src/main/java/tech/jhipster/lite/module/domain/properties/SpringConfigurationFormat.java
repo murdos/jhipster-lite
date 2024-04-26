@@ -18,4 +18,8 @@ public enum SpringConfigurationFormat {
   public static SpringConfigurationFormat from(String input) {
     return Stream.of(values()).filter(configFormat -> configFormat.format.equals(input)).findFirst().orElse(null);
   }
+
+  public String get() {
+    return format;
+  }
 }

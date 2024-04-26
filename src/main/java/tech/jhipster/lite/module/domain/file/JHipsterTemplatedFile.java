@@ -35,8 +35,8 @@ public final class JHipsterTemplatedFile {
     return file.destination().pathInProject(projectFolder);
   }
 
-  public byte[] content(ProjectFiles files) {
-    return file.content().read(files, context);
+  public byte[] content(ProjectFiles files, TemplateRenderer templateRenderer) {
+    return file.content().read(files, context, templateRenderer);
   }
 
   public boolean isNotExecutable() {

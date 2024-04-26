@@ -39,7 +39,7 @@ class OAuth2Auth0ModuleConfiguration {
       .add(auth0Domain())
       .add(auth0clientId())
       .addIndentation()
-      .addConfigurationFormat()
+      .addSpringConfigurationFormat()
       .build();
   }
 

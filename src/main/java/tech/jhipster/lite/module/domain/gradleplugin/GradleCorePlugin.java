@@ -4,7 +4,7 @@ import java.util.Optional;
 import tech.jhipster.lite.module.domain.javabuild.VersionSlug;
 import tech.jhipster.lite.shared.error.domain.Assert;
 
-public final class GradleCorePlugin implements GradlePlugin {
+public final class GradleCorePlugin implements GradleMainBuildPlugin, GradleProfilePlugin {
 
   private final GradlePluginId id;
   private final Optional<GradlePluginConfiguration> configuration;
@@ -17,7 +17,6 @@ public final class GradleCorePlugin implements GradlePlugin {
     toolVersionSlug = Optional.ofNullable(builder.toolVersionSlug);
   }
 
-  @Override
   public GradlePluginId id() {
     return id;
   }
@@ -40,8 +39,6 @@ public final class GradleCorePlugin implements GradlePlugin {
     private GradlePluginId id;
     private GradlePluginConfiguration configuration;
     private VersionSlug toolVersionSlug;
-
-    private GradleCorePluginBuilder() {}
 
     @Override
     public GradleCorePluginOptionalBuilder id(GradlePluginId id) {

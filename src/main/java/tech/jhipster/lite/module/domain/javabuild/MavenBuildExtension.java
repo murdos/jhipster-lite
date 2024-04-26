@@ -66,8 +66,6 @@ public final class MavenBuildExtension {
     private ArtifactId artifactId;
     private VersionSlug versionSlug;
 
-    private MavenBuildExtensionBuilder() {}
-
     @Override
     public MavenBuildExtensionArtifactIdBuilder groupId(GroupId groupId) {
       this.groupId = groupId;

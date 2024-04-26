@@ -9,7 +9,6 @@ import {{packageName}}.LogsSpyExtension;
 import {{packageName}}.UnitTest;
 import io.jsonwebtoken.JwtParser;
 import io.jsonwebtoken.Jwts;
-import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.security.Keys;
 import java.nio.charset.StandardCharsets;
 import java.time.Instant;
@@ -35,7 +34,7 @@ class JwtReaderTest {
   private LogsSpy logs;
 
   private JwtParser parser() {
-    return Jwts.parser().setSigningKey(KEY).build();
+    return Jwts.parser().verifyWith(KEY).build();
   }
 
   @Test
@@ -68,10 +67,10 @@ class JwtReaderTest {
   private String userToken() {
     return Jwts
       .builder()
-      .setSubject("test")
+      .subject("test")
       .claim("auth", "ROLE_USER,ROLE_ADMIN,,")
-      .signWith(KEY, SignatureAlgorithm.HS512)
-      .setExpiration(Date.from(Instant.now().plusSeconds(120)))
+      .signWith(KEY, Jwts.SIG.HS512)
+      .expiration(Date.from(Instant.now().plusSeconds(120)))
       .compact();
   }
 
@@ -86,9 +85,9 @@ class JwtReaderTest {
   private String userTokenWithoutRoles() {
     return Jwts
       .builder()
-      .setSubject("test")
-      .signWith(KEY, SignatureAlgorithm.HS512)
-      .setExpiration(Date.from(Instant.now().plusSeconds(120)))
+      .subject("test")
+      .signWith(KEY, Jwts.SIG.HS512)
+      .expiration(Date.from(Instant.now().plusSeconds(120)))
       .compact();
   }
 }

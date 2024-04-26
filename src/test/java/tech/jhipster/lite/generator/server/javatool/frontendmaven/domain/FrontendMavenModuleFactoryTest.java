@@ -1,8 +1,7 @@
 package tech.jhipster.lite.generator.server.javatool.frontendmaven.domain;
 
-import static org.mockito.Mockito.when;
-import static tech.jhipster.lite.module.infrastructure.secondary.JHipsterModulesAssertions.assertThatModuleWithFiles;
-import static tech.jhipster.lite.module.infrastructure.secondary.JHipsterModulesAssertions.pomFile;
+import static org.mockito.Mockito.*;
+import static tech.jhipster.lite.module.infrastructure.secondary.JHipsterModulesAssertions.*;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -36,7 +35,7 @@ class FrontendMavenModuleFactoryTest {
       .build();
 
     when(npmVersions.get("npm", NpmVersionSource.COMMON)).thenReturn(new NpmPackageVersion("4.0.0"));
-    when(npmVersions.getNodeVersion()).thenReturn("16.0.0");
+    when(npmVersions.nodeVersion()).thenReturn(new NpmPackageVersion("16.0.0"));
 
     JHipsterModule module = factory.buildModule(properties);
 

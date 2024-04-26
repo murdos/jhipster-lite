@@ -18,7 +18,7 @@ public abstract class JHipsterModuleReplacementsFactory {
     this.replacers = JHipsterCollections.immutable(builder.replacers);
   }
 
-  protected JHipsterModuleReplacementsFactory(Collection<ContentReplacer> replacers) {
+  protected JHipsterModuleReplacementsFactory(Collection<? extends ContentReplacer> replacers) {
     Assert.notNull("replacers", replacers);
 
     this.replacers = JHipsterCollections.immutable(replacers);

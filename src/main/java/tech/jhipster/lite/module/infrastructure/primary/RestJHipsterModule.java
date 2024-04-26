@@ -52,7 +52,7 @@ final class RestJHipsterModule {
     return tags;
   }
 
-  private static class RestJHipsterModuleBuilder {
+  private static final class RestJHipsterModuleBuilder {
 
     private String slug;
     private String description;

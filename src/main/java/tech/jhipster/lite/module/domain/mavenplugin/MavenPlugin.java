@@ -65,8 +65,6 @@ public final class MavenPlugin {
     private final List<MavenPluginExecution> executions = new ArrayList<>();
     private final Collection<JavaDependency> dependencies = new LinkedHashSet<>();
 
-    private MavenPluginBuilder() {}
-
     @Override
     public MavenPluginArtifactIdBuilder groupId(GroupId groupId) {
       this.groupId = groupId;
