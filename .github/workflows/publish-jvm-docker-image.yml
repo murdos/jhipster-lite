@@ -48,7 +48,7 @@ jobs:
         with:
           cache-map: |
             {
-              "maven-repository": "/root/.m2",
+              'maven-repository': '/root/.m2'
             }
           skip-extraction: ${{ steps.cache.outputs.cache-hit }}
 
