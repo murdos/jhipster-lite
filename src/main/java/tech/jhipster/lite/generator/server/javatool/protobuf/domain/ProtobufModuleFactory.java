@@ -6,6 +6,7 @@ import tech.jhipster.lite.module.domain.JHipsterModule;
 import tech.jhipster.lite.module.domain.file.JHipsterDestination;
 import tech.jhipster.lite.module.domain.file.JHipsterSource;
 import tech.jhipster.lite.module.domain.gradleplugin.GradleCommunityPlugin;
+import tech.jhipster.lite.module.domain.gradleplugin.GradleMainBuildPlugin;
 import tech.jhipster.lite.module.domain.javabuild.GroupId;
 import tech.jhipster.lite.module.domain.javabuild.VersionSlug;
 import tech.jhipster.lite.module.domain.mavenplugin.MavenPlugin;
@@ -103,8 +104,15 @@ public class ProtobufModuleFactory {
         .pluginManagement(protoBackwardsCompatibilityMavenPluginManagement())
         .plugin(protoBackwardsCompatibilityMavenPluginBuilder().build())
         .and()
+      .gradlePlugins()
+        .plugin(protolockGradlePlugin())
+        .and()
       .build();
     //@formatter:on
+  }
+
+  private GradleMainBuildPlugin protolockGradlePlugin() {
+    return gradleCommunityPlugin().id("ru.rost5000.protolock.gradle").pluginSlug("protolock").versionSlug("protolock-plugin").build();
   }
 
   private MavenPlugin protoBackwardsCompatibilityMavenPluginManagement() {

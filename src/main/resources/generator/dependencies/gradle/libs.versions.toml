@@ -3,6 +3,7 @@ checkstyle = "10.16.0"
 jib = "3.4.2"
 git-properties = "2.4.2"
 protobuf-plugin = "0.9.4"
+protolock-plugin = "1.0.2"
 jacoco = "0.8.11"
 sonarqube = "4.4.1.3373"
 
@@ -24,3 +25,7 @@ version.ref = "git-properties"
 [plugins.protobuf]
 id = "com.google.protobuf"
 version.ref = "protobuf-plugin"
+
+[plugins.protolock]
+id = "ru.rost5000.protolock.gradle"
+version.ref = "protolock-plugin"

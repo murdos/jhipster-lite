@@ -176,5 +176,38 @@ class ProtobufModuleFactoryTest {
           """
         );
     }
+
+    @Test
+    void shouldBuildModuleForGradle() {
+      JHipsterModuleProperties properties = JHipsterModulesFixture.propertiesBuilder(TestFileUtils.tmpDirForTest())
+        .basePackage("com.jhipster.test")
+        .build();
+
+      JHipsterModule module = factory.buildProtobufBackwardsCompatibilityCheckModule(properties);
+
+      assertThatModuleWithFiles(module, gradleBuildFile(), gradleLibsVersionFile())
+        .hasFile("gradle/libs.versions.toml")
+        .containing("protolock-plugin = \"")
+        .containing(
+          """
+          \t[plugins.protolock]
+          \t\tid = "ru.rost5000.protolock.gradle"
+
+          \t\t[plugins.protolock.version]
+          \t\t\tref = "protolock-plugin"
+          """
+        )
+        .and()
+        .hasFile("build.gradle.kts")
+        .containing(
+          """
+            alias(libs.plugins.protolock)
+            // jhipster-needle-gradle-plugins
+          """
+        )
+        .and()
+        .hasFile("src/main/proto/proto.lock")
+        .containing("{}");
+    }
   }
 }
