@@ -1,7 +1,8 @@
 package tech.jhipster.lite.generator.client.react.security.jwt.domain;
 
 import static tech.jhipster.lite.module.domain.JHipsterModule.*;
-import static tech.jhipster.lite.module.domain.packagejson.VersionSource.*;
+import static tech.jhipster.lite.module.domain.packagejson.VersionSource.COMMON;
+import static tech.jhipster.lite.module.domain.packagejson.VersionSource.REACT;
 
 import tech.jhipster.lite.module.domain.JHipsterModule;
 import tech.jhipster.lite.module.domain.file.JHipsterDestination;
@@ -48,10 +49,10 @@ public class ReactJwtModuleFactory {
         .addDependency(packageName("react-hook-form"), REACT)
         .addDependency(packageName("axios"), REACT)
         .addDependency(packageName("@nextui-org/react"), REACT)
-        .addDevDependency(packageName("autoprefixer"), REACT)
+        .addDevDependency(packageName("autoprefixer"), COMMON)
         .addDevDependency(packageName("sass"), REACT)
-        .addDevDependency(packageName("postcss"), REACT)
-        .addDevDependency(packageName("tailwindcss"), REACT)
+        .addDevDependency(packageName("postcss"), COMMON)
+        .addDevDependency(packageName("tailwindcss"), COMMON)
         .and()
       .files()
         .batch(ROOT, to("."))
