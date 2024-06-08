@@ -1,14 +1,12 @@
 package tech.jhipster.lite.generator.server.springboot.thymeleaf.template.infrastructure.primary;
 
-import static org.apache.commons.lang3.StringUtils.*;
-import static tech.jhipster.lite.generator.slug.domain.JHLiteModuleSlug.*;
+import static org.apache.commons.lang3.StringUtils.capitalize;
+import static tech.jhipster.lite.shared.slug.domain.JHLiteModuleSlug.*;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import tech.jhipster.lite.generator.server.springboot.thymeleaf.template.application.ThymeleafTemplateModuleApplicationService;
-import tech.jhipster.lite.module.domain.resource.JHipsterModuleOrganization;
-import tech.jhipster.lite.module.domain.resource.JHipsterModulePropertiesDefinition;
-import tech.jhipster.lite.module.domain.resource.JHipsterModuleResource;
+import tech.jhipster.lite.module.domain.resource.*;
 
 @Configuration
 class ThymeleafTemplateModuleConfiguration {

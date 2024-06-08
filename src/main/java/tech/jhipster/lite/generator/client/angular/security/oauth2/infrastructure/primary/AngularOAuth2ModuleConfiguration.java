@@ -1,14 +1,13 @@
 package tech.jhipster.lite.generator.client.angular.security.oauth2.infrastructure.primary;
 
-import static tech.jhipster.lite.generator.slug.domain.JHLiteFeatureSlug.*;
-import static tech.jhipster.lite.generator.slug.domain.JHLiteModuleSlug.*;
+import static tech.jhipster.lite.shared.slug.domain.JHLiteFeatureSlug.ANGULAR_AUTHENTICATION;
+import static tech.jhipster.lite.shared.slug.domain.JHLiteModuleSlug.ANGULAR_CORE;
+import static tech.jhipster.lite.shared.slug.domain.JHLiteModuleSlug.ANGULAR_OAUTH_2;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import tech.jhipster.lite.generator.client.angular.security.oauth2.application.AngularOauth2ApplicationService;
-import tech.jhipster.lite.module.domain.resource.JHipsterModuleOrganization;
-import tech.jhipster.lite.module.domain.resource.JHipsterModulePropertiesDefinition;
-import tech.jhipster.lite.module.domain.resource.JHipsterModuleResource;
+import tech.jhipster.lite.module.domain.resource.*;
 
 @Configuration
 class AngularOAuth2ModuleConfiguration {

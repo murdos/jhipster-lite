@@ -1,4 +1,4 @@
-package tech.jhipster.lite.generator.slug.domain;
+package tech.jhipster.lite.shared.slug.domain;
 
 import java.util.Map;
 import java.util.Optional;

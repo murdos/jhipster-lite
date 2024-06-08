@@ -1,4 +1,4 @@
-package tech.jhipster.lite.generator.slug.domain;
+package tech.jhipster.lite.shared.slug.domain;
 
 import tech.jhipster.lite.module.domain.resource.JHipsterFeatureSlugFactory;
 

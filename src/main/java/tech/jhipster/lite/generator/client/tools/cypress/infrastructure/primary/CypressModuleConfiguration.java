@@ -1,14 +1,13 @@
 package tech.jhipster.lite.generator.client.tools.cypress.infrastructure.primary;
 
-import static tech.jhipster.lite.generator.slug.domain.JHLiteFeatureSlug.*;
-import static tech.jhipster.lite.generator.slug.domain.JHLiteModuleSlug.*;
+import static tech.jhipster.lite.shared.slug.domain.JHLiteFeatureSlug.CLIENT_CORE;
+import static tech.jhipster.lite.shared.slug.domain.JHLiteFeatureSlug.FRONT_BROWSER_TEST;
+import static tech.jhipster.lite.shared.slug.domain.JHLiteModuleSlug.CYPRESS;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import tech.jhipster.lite.generator.client.tools.cypress.application.CypressApplicationService;
-import tech.jhipster.lite.module.domain.resource.JHipsterModuleOrganization;
-import tech.jhipster.lite.module.domain.resource.JHipsterModulePropertiesDefinition;
-import tech.jhipster.lite.module.domain.resource.JHipsterModuleResource;
+import tech.jhipster.lite.module.domain.resource.*;
 
 @Configuration
 class CypressModuleConfiguration {

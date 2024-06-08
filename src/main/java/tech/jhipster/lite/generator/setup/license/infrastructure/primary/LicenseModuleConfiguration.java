@@ -1,8 +1,8 @@
 package tech.jhipster.lite.generator.setup.license.infrastructure.primary;
 
-import static tech.jhipster.lite.generator.slug.domain.JHLiteFeatureSlug.LICENSE;
-import static tech.jhipster.lite.generator.slug.domain.JHLiteModuleSlug.LICENSE_APACHE;
-import static tech.jhipster.lite.generator.slug.domain.JHLiteModuleSlug.LICENSE_MIT;
+import static tech.jhipster.lite.shared.slug.domain.JHLiteFeatureSlug.LICENSE;
+import static tech.jhipster.lite.shared.slug.domain.JHLiteModuleSlug.LICENSE_APACHE;
+import static tech.jhipster.lite.shared.slug.domain.JHLiteModuleSlug.LICENSE_MIT;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

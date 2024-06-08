@@ -1,7 +1,7 @@
 package tech.jhipster.lite.generator.server.springboot.thymeleaf.infrastructure.primary;
 
-import static tech.jhipster.lite.generator.slug.domain.JHLiteFeatureSlug.SPRING_SERVER;
-import static tech.jhipster.lite.generator.slug.domain.JHLiteModuleSlug.SPRING_BOOT_THYMELEAF;
+import static tech.jhipster.lite.shared.slug.domain.JHLiteFeatureSlug.SPRING_SERVER;
+import static tech.jhipster.lite.shared.slug.domain.JHLiteModuleSlug.SPRING_BOOT_THYMELEAF;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

@@ -1,13 +1,13 @@
 package tech.jhipster.lite.generator.ci.renovate.infrastructure.primary;
 
-import static tech.jhipster.lite.generator.slug.domain.JHLiteModuleSlug.RENOVATE;
+import static tech.jhipster.lite.shared.slug.domain.JHLiteModuleSlug.RENOVATE;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import tech.jhipster.lite.generator.ci.renovate.application.RenovateApplicationService;
-import tech.jhipster.lite.generator.slug.domain.JHLiteFeatureSlug;
 import tech.jhipster.lite.module.domain.resource.JHipsterModuleOrganization;
 import tech.jhipster.lite.module.domain.resource.JHipsterModuleResource;
+import tech.jhipster.lite.shared.slug.domain.JHLiteFeatureSlug;
 
 @Configuration
 class RenovateModuleConfiguration {

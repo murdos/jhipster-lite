@@ -1,6 +1,7 @@
 package tech.jhipster.lite.generator.typescript.optional.infrastructure.primary;
 
-import static tech.jhipster.lite.generator.slug.domain.JHLiteModuleSlug.*;
+import static tech.jhipster.lite.shared.slug.domain.JHLiteModuleSlug.OPTIONAL_TYPESCRIPT;
+import static tech.jhipster.lite.shared.slug.domain.JHLiteModuleSlug.TYPESCRIPT;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

@@ -1,9 +1,9 @@
 package tech.jhipster.lite.generator.server.springboot.mvc.security.oauth2.auth0.infrastructure.primary;
 
-import static tech.jhipster.lite.generator.slug.domain.JHLiteFeatureSlug.OAUTH_PROVIDER;
-import static tech.jhipster.lite.generator.slug.domain.JHLiteModuleSlug.SPRING_BOOT_OAUTH_2;
-import static tech.jhipster.lite.generator.slug.domain.JHLiteModuleSlug.SPRING_BOOT_OAUTH_2_AUTH_0;
 import static tech.jhipster.lite.module.domain.resource.JHipsterModulePropertyDefinition.mandatoryStringProperty;
+import static tech.jhipster.lite.shared.slug.domain.JHLiteFeatureSlug.OAUTH_PROVIDER;
+import static tech.jhipster.lite.shared.slug.domain.JHLiteModuleSlug.SPRING_BOOT_OAUTH_2;
+import static tech.jhipster.lite.shared.slug.domain.JHLiteModuleSlug.SPRING_BOOT_OAUTH_2_AUTH_0;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

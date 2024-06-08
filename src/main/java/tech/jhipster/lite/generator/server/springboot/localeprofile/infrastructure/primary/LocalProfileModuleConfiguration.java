@@ -1,6 +1,6 @@
 package tech.jhipster.lite.generator.server.springboot.localeprofile.infrastructure.primary;
 
-import static tech.jhipster.lite.generator.slug.domain.JHLiteModuleSlug.SPRING_BOOT_LOCAL_PROFILE;
+import static tech.jhipster.lite.shared.slug.domain.JHLiteModuleSlug.SPRING_BOOT_LOCAL_PROFILE;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

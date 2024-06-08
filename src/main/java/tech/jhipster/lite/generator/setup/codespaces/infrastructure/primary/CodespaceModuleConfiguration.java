@@ -1,6 +1,6 @@
 package tech.jhipster.lite.generator.setup.codespaces.infrastructure.primary;
 
-import static tech.jhipster.lite.generator.slug.domain.JHLiteModuleSlug.GITHUB_CODESPACES;
+import static tech.jhipster.lite.shared.slug.domain.JHLiteModuleSlug.GITHUB_CODESPACES;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

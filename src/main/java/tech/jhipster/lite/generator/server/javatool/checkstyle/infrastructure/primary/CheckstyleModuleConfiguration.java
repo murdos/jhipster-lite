@@ -1,7 +1,7 @@
 package tech.jhipster.lite.generator.server.javatool.checkstyle.infrastructure.primary;
 
-import static tech.jhipster.lite.generator.slug.domain.JHLiteFeatureSlug.JAVA_BUILD_TOOL;
-import static tech.jhipster.lite.generator.slug.domain.JHLiteModuleSlug.CHECKSTYLE;
+import static tech.jhipster.lite.shared.slug.domain.JHLiteFeatureSlug.JAVA_BUILD_TOOL;
+import static tech.jhipster.lite.shared.slug.domain.JHLiteModuleSlug.CHECKSTYLE;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

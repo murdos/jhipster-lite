@@ -1,9 +1,9 @@
 package tech.jhipster.lite.generator.server.springboot.mvc.sample.jpapersistence.infrastructure.primary;
 
-import static tech.jhipster.lite.generator.slug.domain.JHLiteFeatureSlug.SAMPLE_PERSISTENCE;
-import static tech.jhipster.lite.generator.slug.domain.JHLiteFeatureSlug.SAMPLE_SCHEMA;
-import static tech.jhipster.lite.generator.slug.domain.JHLiteModuleSlug.SAMPLE_JPA_PERSISTENCE;
-import static tech.jhipster.lite.generator.slug.domain.JHLiteModuleSlug.SPRING_BOOT_CUCUMBER_JPA_RESET;
+import static tech.jhipster.lite.shared.slug.domain.JHLiteFeatureSlug.SAMPLE_PERSISTENCE;
+import static tech.jhipster.lite.shared.slug.domain.JHLiteFeatureSlug.SAMPLE_SCHEMA;
+import static tech.jhipster.lite.shared.slug.domain.JHLiteModuleSlug.SAMPLE_JPA_PERSISTENCE;
+import static tech.jhipster.lite.shared.slug.domain.JHLiteModuleSlug.SPRING_BOOT_CUCUMBER_JPA_RESET;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

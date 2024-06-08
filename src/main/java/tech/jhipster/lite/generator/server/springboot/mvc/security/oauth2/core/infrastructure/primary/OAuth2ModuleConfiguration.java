@@ -1,17 +1,14 @@
 package tech.jhipster.lite.generator.server.springboot.mvc.security.oauth2.core.infrastructure.primary;
 
-import static tech.jhipster.lite.generator.slug.domain.JHLiteFeatureSlug.AUTHENTICATION;
-import static tech.jhipster.lite.generator.slug.domain.JHLiteFeatureSlug.SPRING_MVC_SERVER;
-import static tech.jhipster.lite.generator.slug.domain.JHLiteModuleSlug.*;
+import static tech.jhipster.lite.shared.slug.domain.JHLiteFeatureSlug.AUTHENTICATION;
+import static tech.jhipster.lite.shared.slug.domain.JHLiteFeatureSlug.SPRING_MVC_SERVER;
+import static tech.jhipster.lite.shared.slug.domain.JHLiteModuleSlug.*;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import tech.jhipster.lite.generator.server.springboot.mvc.security.oauth2.core.application.OAuth2SecurityApplicationService;
 import tech.jhipster.lite.generator.server.springboot.mvc.security.oauth2.core.domain.OAuth2ModuleFactory;
-import tech.jhipster.lite.module.domain.resource.JHipsterModuleOrganization;
-import tech.jhipster.lite.module.domain.resource.JHipsterModulePropertiesDefinition;
-import tech.jhipster.lite.module.domain.resource.JHipsterModulePropertyDefinition;
-import tech.jhipster.lite.module.domain.resource.JHipsterModuleResource;
+import tech.jhipster.lite.module.domain.resource.*;
 
 @Configuration
 class OAuth2ModuleConfiguration {
