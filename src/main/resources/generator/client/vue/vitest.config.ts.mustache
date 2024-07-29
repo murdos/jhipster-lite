@@ -1,51 +1,53 @@
 /// <reference types="vitest" />
 
-import { defineConfig } from 'vite';
-import tsconfigPaths from 'vite-tsconfig-paths';
-import vue from '@vitejs/plugin-vue';
+import { mergeConfig, defineConfig, configDefaults } from 'vitest/config'
+import viteConfig from './vite.config'
 
-export default defineConfig({
-  plugins: [vue(), tsconfigPaths()],
-  test: {
-    reporters: ['verbose', 'vitest-sonar-reporter'],
-    outputFile: {
-      'vitest-sonar-reporter': '{{projectBuildDirectory}}/test-results/TESTS-results-sonar.xml',
-    },
-    globals: true,
-    logHeapUsage: true,
-    poolOptions: {
-      threads: {
-        minThreads: 1,
-        maxThreads: 2,
+export default mergeConfig(
+  viteConfig,
+  defineConfig({
+    test: {
+      root: '.',
+      reporters: ['verbose', 'vitest-sonar-reporter'],
+      outputFile: {
+        'vitest-sonar-reporter': '{{projectBuildDirectory}}/test-results/TESTS-results-sonar.xml',
       },
-    },
-    environment: 'jsdom',
-    cache: false,
+      globals: true,
+      logHeapUsage: true,
+      poolOptions: {
+        threads: {
+          minThreads: 1,
+          maxThreads: 2,
+        },
+      },
+      environment: 'jsdom',
+      cache: false,
     include: ['src/test/javascript/spec/**/*.(spec|test).(ts|tsx)'],
     exclude: ['node_modules', 'src/test/javascript/integration/**/*.spec.ts'],
-    coverage: {
-      thresholds: {
-        perFile: true,
-        autoUpdate: true,
-        100: true,
-      },
-      exclude: [
+      coverage: {
+        thresholds: {
+          perFile: true,
+          autoUpdate: true,
+          100: true,
+        },
+        exclude: [
         'src/main/webapp/**/*.component.ts',
-        'src/main/webapp/app/main.ts',
+          'src/main/webapp/app/main.ts',
         '.eslintrc.cjs',
         '.lintstagedrc.cjs',
         'src/test/**/*',
         '{{projectBuildDirectory}}/**',
-      ],
-      provider: 'istanbul',
-      reportsDirectory: '{{projectBuildDirectory}}/test-results/',
-      reporter: ['html', 'json-summary', 'text', 'text-summary', 'lcov', 'clover'],
-      watermarks: {
-        statements: [100, 100],
-        branches: [100, 100],
-        functions: [100, 100],
-        lines: [100, 100],
+        ],
+        provider: 'istanbul',
+        reportsDirectory: '{{projectBuildDirectory}}/test-results/',
+        reporter: ['html', 'json-summary', 'text', 'text-summary', 'lcov', 'clover'],
+        watermarks: {
+          statements: [100, 100],
+          branches: [100, 100],
+          functions: [100, 100],
+          lines: [100, 100],
+        },
       },
     },
-  },
-});
+  })
+);
