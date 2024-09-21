@@ -1,0 +1,5 @@
+{
+  "reporter": ["html", "json"],
+  "report-dir": "../../../../target/frontend-component-tests-coverage",
+  "temp-dir": "../../../../target/nyc_output"
+}
