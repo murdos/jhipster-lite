@@ -36,7 +36,7 @@ export default defineConfig({
       all: false,
       provider: 'istanbul',
       reportsDirectory: 'target/frontend-coverage/unit-tests/',
-      reporter: ['html', 'json'],
+      reporter: ['html', 'json', 'text-summary'],
     },
   },
 });
