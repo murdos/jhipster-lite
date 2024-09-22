@@ -1,4 +1,5 @@
 {
+  "extension": [".js", ".cjs", ".mjs", ".ts", ".vue"],
   "reporter": ["html", "json"],
   "report-dir": "target/frontend-coverage/combined",
   "temp-dir": "target/.nyc_output",
