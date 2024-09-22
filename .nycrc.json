@@ -1,0 +1,14 @@
+{
+  "reporter": ["html", "json"],
+  "report-dir": "target/frontend-coverage/combined",
+  "temp-dir": "target/.nyc_output",
+  "check-coverage": true,
+  "branches": 100,
+  "lines": 100,
+  "functions": 100,
+  "statements": 100,
+  "exclude": [
+    "src/main/webapp/app/shared/alert/infrastructure/primary/WindowApplicationListener.ts",
+    "src/main/webapp/app/module/secondary/RestManagementRepository.ts"
+  ]
+}

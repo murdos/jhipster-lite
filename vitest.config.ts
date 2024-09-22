@@ -52,8 +52,8 @@ export default defineConfig({
         'src/test/**/*',
       ],
       provider: 'istanbul',
-      reportsDirectory: 'target/test-results/',
-      reporter: ['html', 'json-summary', 'text', 'text-summary', 'lcov', 'clover'],
+      reportsDirectory: 'target/frontend-coverage/unit-tests/',
+      reporter: ['html', 'json'],
       watermarks: {
         statements: [100, 100],
         branches: [100, 100],
