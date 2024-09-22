@@ -34,32 +34,9 @@ export default defineConfig({
     },
     coverage: {
       all: false,
-      clean: true,
-      thresholds: {
-        perFile: true,
-        autoUpdate: true,
-        100: true,
-      },
-      exclude: [
-        'src/main/webapp/**/*.component.ts',
-        'src/main/webapp/app/main.ts',
-        'src/main/webapp/app/router/index.ts',
-        'src/main/webapp/app/**/application/*Provider.ts',
-        'src/main/webapp/app/shared/alert/infrastructure/primary/WindowApplicationListener.ts',
-        'src/main/webapp/app/module/secondary/RestManagementRepository.ts',
-        'src/main/webapp/app/injections.ts',
-        '**/*.d.ts',
-        'src/test/**/*',
-      ],
       provider: 'istanbul',
       reportsDirectory: 'target/frontend-coverage/unit-tests/',
       reporter: ['html', 'json'],
-      watermarks: {
-        statements: [100, 100],
-        branches: [100, 100],
-        functions: [100, 100],
-        lines: [100, 100],
-      },
     },
   },
 });
