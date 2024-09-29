@@ -76,6 +76,9 @@ server:
   port: 7471
 
 spring:
+  modulith:
+    detection-strategy: tech.jhipster.lite.HexagonalModuleDetectionStrategy
+    named-interfaces-detection-strategy: tech.jhipster.lite.HexagonalNamedInterfacesDetectionStrategy
   threads:
     virtual:
       enabled: true
