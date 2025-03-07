@@ -332,10 +332,7 @@
         <configuration>
           <!-- Force alphabetical order to have a reproducible build -->
           <runOrder>alphabetical</runOrder>
-          <excludes>
-            <exclude>**/*IT*</exclude>
-            <exclude>**/*CucumberTest*</exclude>
-          </excludes>
+          <groups>unit-test</groups>
         </configuration>
       </plugin>
 
@@ -346,11 +343,27 @@
         <configuration>
           <!-- Force alphabetical order to have a reproducible build -->
           <runOrder>alphabetical</runOrder>
-          <includes>
-            <include>**/*IT*</include>
-            <include>**/*CucumberTest*</include>
-          </includes>
         </configuration>
+        <executions>
+          <execution>
+            <id>integration-test</id>
+            <goals>
+              <goal>integration-test</goal>
+            </goals>
+            <configuration>
+              <groups>integration-test</groups>
+            </configuration>
+          </execution>
+          <execution>
+            <id>component-test</id>
+            <goals>
+              <goal>integration-test</goal>
+            </goals>
+            <configuration>
+              <groups>component-test</groups>
+            </configuration>
+          </execution>
+        </executions>
       </plugin>
 
       <plugin>
